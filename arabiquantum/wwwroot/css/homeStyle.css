@@ -2,8 +2,11 @@
 }
 
 #intro {
-    background-image: url("https://imgs.search.brave.com/NesC6UkAYNF28FoSCoAFHBpklE2FPfl6tpWFPEzW3Ek/rs:fit:1200:675:1/g:ce/aHR0cHM6Ly93d3cu/Y25ldC5jb20vYS9p/bWcvcmVzaXplL2M3/Y2IyNmU5MjdiZWJh/YTc4NGZiNTVhMDFl/NzFkN2ZlY2IxNWQy/ZTMvaHViLzIwMTkv/MDYvMjYvM2Y3NmU5/OWQtODA1NS00NmYz/LThmMjctNTU4ZWUy/NzZiNjY1LzIwMTgw/NDA1LWlibS1xLXF1/YW50dW0tY29tcHV0/ZXItMDIuanBnP2F1/dG89d2VicCZmaXQ9/Y3JvcCZoZWlnaHQ9/Njc1JndpZHRoPTEy/MDA");
-    height: 400px;
-    width: auto;
+    background-image: url('https://imgs.search.brave.com/jdwKKNipCHgMMAj-STHbarx4vLLewDeR0tzL2P1tOVc/rs:fit:1200:630:1/g:ce/aHR0cHM6Ly93d3cu/Y25ldC5jb20vYS9p/bWcvVzQzVWZybnpE/Sm5iZGhDNXgxZi1Z/TWFXSkdjPS8xMjAw/eDYzMC8yMDE5LzA2/LzI2LzJjZmQ0NDMw/LTIzNDQtNGQ3NS04/YmNjLTg3MDJjZWI4/YmFiMC8yMDE4MDQw/NS1pYm0tcS1xdWFu/dHVtLWNvbXB1dGVy/LTAxLmpwZw');
+    background-size: cover; 
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 50vh;
+    width: 100vw
 }
 
