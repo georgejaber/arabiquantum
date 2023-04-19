@@ -6,7 +6,17 @@ namespace arabiquantum.Controllers
     {
         public IActionResult Index()
         {
+
             return View();
+
         }
+
+        
+        public string name() {
+
+            return "hasan";
+        }
+
+
     }
 }
