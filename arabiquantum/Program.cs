@@ -1,6 +1,9 @@
 using arabiquantum.Data;
 using arabiquantum.InterfacesRepository;
+using arabiquantum.Models;
 using arabiquantum.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using static arabiquantum.Data.seed;
 
@@ -12,6 +15,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IPostRepository, PostRepo>();
 builder.Services.AddScoped<ICommentRepository, CommentRepo>();
 
+//add authentication through cookie session
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie();
+
+
 
 string _GetConnStringName = builder.Configuration.GetConnectionString("DefaultConnectionMySQL");
 
@@ -22,8 +34,8 @@ var app = builder.Build();
 
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
-    //await Seed.SeedUsersAndRolesAsync(app);
-    Seed.SeedData(app);
+    await Seed.SeedUsersAndRolesAsync(app);
+    //Seed.SeedData(app);
 }
 
 

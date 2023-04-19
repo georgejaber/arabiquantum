@@ -39,7 +39,9 @@ namespace arabiquantum.Repository
 
         public async Task<IEnumerable<Post>> GetPostsByUserId(int userId)
         {
-            return await _Context.Posts.Where(i => i.user.UserId == userId).ToListAsync();
+            //return await _Context.Posts.Where(i => i.user.UserId == userId).ToListAsync();
+
+            throw new NotImplementedException();
         }
 
         public bool Save()
