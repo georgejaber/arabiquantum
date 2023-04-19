@@ -1,10 +1,16 @@
 using arabiquantum.Data;
+using arabiquantum.InterfacesRepository;
+using arabiquantum.Repository;
 using Microsoft.EntityFrameworkCore;
+using static arabiquantum.Data.seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IPostRepository, PostRepo>();
+builder.Services.AddScoped<ICommentRepository, CommentRepo>();
 
 
 string _GetConnStringName = builder.Configuration.GetConnectionString("DefaultConnectionMySQL");
@@ -13,6 +19,12 @@ builder.Services.AddDbContextPool<ApplicationDbContext>(options => options.UseMy
 
 
 var app = builder.Build();
+
+if (args.Length == 1 && args[0].ToLower() == "seeddata")
+{
+    //await Seed.SeedUsersAndRolesAsync(app);
+    Seed.SeedData(app);
+}
 
 
 // Configure the HTTP request pipeline.

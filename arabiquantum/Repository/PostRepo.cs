@@ -1,33 +1,58 @@
-﻿using arabiquantum.InterfacesRepository;
+﻿using arabiquantum.Data;
+using arabiquantum.InterfacesRepository;
 using arabiquantum.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace arabiquantum.Repository
 {
     public class PostRepo : IPostRepository
     {
-        public Task Add(Post entity)
+        private readonly ApplicationDbContext _Context;
+
+        public PostRepo(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _Context = context;
         }
 
-        public void Delete(Post entity)
+        public bool Add(Post entity)
         {
-            throw new NotImplementedException();
+            _Context.Add(entity);
+            return Save();
         }
 
-        public Task<IEnumerable<Post>> GetAll()
+        public bool Delete(Post entity)
         {
-            throw new NotImplementedException();
+           _Context.Remove(entity);
+            return Save();
         }
 
-        public Task<Post> GetById(int id)
+        public async Task<IEnumerable<Post>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _Context.Posts.ToListAsync();
         }
 
-        public void Update(Post entity)
+        public async Task<Post> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _Context.Posts.FirstOrDefaultAsync(i => i.PostId == id);
+        }
+
+
+        public async Task<IEnumerable<Post>> GetPostsByUserId(int userId)
+        {
+            return await _Context.Posts.Where(i => i.user.UserId == userId).ToListAsync();
+        }
+
+        public bool Save()
+        {
+            var saved = _Context.SaveChanges();
+            return saved > 0 ? true : false;
+
+        }
+
+        public bool Update(Post entity)
+        {
+          _Context.Entry(entity).State = EntityState.Modified;
+          return Save();
         }
     }
 }

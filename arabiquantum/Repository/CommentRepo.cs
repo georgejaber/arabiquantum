@@ -1,33 +1,57 @@
-﻿using arabiquantum.InterfacesRepository;
+﻿using arabiquantum.Data;
+using arabiquantum.InterfacesRepository;
 using arabiquantum.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace arabiquantum.Repository
 {
+
     public class CommentRepo : ICommentRepository
     {
-        public Task Add(Comment entity)
+        private readonly ApplicationDbContext _Context;
+
+        public CommentRepo(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _Context = context;
         }
 
-        public void Delete(Comment entity)
+        public bool Add(Comment entity)
         {
-            throw new NotImplementedException();
+            _Context.Add(entity);
+            return Save();
         }
 
-        public Task<IEnumerable<Comment>> GetAll()
+        public bool Delete(Comment entity)
         {
-            throw new NotImplementedException();
+            _Context.Remove(entity);
+            return Save();
         }
 
-        public Task<Comment> GetById(int id)
+        public async Task<Comment> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _Context.Comments.FirstOrDefaultAsync(i => i.CommentId == id);
         }
 
-        public void Update(Comment entity)
+        public async Task<IEnumerable<Comment>> GetCommentByPostId(int PostId)
         {
-            throw new NotImplementedException();
+            return await _Context.Comments.Where(i => i.Post.PostId == PostId).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Comment>> GetCommentByUserId(int userId)
+        {
+            return await _Context.Comments.Where(i => i.user.UserId == userId).ToListAsync();
+        }
+
+        public bool Save()
+        {
+            var Save = _Context.SaveChanges();
+            return Save > 0 ? true : false;
+        }
+
+        public bool Update(Comment entity)
+        {
+            _Context.Entry(entity).State = EntityState.Modified ;
+            return Save();
         }
     }
 }

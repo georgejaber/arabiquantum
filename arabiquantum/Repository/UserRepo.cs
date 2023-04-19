@@ -1,10 +1,17 @@
-﻿using arabiquantum.InterfacesRepository;
+﻿using arabiquantum.Data;
+using arabiquantum.InterfacesRepository;
 using arabiquantum.Models;
 
 namespace arabiquantum.Repository
 {
     public class UserRepo : IUserRepository
     {
+        private readonly object _Context;
+
+        public UserRepo(ApplicationDbContext context)
+        {
+            _Context = context;
+        }
         public Task Add(User entity)
         {
             throw new NotImplementedException();

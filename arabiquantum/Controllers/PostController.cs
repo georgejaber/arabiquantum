@@ -1,4 +1,5 @@
 ﻿using arabiquantum.Data;
+using arabiquantum.InterfacesRepository;
 using arabiquantum.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,14 +7,15 @@ namespace arabiquantum.Controllers
 {
     public class PostController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public PostController(ApplicationDbContext _context)
+        private readonly IPostRepository _post;
+
+        public PostController(IPostRepository post)
         {
-            this._context = _context;
+            this._post = post;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Post> Posts = _context.Posts.ToList();
+            IEnumerable<Post> Posts = await _post.GetAll();
             return View(Posts);
         }
     }
