@@ -11,12 +11,5 @@ namespace arabiquantum.Controllers
 
         }
 
-        
-        public string name() {
-
-            return "hasan";
-        }
-
-
     }
 }

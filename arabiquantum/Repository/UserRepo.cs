@@ -10,7 +10,7 @@ namespace arabiquantum.Repository
             throw new NotImplementedException();
         }
 
-        public void Delete(User entity)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
@@ -25,7 +25,7 @@ namespace arabiquantum.Repository
             throw new NotImplementedException();
         }
 
-        public void Update(User entity)
+        public void Update(int id, User entity)
         {
             throw new NotImplementedException();
         }

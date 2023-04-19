@@ -7,8 +7,8 @@ namespace arabiquantum.InterfacesRepository
         Task<User> GetById(int id);
         Task<IEnumerable<User>> GetAll();
         Task Add(User entity);
-        void Delete(User entity);
-        void Update(User entity);
+        void Delete(int id);
+        void Update(int id,User entity);
 
     }
 
