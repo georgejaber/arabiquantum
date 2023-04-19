@@ -1,14 +1,15 @@
-﻿using System.Numerics;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Numerics;
 
 namespace arabiquantum.Models
 {
-    public class Class
+    public class Comment
     {
-        [key]
+        [Key]
         public long Id { get; set; }
-        public string text { get; set; }
+        public string Text { get; set; }
         public DateTime Data { get; set; } = DateTime.Now;
-        public BigInteger like { get; set; }
-        public BigInteger dislike { get; set; }
+        public int Like { get; set; }
+        public int Dislike { get; set; }
     }
 }

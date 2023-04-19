@@ -1,9 +1,19 @@
+using arabiquantum.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+string _GetConnStringName = builder.Configuration.GetConnectionString("DefaultConnectionMySQL");
+
+builder.Services.AddDbContextPool<ApplicationDbContext>(options => options.UseMySQL(connectionString: _GetConnStringName));
+
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

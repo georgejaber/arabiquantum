@@ -11,8 +11,8 @@ namespace arabiquantum.Models
         public string? Password { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime  birthData { get; set; }
-        public string?  role { get; set; }
+        public DateTime  BirthData { get; set; }
+        public string?  Role { get; set; }
         
     }
 }
