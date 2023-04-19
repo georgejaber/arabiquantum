@@ -1,9 +1,10 @@
-﻿namespace arabiquantum.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace arabiquantum.Models
 {
     public class User
-
     {
-        [key]
+        [Key]
         public long Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
