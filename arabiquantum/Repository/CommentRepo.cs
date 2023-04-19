@@ -39,7 +39,8 @@ namespace arabiquantum.Repository
 
         public async Task<IEnumerable<Comment>> GetCommentByUserId(int userId)
         {
-            return await _Context.Comments.Where(i => i.user.UserId == userId).ToListAsync();
+            // return await _Context.Comments.Where(i => i.user.UserId == userId).ToListAsync();
+            throw new NotImplementedException();
         }
 
         public bool Save()

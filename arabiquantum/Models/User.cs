@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace arabiquantum.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        [Key]
-        public long UserId { get; set; }
-        public string?  Role { get; set; }
-
+     
     }
 }

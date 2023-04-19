@@ -10,9 +10,6 @@ namespace arabiquantum.Models
         public long PostId { get; set; }
         public string text { get; set; }
         public DateTime DateTime { get; set; }
-
-        [ForeignKey("UserId")]
-        public long UserId { get; set; }
         // Navigation property
         public User user { get; set; }
 
