@@ -20,19 +20,21 @@
 }
 
 form.example input[type=text] {
+    border-radius: 10px 0px 0px 10px;
     padding: 5px;
     font-size: 17px;
     border: 1px solid grey;
     float: left;
     width: 80%;
-    background: #f1f1f1;
+    background: #f3f3f3;
 }
 
 form.example button {
+    border-radius: 0px 10px 10px 0px;
     float: left;
     width: 20%;
     padding: 5px;
-    background: #878787;
+    background: #3098ff;
     color: white;
     font-size: 17px;
     border: 1px solid grey;
