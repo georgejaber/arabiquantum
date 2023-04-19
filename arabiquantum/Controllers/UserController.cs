@@ -1,16 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using arabiquantum.Data;
+using arabiquantum.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace arabiquantum.Controllers
 {
     public class UserController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+        public UserController(ApplicationDbContext _context)
         {
-
-            return View();
-
+            this._context = _context;
         }
 
+        public IActionResult Index()
+        {
+            List<User> users = _context.Users.ToList();
+            return View();
+        }
         
         public string name() {
 

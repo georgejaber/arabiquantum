@@ -11,7 +11,7 @@ using arabiquantum.Data;
 namespace arabiquantum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230419104703_InitialCreate")]
+    [Migration("20230419120019_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,11 +24,11 @@ namespace arabiquantum.Migrations
 
             modelBuilder.Entity("arabiquantum.Models.Comment", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("Data")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
                     b.Property<int>("Dislike")
@@ -37,29 +37,32 @@ namespace arabiquantum.Migrations
                     b.Property<int>("Like")
                         .HasColumnType("int");
 
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("CommentId");
 
                     b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("arabiquantum.Models.Post", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("PostId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("Data")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("text")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("PostId");
 
                     b.ToTable("Posts");
                 });
