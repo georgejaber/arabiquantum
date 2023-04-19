@@ -1,6 +1,6 @@
 ﻿namespace arabiquantum.Models
 {
-    public class Class
+    public class User
     {
     }
 }
