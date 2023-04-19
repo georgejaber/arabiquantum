@@ -5,6 +5,7 @@ namespace arabiquantum.Models
     public class ApplicetionDbContext : DbContext
     {
 
-        public ApplicetionDbContext() { }
+        public ApplicetionDbContext(DbContextOptions<ApplicetionDbContext>options) base(options) {
+        }
     }
 }
