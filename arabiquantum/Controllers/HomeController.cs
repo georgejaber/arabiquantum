@@ -12,11 +12,7 @@ namespace arabiquantum.Controllers
         {
             _logger = logger;
         }
-        // test git 
-        //
-        //
-        //
-        //
+    
         public IActionResult Index()
         {
             return View();
