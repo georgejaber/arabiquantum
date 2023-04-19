@@ -13,6 +13,6 @@ namespace arabiquantum.Models
         [DataType(DataType.Date)]
         public DateTime  birthData { get; set; }
         public string?  role { get; set; }
-
+        
     }
 }
