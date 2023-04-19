@@ -1,6 +1,6 @@
 ﻿body {
 }
-
+/*home image style*/
 .intro {
     background-image: url('https://imgs.search.brave.com/jdwKKNipCHgMMAj-STHbarx4vLLewDeR0tzL2P1tOVc/rs:fit:1200:630:1/g:ce/aHR0cHM6Ly93d3cu/Y25ldC5jb20vYS9p/bWcvVzQzVWZybnpE/Sm5iZGhDNXgxZi1Z/TWFXSkdjPS8xMjAw/eDYzMC8yMDE5LzA2/LzI2LzJjZmQ0NDMw/LTIzNDQtNGQ3NS04/YmNjLTg3MDJjZWI4/YmFiMC8yMDE4MDQw/NS1pYm0tcS1xdWFu/dHVtLWNvbXB1dGVy/LTAxLmpwZw');
     background-size: cover;
@@ -10,7 +10,7 @@
     width: 100vw
 
 }
-
+/*serch bar*/
 .fa-search {
     font-size: 18px;
 }
@@ -20,23 +20,23 @@
 }
 
 form.example input[type=text] {
-    border-radius: 0px 10px 10px 0px;
+    /*border-radius: 0px 10px 10px 0px;*/
     padding: 5px;
     font-size: 17px;
     border: 1px solid grey;
     float: right; /* change float to right */
     width: 80%;
-    background: #f3f3f3;
+    background: #F3F6FB;
     text-align: right;
 }
 
 form.example button {
-    border-radius: 10px 0px 0px 10px;
+    /*border-radius: 10px 0px 0px 10px;*/
     float: left; /* change float to left */
     width: 20%;
     padding: 5px;
-    background: #3098ff;
-    color: white;
+    background: #2279ac;
+    color: #459fe0;
     font-size: 17px;
     border: 1px solid grey;
     border-right: none; /* change border-left to border-right */
@@ -44,7 +44,8 @@ form.example button {
 }
 
     form.example button:hover {
-        background: #0b7dda;
+        background: #459fe0;
+        color: #2279ac;
     }
 
 form.example::after {
