@@ -1,10 +1,11 @@
-﻿using System.Numerics;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Numerics;
 
 namespace arabiquantum.Models
 {
     public class Class
     {
-        [key]
+        [Key]
         public long Id { get; set; }
         public string text { get; set; }
         public DateTime Data { get; set; } = DateTime.Now;

@@ -1,11 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using arabiquantum.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace arabiquantum.Models
 {
     public class ApplicetionDbContext : DbContext
     {
-
-        public ApplicetionDbContext(DbContextOptions<ApplicetionDbContext>options) base(options) {
+        /*
+        public ApplicetionDbContext(DbContextOptions<ApplicetionDbContext> options) base(options) {
         }
+
+   
+    }
+        */
     }
 }
