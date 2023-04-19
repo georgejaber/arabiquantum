@@ -18,5 +18,11 @@ namespace arabiquantum.Controllers
             IEnumerable<Post> Posts = await _post.GetAll();
             return View(Posts);
         }
+      
+        public async Task<IActionResult> search(string id) 
+        {
+            return View(await _post.search(id));
+            
+        }
     }
 }
