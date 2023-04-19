@@ -1,7 +1,7 @@
 ﻿body {
 }
 
-#intro {
+.intro {
     background-image: url('https://imgs.search.brave.com/jdwKKNipCHgMMAj-STHbarx4vLLewDeR0tzL2P1tOVc/rs:fit:1200:630:1/g:ce/aHR0cHM6Ly93d3cu/Y25ldC5jb20vYS9p/bWcvVzQzVWZybnpE/Sm5iZGhDNXgxZi1Z/TWFXSkdjPS8xMjAw/eDYzMC8yMDE5LzA2/LzI2LzJjZmQ0NDMw/LTIzNDQtNGQ3NS04/YmNjLTg3MDJjZWI4/YmFiMC8yMDE4MDQw/NS1pYm0tcS1xdWFu/dHVtLWNvbXB1dGVy/LTAxLmpwZw');
     background-size: cover; 
     background-position: center center;
