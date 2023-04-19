@@ -56,5 +56,13 @@ namespace arabiquantum.Repository
           _Context.Entry(entity).State = EntityState.Modified;
           return Save();
         }
+
+        public async Task<IEnumerable<Post>> search(string search) 
+        {
+            return await _Context.Posts.Where(s => s.text!.Contains(search)).ToListAsync();
+            
+        }
+
+      
     }
 }
