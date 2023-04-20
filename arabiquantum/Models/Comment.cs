@@ -14,10 +14,13 @@ namespace arabiquantum.Models
         public int Like { get; set; }
         public int Dislike { get; set; }
 
-        [ForeignKey("PostId")]
-        public long PostId { get; set; }
+        [ForeignKey("Id")]
+        public long? PostId { get; set; }
         // Navigation property
         public Post Post { get; set; }
+
+        [ForeignKey("Id")]
+        public string? UserId { get; set; }
         public User user { get; set; }
     }
 }

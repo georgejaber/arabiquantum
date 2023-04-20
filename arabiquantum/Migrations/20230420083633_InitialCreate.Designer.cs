@@ -11,7 +11,7 @@ using arabiquantum.Data;
 namespace arabiquantum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230419205837_InitialCreate")]
+    [Migration("20230420083633_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -165,44 +165,44 @@ namespace arabiquantum.Migrations
                     b.Property<int>("Like")
                         .HasColumnType("int");
 
-                    b.Property<long>("PostId")
+                    b.Property<long?>("PostId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("userId")
+                    b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("CommentId");
 
                     b.HasIndex("PostId");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("arabiquantum.Models.Post", b =>
                 {
-                    b.Property<long>("PostId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
                     b.Property<string>("text")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("userId")
-                        .HasColumnType("varchar(255)");
+                    b.HasKey("Id");
 
-                    b.HasKey("PostId");
-
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -326,13 +326,11 @@ namespace arabiquantum.Migrations
                 {
                     b.HasOne("arabiquantum.Models.Post", "Post")
                         .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PostId");
 
                     b.HasOne("arabiquantum.Models.User", "user")
                         .WithMany()
-                        .HasForeignKey("userId");
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Post");
 
@@ -343,7 +341,7 @@ namespace arabiquantum.Migrations
                 {
                     b.HasOne("arabiquantum.Models.User", "user")
                         .WithMany()
-                        .HasForeignKey("userId");
+                        .HasForeignKey("UserId");
 
                     b.Navigation("user");
                 });

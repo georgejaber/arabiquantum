@@ -13,16 +13,42 @@ namespace arabiquantum.Controllers
         {
             this._post = post;
         }
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(Post post)
         {
-            IEnumerable<Post> Posts = await _post.GetAll();
-            return View(Posts);
+            if(post.text==null) 
+            {
+                IEnumerable<Post> Posts = await _post.GetAll();
+                return View(Posts);
+            }
+
+            var posts = await _post.search(post);
+
+            return View(posts);
         }
-      
-        public async Task<IActionResult> search(string id) 
+
+
+
+        public IActionResult create() 
         {
-            return View(await _post.search(id));
-            
+            return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> create(Post post) 
+        {
+            Post post1 = new Post();
+
+            post1.text = post.text;
+            post1.DateTime = DateTime.Now;
+           
+            if (!ModelState.IsValid)
+            {
+                return View(post1);
+            }
+            _post.Add(post1);
+            return RedirectToAction("index");
+        }
+
     }
 }
