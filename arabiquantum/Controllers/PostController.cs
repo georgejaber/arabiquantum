@@ -16,13 +16,17 @@ namespace arabiquantum.Controllers
  
         public async Task<IActionResult> Index(Post post)
         {
+            PostViewModel viewModel = new PostViewModel();
+
+            viewModel.Post = post;
+
             if (post.text == null) 
             {
-              IEnumerable<Post> posts =  await _post.GetAll();
-              return View(posts);
+              viewModel.posts =   await _post.GetAll();
+              return View(viewModel);
             }
-            IEnumerable<Post> Posts = await _post.search(post);
-            return View(Posts);
+              viewModel.posts = await _post.search(post);
+            return View(viewModel);
         }
 
 
