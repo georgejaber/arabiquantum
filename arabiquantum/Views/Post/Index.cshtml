@@ -15,20 +15,19 @@
             foreach (var post in Model)
             {
                 <div class="container ">
-                    <div class="card w3-panel w3-bottombar w3-border-white w3-hover-border-black">
+                    <div style="border-radius: 0px ; border-color: #235074" class="card w3-panel w3-border w3-hover-border-blue">
                         <div class="card-body">
                             <div class="row justify-content-between">
-                         
+                  
+
+
+                                <div class="col-2"> <h4  class="card-title">السؤال</h4> </div>
                                 <div class="col-2 "> <h6 class="card-title ">@post.DateTime</h6> </div>
-
-
-                                <div class="col-2"> <h4 style="text-align:right:" class="card-title">السؤال</h4> </div>
-                               
                             </div>
 
-                            <p style="text-align:right" class="card-text">@post.text</p>
+                            <p  class="card-text">@post.text</p>
 
-                            <a href="#" type="button" style="background-color:#43b3c6 " class="btn btn-primary w3-round-small ">رؤية المزيد</a>
+                            <a href="#" type="button" style="background-color:#43b3c6 ; border-radius: 0px ; margin-right: 1100px" class="btn btn-primary ">رؤية المزيد</a>
                         </div>
                     </div>
                 </div>
