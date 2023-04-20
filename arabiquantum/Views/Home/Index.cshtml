@@ -1,4 +1,4 @@
-﻿@model arabiquantum.Models.Post
+﻿@model Post
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -13,9 +13,12 @@
                 <h1 class="display-4 text-light pb-4 shadow-lg" style="text-shadow: 2px 2px #f5f543;">(arabiQuantum)مرحبا إلى</h1>
 
             <div class="box">
-              <form class="example" action="/post/search/" method="post" style="margin:auto;max-width:300px">
-                    <input type="text" placeholder="...بحث" name="search"> 
-                    <button type="submit"><i class="fa fa-search"></i></button>              
+
+             <form asp-controller="Post" asp-action="index" class="example" method="post" style="margin:auto;max-width:300px">
+
+                    <input asp-for="text" type="text" placeholder="...بحث" name="index"> 
+                    <button type="submit"><i class="fa fa-search"></i></button>   
+                    
              </form>
                    
             </div>

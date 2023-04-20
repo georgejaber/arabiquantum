@@ -171,18 +171,18 @@ namespace arabiquantum.Migrations
                 name: "Posts",
                 columns: table => new
                 {
-                    PostId = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     text = table.Column<string>(type: "longtext", nullable: false),
                     DateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    userId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Posts", x => x.PostId);
+                    table.PrimaryKey("PK_Posts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Posts_AspNetUsers_userId",
-                        column: x => x.userId,
+                        name: "FK_Posts_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 })
@@ -198,23 +198,22 @@ namespace arabiquantum.Migrations
                     DateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Like = table.Column<int>(type: "int", nullable: false),
                     Dislike = table.Column<int>(type: "int", nullable: false),
-                    PostId = table.Column<long>(type: "bigint", nullable: false),
-                    userId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    PostId = table.Column<long>(type: "bigint", nullable: true),
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.CommentId);
                     table.ForeignKey(
-                        name: "FK_Comments_AspNetUsers_userId",
-                        column: x => x.userId,
+                        name: "FK_Comments_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Comments_Posts_PostId",
                         column: x => x.PostId,
                         principalTable: "Posts",
-                        principalColumn: "PostId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
@@ -261,14 +260,14 @@ namespace arabiquantum.Migrations
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_userId",
+                name: "IX_Comments_UserId",
                 table: "Comments",
-                column: "userId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_userId",
+                name: "IX_Posts_UserId",
                 table: "Posts",
-                column: "userId");
+                column: "UserId");
         }
 
         /// <inheritdoc />

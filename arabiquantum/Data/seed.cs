@@ -42,26 +42,26 @@ namespace arabiquantum.Data
                         {
                             new Post()
                             {
-                                PostId=1,
+                                Id=1,
                                 text = "هل يمكن للحاسوب الكمي ان يفك تشفير كلمة سر ؟",
                                 DateTime = DateTime.UtcNow
 
                             },
                             new Post()
                             {
-                                PostId=2,
+                                Id=2,
                                 text = "  هل يمكن للحاسوب الكمي الطيران ",
                                 DateTime = DateTime.UtcNow
                             },
                             new Post()
                             {
-                                PostId=3,
+                                Id=3,
                                 text = "هل يمكن للحاسوب الكمي السياحة ",
                                 DateTime = DateTime.UtcNow
                             },
                             new Post()
                             {
-                                PostId=4,
+                                Id=4,
                                 text = "هل يمكن للحاسوب الكمي القفز ",
                                 DateTime = DateTime.UtcNow
                             }
