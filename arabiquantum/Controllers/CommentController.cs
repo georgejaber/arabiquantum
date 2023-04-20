@@ -14,10 +14,30 @@ namespace arabiquantum.Controllers
             this._comment = comment;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(Post post)
+        {        
+           return View(await _comment.GetCommentByPostId(post.Id));
+        }     
+        
+        public IActionResult create()
         {
-      
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> create(Comment comment)
+        {
+            Comment comment1 = new Comment();
+
+            comment1.Text = comment.Text;
+            comment1.DateTime = DateTime.Now;
+
+            if (!ModelState.IsValid)
+            {
+                return View(comment);
+            }
+            _comment.Add(comment1);
+            return RedirectToAction("index");
         }
     }
 }

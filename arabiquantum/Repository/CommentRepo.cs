@@ -32,7 +32,7 @@ namespace arabiquantum.Repository
             return await _Context.Comments.FirstOrDefaultAsync(i => i.CommentId == id);
         }
 
-        public async Task<IEnumerable<Comment>> GetCommentByPostId(int PostId)
+        public async Task<IEnumerable<Comment>> GetCommentByPostId(long PostId)
         {
             return await _Context.Comments.Where(i => i.Post.Id == PostId).ToListAsync();
         }
