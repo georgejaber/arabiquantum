@@ -36,7 +36,7 @@
                             <a class="nav-link text-light float-end" href="https://arabiquantum.z13.web.core.windows.net/api/index.html">تعلم عن الحوسبة الكمية</a>
                         </li>
                         <li class="nav-item mx-sm-3 ">
-                            <a class="nav-link  text-light float-end" asp-area="" asp-controller="Home" asp-action="Privacy">الخصوصية</a>
+                            <a class="nav-link  text-light float-end" asp-area="" asp-controller="post" asp-action="index">المجتمع</a>
                         </li>
                     </ul>
                 </div>
@@ -57,9 +57,14 @@
             &copy; 2023 - arabiquantum - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
