@@ -34,7 +34,7 @@ var app = builder.Build();
 
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
-   await Seed.SeedUsersAndRolesAsync(app);
+    await Seed.SeedUsersAndRolesAsync(app);
     Seed.SeedData(app);
 }
 
@@ -58,4 +58,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.Run();
+ app.Run();
