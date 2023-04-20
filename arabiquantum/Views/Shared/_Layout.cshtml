@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html dir="rtl" lang="en">
 <head>
     <meta charset="utf-8" />
@@ -40,19 +41,16 @@
                     </ul>
                 </div>
                 <div class="box">
-                    <form class="example" action="/post/search/" method="post" style="margin:auto;max-width:55vh">
-                        <input type="text" placeholder="بحث... " name="search">
+                    <form asp-controller="Post" asp-action="index"  method="post" style="margin:auto;max-width:55vh">
+                        <input type="text" placeholder="بحث... ">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
-
+                     
                 </div>
             </div>
         </nav>
-    </header>
-    
+    </header>   
             @RenderBody()
-       
-
     <footer class="border-top footer text-light" style="background-color:#1c405d">
         <div class="container">
             &copy; 2023 - arabiquantum - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

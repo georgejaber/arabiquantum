@@ -11,15 +11,16 @@
         <div class="container d-flex align-items-center justify-content-center text-center h-100 ">
             <div class="text-center ">
                 <h1 class="display-4 text-white pb-4 " style="text-shadow: 2px 2px 9px #7E9EC5;"><b>"Arabi Quantum"مرحبا إلى</b></h1>
-               
-            <div class="box">
 
+                <div style="margin:auto;max-width:300px" class="box input-group mb-3">
+             
              <form asp-controller="Post" asp-action="index" class="example" method="post" style="margin:auto;max-width:300px">
 
-                    <input asp-for="text" type="text" placeholder="...بحث"> 
-                    <button type="submit"><i class="fa fa-search"></i></button>   
-                    
-             </form>
+                    <input asp-for="text" type="text" placeholder="بحث..."> 
+                    <button type="submit"> <i class="example btn fa fa-search"></i> </button>
+                   
+
+                     </form>
                    
             </div>
 
@@ -28,9 +29,7 @@
         </div>
     </div>
     
-    
-    <div>
-
+    <div>  
         
     </div>
 </main>
