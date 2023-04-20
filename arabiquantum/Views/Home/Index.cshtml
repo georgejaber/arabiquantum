@@ -3,7 +3,7 @@
     ViewData["Title"] = "Home Page";
 }
 <head>
-    <link rel="stylesheet" href="~/css/homeStyle.css" asp-append-version="true" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 </head>
 <main role="main" >
@@ -13,14 +13,15 @@
                 <h1 class="display-4 text-white pb-4 " style="text-shadow: 2px 2px 9px #7E9EC5;"><b>"Arabi Quantum"مرحبا إلى</b></h1>
                
             <div class="box">
+@{
+                 <form asp-controller="Post" asp-action="index" class="example" method="post" style="margin:auto;max-width:300px">
 
-             <form asp-controller="Post" asp-action="index" class="example" method="post" style="margin:auto;max-width:300px">
-
-                    <input asp-for="text" type="text" placeholder="...بحث" name="index"> 
-                    <button type="submit"><i class="fa fa-search"></i></button>   
-                    
-             </form>
-                   
+                        <input asp-for="text" type="text" placeholder="...بحث"> 
+                        <button type="submit"><i class="fa fa-search"></i></button>   
+                 </form>
+             }
+                  
+             
             </div>
 
                 <p style="text-shadow: 2px 2px 9px #7E9EC5;"> <b>تعلم عن الحاسوب الكمي</b> <a href="https://arabiquantum.z13.web.core.windows.net/api/index.html">هنا</a>.</p>

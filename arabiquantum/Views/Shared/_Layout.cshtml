@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/arabiquantum.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/homeStyle.css" asp-append-version="true" />
 </head>
 <body>
     <header>
@@ -23,7 +24,7 @@
                    
 
                     <ul class="navbar-nav flex-grow-1   ">
-                        
+                       
                         <li class="nav-item mx-sm-3 mx-xs-2">
                             <a class="nav-link text-light float-end " asp-area="" asp-controller="Home" asp-action="Index">الصفحة الرئيسية</a>
                         </li>
@@ -34,6 +35,13 @@
                             <a class="nav-link  text-light float-end" asp-area="" asp-controller="Home" asp-action="Privacy">الخصوصية</a>
                         </li>
                     </ul>
+                </div>
+                <div class="box">
+                    <form class="example" action="/post/search/" method="post" style="margin:auto;max-width:55vh">
+                        <input type="text" placeholder="بحث... " name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+
                 </div>
             </div>
         </nav>
