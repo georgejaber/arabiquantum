@@ -15,8 +15,17 @@ namespace arabiquantum.Controllers
         }
 
         public async Task<IActionResult> Index(Post post)
-        {        
-           return View(await _comment.GetCommentByPostId(post.Id));
+        {
+   
+            var comments = await _comment.GetCommentByPostId(post.Id);
+
+            Post post1 =  await _comment.GetpostByPostId(PostId: post.Id);
+
+            ViewData["posttext"] = post1.text;
+            ViewData["postdate"] = post1.DateTime;
+
+            return View(comments);
+           
         }     
         
         public IActionResult create()

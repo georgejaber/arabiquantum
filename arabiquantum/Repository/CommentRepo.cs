@@ -34,7 +34,12 @@ namespace arabiquantum.Repository
 
         public async Task<IEnumerable<Comment>> GetCommentByPostId(long PostId)
         {
-            return await _Context.Comments.Where(i => i.Post.Id == PostId).ToListAsync();
+            return await _Context.Comments.Include(i=> i.Post).Where(i => i.Post.Id == PostId).ToListAsync();
+        }
+
+        public async Task<Post> GetpostByPostId(long PostId)
+        {
+            return await _Context.Posts.FirstOrDefaultAsync(i => i.Id == PostId);
         }
 
         public async Task<IEnumerable<Comment>> GetCommentByUserId(int userId)
@@ -54,5 +59,6 @@ namespace arabiquantum.Repository
             _Context.Entry(entity).State = EntityState.Modified ;
             return Save();
         }
+
     }
 }

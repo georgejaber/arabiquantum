@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Comment>
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -10,9 +11,6 @@
     <div class="container">
 
         @{
-            foreach (var comment in Model)
-            {
-
                 <div class="container ">
                     <div style="border-radius: 0px ; border-color: #235074" class="card w3-panel w3-border w3-hover-border-blue">
                         <div class="card-body">
@@ -20,14 +18,34 @@
 
 
 
-                            <div class="col-2"> <h4 class="card-title">السؤال</h4> </div>
-                            <div class="col-2 "> <h6 class="card-title ">@comment.DateTime</h6> </div>
+                                <div class="col-2"> <h4 class="card-title">السؤال</h4> </div>
+                                <div class="col-2 "> <h6 class="card-title ">
+                                    @ViewData["postdate"]
+                                </h6> </div>
                             </div>
-
-                            <p class="card-text">@comment.Text</p>
+                            <p class="card-text">@ViewData["posttext"]</p>
                         </div>
                     </div>
                 </div>
+
+            foreach (var comment in Model)
+            {
+
+                    <div class="container ">
+                        <div style="border-radius: 0px ; border-color: #235074" class="card w3-panel w3-border w3-hover-border-blue">
+                            <div class="card-body">
+                                <div class="row justify-content-between">
+
+
+
+                                    <div class="col-2"> <h4 class="card-title">السؤال</h4> </div>
+                                    <div class="col-2 "> <h6 class="card-title ">@comment.DateTime</h6> </div>
+                                </div>
+
+                                <p class="card-text">@comment.Text</p>
+                            </div>
+                        </div>
+                    </div>
             }
         }
 
