@@ -34,7 +34,7 @@ namespace arabiquantum.Repository
 
         public async Task<IEnumerable<Comment>> GetCommentByPostId(int PostId)
         {
-            return await _Context.Comments.Where(i => i.Post.PostId == PostId).ToListAsync();
+            return await _Context.Comments.Where(i => i.Post.Id == PostId).ToListAsync();
         }
 
         public async Task<IEnumerable<Comment>> GetCommentByUserId(int userId)

@@ -33,7 +33,7 @@ namespace arabiquantum.Repository
 
         public async Task<Post> GetById(int id)
         {
-            return await _Context.Posts.FirstOrDefaultAsync(i => i.PostId == id);
+            return await _Context.Posts.FirstOrDefaultAsync(i => i.Id == id);
         }
 
 
@@ -57,9 +57,9 @@ namespace arabiquantum.Repository
           return Save();
         }
 
-        public async Task<IEnumerable<Post>> search(string search) 
-        {
-            return await _Context.Posts.Where(s => s.text!.Contains(search)).ToListAsync();
+        public async Task<IEnumerable<Post>> search(Post post)
+        {  
+           return await _Context.Posts.Where(s => s.text!.Contains(post.text)).ToListAsync();
             
         }
 
