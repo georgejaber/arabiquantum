@@ -13,18 +13,16 @@ namespace arabiquantum.Controllers
         {
             this._post = post;
         }
-
+ 
         public async Task<IActionResult> Index(Post post)
         {
-            if(post.text==null) 
+            if (post.text == null) 
             {
-                IEnumerable<Post> Posts = await _post.GetAll();
-                return View(Posts);
+              IEnumerable<Post> posts =  await _post.GetAll();
+              return View(posts);
             }
-
-            var posts = await _post.search(post);
-
-            return View(posts);
+            IEnumerable<Post> Posts = await _post.search(post);
+            return View(Posts);
         }
 
 
