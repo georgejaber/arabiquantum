@@ -28,7 +28,6 @@ namespace arabiquantum.Controllers
         }
 
 
-
         public IActionResult create() 
         {
             return View();
