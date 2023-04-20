@@ -5,9 +5,46 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
 </head>
 <main role="main">
     <div class="container">
+        
+        <div class="container ">
+            <div style="border-radius: 0px ; border-color: #235074; " class="card w3-panel w3-border w3-hover-border-blue ">
+                <div class="card-body">
+                    <div class="row justify-content-between">
+
+
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">إنشاء سؤال :</h5>
+
+                            </div>
+                            <div class="modal-body">
+                                <form>
+
+                                    <div class="form-group">
+
+                                        <textarea class="form-control " data-toggle="modal" data-target="#exampleModal" ></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                               
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                  
+
+                    
+                </div>
+            </div>
+        </div>
+        
         @{
             foreach (var post in Model)
             {
@@ -24,7 +61,7 @@
 
                             <p  class="card-text">@post.text</p>
 
-                            <a href="/comment/index/@post.Id"  type="button" style="background-color:#43b3c6 ; border-radius: 0px ; margin-right:90%" class="btn btn-primary ">رؤية المزيد</a>
+                            <a href="/comment/index/@post.Id" type="button" class="btn btn-post ">رؤية المزيد</a>
                         </div>
                     </div>
                 </div>
@@ -32,3 +69,27 @@
 
 </div>
 </main>
+<!--model-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">إنشاء سؤال :</h5>
+                
+            </div>
+            <div class="modal-body">
+                <form>
+                    
+                    <div class="form-group">
+                        
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" >إغلاق</button>
+                <button type="button" class="btn btn-post" style="margin-right:0;">حفظ</button>
+            </div>
+        </div>
+    </div>
+</div>
