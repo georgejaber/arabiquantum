@@ -13,8 +13,7 @@ namespace arabiquantum.Controllers
         {
             this._post = post;
         }
-
-        public async Task<IActionResult> Index(Post post)
+        public   Task<IActionResult> Index()
         {
             if(post.text==null) 
             {
@@ -26,7 +25,6 @@ namespace arabiquantum.Controllers
 
             return View(posts);
         }
-
 
 
         public IActionResult create() 

@@ -1,40 +1,45 @@
 ﻿using arabiquantum.Data;
 using arabiquantum.InterfacesRepository;
 using arabiquantum.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace arabiquantum.Repository
 {
     public class UserRepo : IUserRepository
     {
-        private readonly object _Context;
+        private readonly ApplicationDbContext _Context;
 
         public UserRepo(ApplicationDbContext context)
         {
+
             _Context = context;
         }
         public Task Add(User entity)
         {
-            throw new NotImplementedException();
+
+            _Context.Add(entity);
         }
 
         public void Delete(User entity)
         {
-            throw new NotImplementedException();
+            _Context.Remove(entity);
+            
         }
 
-        public Task<IEnumerable<User>> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            throw new NotImplementedException();
-        }
+            return _Context.Posts.ToListAsync;
 
-        public Task<User> GetById(int id)
+        }
+        public async Task<User> GetById(int id)
         {
-            throw new NotImplementedException();
+          //  return _Context.Posts.FirstOrDefaultAsync(i => i.UserId == id);
         }
 
         public void Update(User entity)
         {
-            throw new NotImplementedException();
+            _Context.Update(entity);
+           
         }
     }
 }
