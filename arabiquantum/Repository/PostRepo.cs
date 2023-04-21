@@ -36,6 +36,12 @@ namespace arabiquantum.Repository
             return await _Context.Posts.FirstOrDefaultAsync(i => i.Id == id);
         }
 
+        public async Task<Post> GetByText(string search)
+        {
+            return await _Context.Posts.FirstOrDefaultAsync(i => i.text.Equals(search));
+        }
+
+
 
         public async Task<IEnumerable<Post>> GetPostsByUserId(int userId)
         {
@@ -57,9 +63,9 @@ namespace arabiquantum.Repository
           return Save();
         }
 
-        public async Task<IEnumerable<Post>> search(Post post)
+        public async Task<IEnumerable<Post>> search(string searchtext)
         {  
-           return await _Context.Posts.Where(s => s.text!.Contains(post.text)).ToListAsync();
+           return await _Context.Posts.Where(s => s.text!.Contains(searchtext)).ToListAsync();
             
         }
 

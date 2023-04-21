@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html dir="rtl" lang="en" >
 <head>
     <meta charset="utf-8" />
@@ -46,6 +45,14 @@
                     
                         <button type="submit" class="fa fa-search myb1" style="height:3.59vh;font-size:11px"></button>
                     </form>
+                    
+                    <div class="box">
+                        @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { style = "margin:auto;max-width:50vh", @class = "example" }))
+                        {
+                            @Html.TextBox("SearchText")                          
+                            <button type="submit" ><i class="fa fa-search"></i></button>
+                        }
+                    </div>
                      
                 </div>
             </div>
