@@ -1,53 +1,9 @@
-﻿@model IEnumerable<Comment>
-
+﻿@model CommentViewModel
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-<main role="main">
-    <div class="container">
-
-        @{
-                <div class="container ">
-                    <div style="border-radius: 0px ; border-color: #235074" class="card w3-panel w3-border w3-hover-border-blue">
-                        <div class="card-body">
-                            <div class="row justify-content-between">
-
-
-
-                                <div class="col-2"> <h4 class="card-title">السؤال</h4> </div>
-                                <div class="col-2 "> <h6 class="card-title ">
-                                    @ViewData["postdate"]
-                                </h6> </div>
-                            </div>
-                            <p class="card-text">@ViewData["posttext"]</p>
-                        </div>
-                    </div>
-                </div>
-
-            foreach (var comment in Model)
-            {
-
-                    <div class="container ">
-                        <div style="border-radius: 0px ; border-color: #235074" class="card w3-panel w3-border w3-hover-border-blue">
-                            <div class="card-body">
-                                <div class="row justify-content-between">
-
-
-
-                                    <div class="col-2"> <h4 class="card-title">السؤال</h4> </div>
-                                    <div class="col-2 "> <h6 class="card-title ">@comment.DateTime</h6> </div>
-                                </div>
-
-                                <p class="card-text">@comment.Text</p>
-                            </div>
-                        </div>
-                    </div>
-            }
-        }
-
-    </div>
-</main>
+@{
+    @Html.Partial("CommentPartialView",Model.comment);
+    @Html.Partial("CommentListPartialView",Model.comments);
+  
+}
