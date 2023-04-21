@@ -14,22 +14,28 @@ namespace arabiquantum.Controllers
             this._comment = comment;
         }
 
-        public async Task<IActionResult> Index(Post post)
+        [HttpGet]
+        public async Task<IActionResult> Index(long Id)
         {
+
            CommentViewModel commentView = new CommentViewModel();   
 
 
-            commentView.comments = await _comment.GetCommentByPostId(post.Id);
+            commentView.comments = await _comment.GetCommentByPostId(Id);
 
-            Post post1 =  await _comment.GetpostByPostId(PostId: post.Id);
+            Post post1 =  await _comment.GetpostByPostId(PostId:Id);
 
             ViewData["posttext"] = post1.text;
             ViewData["postdate"] = post1.DateTime;
-            ViewData["postid"] = post1.Id;
+            ViewBag.postid = post1.Id ;
 
             return View(commentView);           
-        }     
-        
+        }
+
+        public IActionResult create()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> create(Comment comment)
@@ -38,13 +44,15 @@ namespace arabiquantum.Controllers
 
             comment1.Text = comment.Text;
             comment1.DateTime = DateTime.Now;
+            comment1.PostId = comment.PostId;
+            comment1.Post = await _comment.GetpostByPostId(comment1.PostId);
 
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("index");
+                return RedirectToAction("index", "Comment", new { comment1.Post.Id });
             }
             _comment.Add(comment1);
-            return RedirectToAction("index");
+            return RedirectToAction("index", "Comment",new { comment1.Post.Id });
         }
     }
 }

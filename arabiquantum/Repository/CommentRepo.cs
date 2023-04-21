@@ -37,7 +37,7 @@ namespace arabiquantum.Repository
             return await _Context.Comments.Include(i=> i.Post).Where(i => i.Post.Id == PostId).ToListAsync();
         }
 
-        public async Task<Post> GetpostByPostId(long PostId)
+        public async Task<Post> GetpostByPostId(long? PostId)
         {
             return await _Context.Posts.FirstOrDefaultAsync(i => i.Id == PostId);
         }

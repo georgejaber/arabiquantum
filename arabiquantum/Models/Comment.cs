@@ -17,10 +17,10 @@ namespace arabiquantum.Models
         [ForeignKey("Id")]
         public long? PostId { get; set; }
         // Navigation property
-        public Post Post { get; set; }
+        public Post? Post { get; set; }
 
         [ForeignKey("Id")]
         public string? UserId { get; set; }
-        public User user { get; set; }
+        public User? user { get; set; }
     }
 }
