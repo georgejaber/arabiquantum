@@ -63,9 +63,9 @@ namespace arabiquantum.Repository
           return Save();
         }
 
-        public async Task<IEnumerable<Post>> search(Post post)
+        public async Task<IEnumerable<Post>> search(string searchtext)
         {  
-           return await _Context.Posts.Where(s => s.text!.Contains(post.text)).ToListAsync();
+           return await _Context.Posts.Where(s => s.text!.Contains(searchtext)).ToListAsync();
             
         }
 

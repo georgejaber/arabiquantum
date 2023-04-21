@@ -26,7 +26,7 @@ namespace arabiquantum.Controllers
               viewModel.posts =   await _post.GetAll();
               return View(viewModel);
             }
-              viewModel.posts = await _post.search(post);
+              viewModel.posts = await _post.search(SearchText);
             return View(viewModel);
         }
 
