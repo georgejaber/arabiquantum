@@ -22,27 +22,24 @@
                 </div>
 
                 <div style="margin:auto; max-width:100vh" class="col-2 box input-group mb-3">
-             
-             <form asp-controller="Post" asp-action="index" class="example mt-4 " method="post" style="margin:auto; max-width:100vw;">
+                    <div style="margin:auto; max-width:100vw;">
 
-                    <input asp-for="text" type="text" placeholder="لديك سؤال؟">
-                        <button type="submit"class="myb1   fa fa-search "> <i ></i> </button>
-                   
-
-                     </form>
-                   
-            </div>
-
-                <p style="color :white;text-shadow: 2px 2px 9px #7E9EC5;"> <b>تعلم عن الحاسوب الكمي</b> <a href="https://arabiquantum.z13.web.core.windows.net/api/index.html">هنا</a>.</p>
-                    <div style="margin:auto;max-width:300px" class="box input-group mb-3">
-
-                        @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { style = "margin:auto;max-width:300px", @class = "example" }))
+                        @using (Html.BeginForm("Index", "Post", FormMethod.Get, new
+                        { @*placeholder = "لديك سؤال؟" ,*@ style = "margin:auto; max-width:100vw;",
+                            @class = "example mt-4"
+                        }))
                         {
                             @Html.TextBox("SearchText")
-                            <button type="submit"><i class="example btn fa fa-search"></i></button>
+                            <button type="submit" class="myb1   fa fa-search "> <i></i> </button>
                         }
                     </div>
-                <p style="text-shadow: 2px 2px 9px #7E9EC5;"> <b>تعلم عن الحاسوب الكمي</b> <a href="https://arabiquantum.z13.web.core.windows.net/api/index.html">هنا</a>.</p>
+
+                </div>
+
+                <p style="color :white;text-shadow: 2px 2px 9px #7E9EC5;"> <b>تعلم عن الحاسوب الكمي</b> <a href="https://arabiquantum.z13.web.core.windows.net/api/index.html">هنا</a>.</p>
+
+               
+                
             </div>
         </div>
     </div>
