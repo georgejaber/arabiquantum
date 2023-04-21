@@ -1,6 +1,6 @@
 ﻿
 <!DOCTYPE html>
-<html dir="rtl" lang="en">
+<html dir="rtl" lang="en" >
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="~/arabiquantum.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/homeStyle.css" asp-append-version="true" />
 </head>
-<body >
-    <h2>.</h2>
+<body class="new-font">
+    
     
     
     <header>
-        <nav class="navbar shadow navbar-expand-sm navbar-toggleable-sm navbar-dark   box-shadow mb-0 fixed-top" style="background-color:#1c658f;">
+        <nav class="navbar shadow navbar-expand-sm navbar-toggleable-sm navbar-dark   box-shadow mb-0 fixed-top main-c " >
             <div class="container-fluid  ">
                 <a class="navbar-brand border-start ps-3" style=" border-width:3.5px !important;" asp-area="" asp-controller="Home" asp-action="Index"><strong>عربي كوانتوم</strong></a>
                 
@@ -43,7 +43,8 @@
                 <div class="box">
                     <form asp-controller="Post" asp-action="index"  method="post" style="margin:auto;max-width:55vh">
                         <input type="text" placeholder="بحث... ">
-                        <button type="submit"><i class="fa fa-search"></i></button>
+                    
+                        <button type="submit" class="fa fa-search myb1" style="height:3.59vh;font-size:11px"></button>
                     </form>
                      
                 </div>
@@ -51,8 +52,8 @@
         </nav>
     </header>   
             @RenderBody()
-            <h2 style=" color:white">.</h2>
-    <footer class="border-top footer text-light mt-5" style="background-color:#1c405d">
+            
+    <footer class="border-top footer text-light mt-5 main-c style=" margin-top:3.87%;"">
         <div class="container">
             &copy; 2023 - arabiquantum - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
