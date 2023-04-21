@@ -34,22 +34,22 @@ form.example input[type=text] {
     text-align: right;
 }
 
-form.example button {
+form.srb button {
     /*border-radius: 10px 0px 0px 10px;*/
     float: left;
     width: 20%;
     padding: 1%;
-    font-size: 17px; 
-    border-right: none; 
+    font-size: 17px;
+    border-right: none;
     cursor: pointer;
-    background-color: #1c658f;
-    color: #459fe0;
+    background: #123a93;
+    color: #f9f9ea;
     border: 0px solid grey;
 }
 
-    form.example button:hover {
-        background: #459fe0;
-        color: #1c658f;
+    form.srb button:hover {
+        background: #f9f9ea;
+        color: #123a93;
     }
 
 form.example::after {

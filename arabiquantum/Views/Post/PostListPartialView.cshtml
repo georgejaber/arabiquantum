@@ -9,8 +9,8 @@
 
     </head>
 
-    <main role="main">
-        <div class="container">
+    <main role="main" style=" margin-top:3.87%;">
+        <div class="container  ">
 
             <div class="container ">
                 <div style="border-radius: 0px ; border-color: #235074; " class="card w3-panel w3-border w3-hover-border-blue ">
@@ -46,9 +46,10 @@
                 </div>
             </div>
 
-            @{
+            @{var count=0;
                 foreach (var post in Model)
                 {
+                  count++;
                     <div class="container ">
                         <div style="border-radius: 0px ; border-color: #235074; " class="card w3-panel w3-border w3-hover-border-blue ">
                             <div class="card-body">
@@ -56,19 +57,21 @@
 
 
 
-                                    <div class=" col-sm-2"> <h4 class="card-title ">السؤال</h4> </div>
+                                    <div class=" col-sm-2"> <h4 class="card-title ">السؤال#@count</h4> </div>
                                     <div class=" col-sm-2"> <h6 class="card-title ">@post.DateTime</h6> </div>
                                 </div>
 
                                 <p class="card-text">@post.text</p>
 
-                                <a href="/comment/index/@post.Id" type="button" class="btn btn-post ">رؤية المزيد</a>
+                                <a href="/comment/index/@post.Id" type="button" class="myb1  ">التفاصيل</a>
+                               @*<button href="/comment/index/@post.Id" class="myb1">التفاصيل</button>*@ 
                             </div>
                         </div>
                     </div>
                 }
             }
         </div>
+        <h2 style=" color:white">.</h2>
     </main>
     
 }

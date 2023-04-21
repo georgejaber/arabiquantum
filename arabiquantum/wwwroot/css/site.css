@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa&display=swap');
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -37,7 +39,7 @@ body {
         left: 0;
         right: 0;
         margin: auto;
-        background-color: #43b3c6;
+        background-color: #fee088;
         width: 0%;
         content: "";
         height: 4px;
@@ -48,8 +50,36 @@ body {
         width: 90%;
     }
     /*btn-post*/
-.btn-post {
-    background-color:#43b3c6 ;
-    border-radius: 0px ;
-    margin-right:90%;
+
+.myb1 {
+    background-color: #123a93;
+    color: white;
+    border: 2px solid #f9f9ea;
+    
+    display: inline-block;
+    cursor: pointer;
+    padding:9px 17.4px;
+    text-shadow: 0px 0px 0px #2f6627;
+}
+
+    .myb1:hover {
+        background-color: white;
+        color: #123a93;
+        border: 2px solid #123a93;
+    }
+
+    .myb1:active {
+        position: relative;
+        top: 1px;
+    }
+
+    /*theam */
+.main-c {
+    background-color: #123a93;
+    /*color: #f9f9ea;*/ 
+    color:white;
+}
+/*font*/
+.new-font{
+font-family: 'Changa', sans-serif;
 }
