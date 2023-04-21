@@ -14,13 +14,14 @@ namespace arabiquantum.Controllers
             this._post = post;
         }
  
-        public async Task<IActionResult> Index(Post post)
+        public async Task<IActionResult> Index(string SearchText)
         {
             PostViewModel viewModel = new PostViewModel();
 
+            Post post = await _post.GetByText(SearchText);
             viewModel.Post = post;
 
-            if (post.text == null) 
+            if (string.IsNullOrEmpty(SearchText))
             {
               viewModel.posts =   await _post.GetAll();
               return View(viewModel);
@@ -28,7 +29,6 @@ namespace arabiquantum.Controllers
               viewModel.posts = await _post.search(post);
             return View(viewModel);
         }
-
 
 
         public IActionResult create() 

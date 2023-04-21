@@ -13,18 +13,14 @@
             <div class="text-center ">
                 <h1 class="display-4 text-white pb-4 " style="text-shadow: 2px 2px 9px #7E9EC5;"><b>"Arabi Quantum"مرحبا إلى</b></h1>
 
-                <div style="margin:auto;max-width:300px" class="box input-group mb-3">
-             
-             <form asp-controller="Post" asp-action="index" class="example" method="post" style="margin:auto;max-width:300px">
+                    <div style="margin:auto;max-width:300px" class="box input-group mb-3">
 
-                    <input asp-for="text" type="text" placeholder="بحث..."> 
-                    <button type="submit"> <i class="example btn fa fa-search"></i> </button>
-                   
-
-                     </form>
-                   
-            </div>
-
+                        @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { style = "margin:auto;max-width:300px", @class = "example" }))
+                        {
+                            @Html.TextBox("SearchText")
+                            <button type="submit"><i class="example btn fa fa-search"></i></button>
+                        }
+                    </div>
                 <p style="text-shadow: 2px 2px 9px #7E9EC5;"> <b>تعلم عن الحاسوب الكمي</b> <a href="https://arabiquantum.z13.web.core.windows.net/api/index.html">هنا</a>.</p>
             </div>
         </div>

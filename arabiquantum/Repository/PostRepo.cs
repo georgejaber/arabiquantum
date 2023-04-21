@@ -36,6 +36,12 @@ namespace arabiquantum.Repository
             return await _Context.Posts.FirstOrDefaultAsync(i => i.Id == id);
         }
 
+        public async Task<Post> GetByText(string search)
+        {
+            return await _Context.Posts.FirstOrDefaultAsync(i => i.text.Equals(search));
+        }
+
+
 
         public async Task<IEnumerable<Post>> GetPostsByUserId(int userId)
         {
