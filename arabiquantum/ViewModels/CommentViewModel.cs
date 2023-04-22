@@ -1,4 +1,6 @@
-﻿namespace arabiquantum.Models
+﻿using arabiquantum.Models;
+
+namespace arabiquantum.ViewModels
 {
     public class CommentViewModel
     {

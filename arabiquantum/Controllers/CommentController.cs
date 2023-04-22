@@ -1,6 +1,7 @@
 ﻿using arabiquantum.Data;
 using arabiquantum.InterfacesRepository;
 using arabiquantum.Models;
+using arabiquantum.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace arabiquantum.Controllers
@@ -53,6 +54,25 @@ namespace arabiquantum.Controllers
             }
             _comment.Add(comment1);
             return RedirectToAction("index", "Comment",new { comment1.Post.Id });
+        }
+        [HttpPost]
+        public async Task<IActionResult> edit(Comment comment)
+        {
+            Comment comment1 = new Comment();
+
+            comment1.Text = comment.Text;
+            comment1.DateTime = DateTime.Now;
+            comment1.PostId = comment.PostId;
+            comment1.Post = await _comment.GetpostByPostId(comment1.PostId);
+            comment1.Like = comment.Like;
+            comment1.Dislike = comment.Dislike;
+
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("index", "Comment", new { comment1.Post.Id });
+            }
+            _comment.Update(comment1);
+            return RedirectToAction("index", "Comment", new { comment1.Post.Id });
         }
     }
 }
