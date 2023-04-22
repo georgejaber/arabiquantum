@@ -25,7 +25,7 @@ namespace arabiquantum.Controllers
             return View(response);
         }
 
-       [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
             if (!ModelState.IsValid) { return View(loginViewModel); }
@@ -33,7 +33,8 @@ namespace arabiquantum.Controllers
             //get user from database
             var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
 
-            if (user != null) {
+            if (user != null)
+            {
 
                 //check password
                 var checkpassword = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
@@ -57,5 +58,53 @@ namespace arabiquantum.Controllers
             return View(loginViewModel);
 
         }
+
+        public IActionResult Register()
+        {
+            var response = new RegisterViewModel();
+            return View(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
+        {
+            if (!ModelState.IsValid) { return View(registerViewModel); }
+
+            var user = await _userManager.FindByEmailAsync(registerViewModel.Email);
+
+            if (user != null)
+            {
+                TempData["Error"] = "this email address is already in use";
+                return View(View(registerViewModel));
+            }
+            var UsernameValidation = await _userManager.FindByNameAsync(registerViewModel.Username);
+            if (UsernameValidation != null)
+            {
+                TempData["Error"] = "this username is already taken";
+                return View(View(registerViewModel));
+            }
+
+            var NewUser = new User()
+            {
+                UserName = registerViewModel.Username,
+                Email = registerViewModel.Email
+            };
+
+            var NewUserResponse = await _userManager.CreateAsync(NewUser, registerViewModel.Password);
+
+            if (NewUserResponse.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(NewUser, UserRoles.User);
+            }
+            return RedirectToAction("index", "Home");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
     }
-}  
+
+}
