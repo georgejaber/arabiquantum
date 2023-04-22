@@ -13,9 +13,10 @@
     <main role="main">
 
 
-        <div class="container d-flex align-items-center justify-content-center text-center mb-5 ">
-
-            <div @*class="modal fade"*@ id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="container d-flex align-items-center justify-content-center text-center mb-5 ">
+            <button type="button" class="myb1" data-toggle="modal" data-target="#logModal">Login</button>
+  
+        <div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
 
 
@@ -60,9 +61,10 @@
                             </div>
 
 
-                            <button type="submit" class="btn btn-primary">إدخال</button>
-                            <!--<button type="SignUp" class="btn btn-primary">حساب جديد</button>-->
-                        </form>
+                       <button type="submit" class="myb1">إدخال</button>
+                            <button type="button" class="myb1" data-toggle="modal" data-dismiss="modal" data-target="#signModal">signin</button>
+                        <!--<button type="SignUp" class="btn btn-primary">حساب جديد</button>-->
+                    </form>
 
                     </div>
                 </div>
@@ -73,3 +75,118 @@
 }
 
 <!--//////////////////////////////////////-->
+<!--SingUp-->
+<div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
+    ><div class="modal-dialog" role="document">
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Sorry!</b> - @TempData["Error"]</span>
+            </div>
+        }
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">تسجيل الدخول :</h5>
+
+
+
+            </div>
+            <form asp-action="Login">
+
+                <div class="mb-3">
+                    <label asp-for="Email" for="exampleInputEmail1" class="form-label">البريد الالكتروني</label>
+                    <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@example.com">
+                    <div id="emailHelp" class="form-text">.لن نشارك الايميل الخاص بك مع اي جهة خارجية</div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" for="exampleInputPassword1" class="form-label">كلمة السر</label>
+                    <input asp-for="Password" type="password" class="form-control" id="exampleInputPassword1" placeholder="أدخل كلمة السر">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <input type="checkbox" onclick="myFunction()">Show Password
+                    <script>
+                        function myFunction() {
+                            var x = document.getElementById("exampleInputPassword1");
+                            if (x.type === "password") {
+                                x.type = "text";
+                            } else {
+                                x.type = "password";
+                            }
+                        }
+                    </script>
+                </div>
+
+
+                <button type="submit" class="myb1">إدخال</button>
+                <button type="button" class="myb1" data-toggle="modal" data-dismiss="modal" data-target="#signModal">signin</button>
+                <!--<button type="SignUp" class="btn btn-primary">حساب جديد</button>-->
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade row main-c" style="   background-color:rgba(18,58,147,0.40);" id="signModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <p class="text-right h1 fw-bold mb-4 mx-1 mx-md-1 mt-1" >حساب جديد :</p>
+
+    <form class="mx-1 col-5 ">
+
+        <div class="d-flex flex-row align-items-center mb-4">
+            
+            <div class="form-outline flex-fill mb-0">
+                <label class="form-label" for="user">اسم المستخدم:</label>
+                <input type="text" id="user" class="form-control" />
+
+            </div>
+        </div>
+
+        <div class="d-flex flex-row align-items-center mb-4">
+           
+            <div class="form-outline flex-fill mb-0">
+                <label class="form-label" for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" class="form-control" />
+
+            </div>
+        </div>
+
+        <div class="d-flex flex-row align-items-center mb-4">
+            
+            <div class="form-outline flex-fill mb-0">
+                <label class="form-label" for="password">كلمة السر:</label>
+                <input type="password" id="password" class="form-control" />
+
+            </div>
+        </div>
+
+        <div class="d-flex flex-row align-items-center mb-4">
+           
+            <div class="form-outline flex-fill mb-0">
+                <label class="form-label" for="repassword">تأكيد كلمة السر:</label>
+                <input type="password" id="repassword" class="form-control" />
+
+            </div>
+        </div>
+
+        <div class="form-check d-flex justify-content-center mb-5">
+            <input class="form-check-input ms-2" type="checkbox" value="" id="terms" />
+            <label class="form-check-label" for="terms">
+                أوافق على جميع البيانات في<a href="#!">شروط الخدمة </a>
+            </label>
+        </div>
+
+        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+            <button type="button" class="myb1 ">تسجيل الحساب</button>
+        </div>
+
+    </form>
+
+
+    </div>
+
