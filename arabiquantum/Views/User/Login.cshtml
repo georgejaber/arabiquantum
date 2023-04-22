@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+
+
+
+
+
+
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">البريد الالكتروني</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@example.com">
+            <div id="emailHelp" class="form-text">.لن نشارك الايميل الخاص بك مع اي جهة خارجية</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">كلمة السر</label>
+
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="أدخل كلمة السر">
+
+            <input type="checkbox" onclick="myFunction()">Show Password
+            <script>
+                function myFunction() {
+                    var x = document.getElementById("exampleInputPassword1");
+                    if (x.type === "password") {
+                        x.type = "text";
+                    } else {
+                        x.type = "password";
+                    }
+                }
+            </script>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">إدخال</button>
+        <button type="SignUp" class="btn btn-primary">حساب جديد</button>
+    </form>
