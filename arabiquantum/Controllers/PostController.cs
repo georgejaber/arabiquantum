@@ -1,6 +1,7 @@
 ﻿using arabiquantum.Data;
 using arabiquantum.InterfacesRepository;
 using arabiquantum.Models;
+using arabiquantum.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace arabiquantum.Controllers
@@ -46,11 +47,28 @@ namespace arabiquantum.Controllers
            
             if (!ModelState.IsValid)
             {
-                return View(post1);
+                return RedirectToAction("index");
             }
             _post.Add(post1);
             return RedirectToAction("index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> edit(Post post)
+        {
+            Post post1 = new Post();
+
+            post1.text = post.text;
+            post1.DateTime = DateTime.Now;
+
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("index");
+            }
+            _post.Update(post1);
+            return RedirectToAction("index");
+        }
+
 
     }
 }
