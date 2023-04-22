@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html dir="rtl" lang="en">
+<html dir="rtl" lang="en" >
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,51 +23,44 @@
 
 
 
-                <ul class="navbar-nav flex-grow-1  mt-0 ">
-
-                    <li class="nav-item mx-sm-3 mx-xs-2">
-                        <a class="nav-link text-light float-end " asp-area="" asp-controller="Home" asp-action="Index">الصفحة الرئيسية</a>
-                    </li>
-                    <li class="nav-item mx-sm-3 mx-xs-2">
-                        <a class="nav-link text-light float-end" href="https://arabiquantum.z13.web.core.windows.net/api/index.html">تعلم عن الحوسبة الكمية</a>
-                    </li>
-                    <li class="nav-item mx-sm-3 ">
-                        <a class="nav-link  text-light float-end" asp-area="" asp-controller="post" asp-action="index">المجتمع</a>
-                    </li>
-                </ul>
-            </div>
-
-
-            <div dir="ltr" class="mb-0">
-                <div style="margin:0%;max-width:35vh">
-                    @using (Html.BeginForm("Index", "Post", FormMethod.Get))
-                    {
-                            <div class="input-group mb-0">
-                            <div class="input-group-sm">
-                                <button class=" myb1 fa fa-search " type="submit"></button>
-                            </div>
-                            @Html.TextBox("SearchText",null,new {style= "border-radius: 0px",dir="rtl", @class="form-control my-sm-0", type="text" ,placeholder="أبحث"})
-                        </div>
-
-                    }
+                    <ul class="navbar-nav flex-grow-1  mt-0 ">
+                       
+                        <li class="nav-item mx-sm-3 mx-xs-2">
+                            <a class="nav-link text-light float-end " asp-area="" asp-controller="Home" asp-action="Index">الصفحة الرئيسية</a>
+                        </li>
+                        <li class="nav-item mx-sm-3 mx-xs-2">
+                            <a class="nav-link text-light float-end" href="https://arabiquantum.z13.web.core.windows.net/api/index.html">تعلم عن الحوسبة الكمية</a>
+                        </li>
+                        <li class="nav-item mx-sm-3 ">
+                            <a class="nav-link  text-light float-end" asp-area="" asp-controller="post" asp-action="index">المجتمع</a>
+                        </li>
+                    </ul>
                 </div>
+                <div class="box">
+                    <div style="margin:auto;max-width:55vh">
+                        @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { style = "height:3.59vh;", @class = "example" }))
+                        {
+                            @Html.TextBox("SearchText")
+                            <button type="submit" class="fa fa-search myb1" style="height:4vh;font-size:11px ;margin-top:0.1% ;"></button>
+                        }
+                    </div>
 
             </div>
-        </div>
         </div>
     </nav>
-
-
-    <header>
-    </header>
-    @RenderBody()
-
+    
+    
+    <header >
+        
+    </header>   
+            @RenderBody()
+            
     <footer class="border-top footer text-light mt-5 main-c style=" margin-top:3.87%;"">
         <div class="container">
             &copy; 2023 - arabiquantum - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
