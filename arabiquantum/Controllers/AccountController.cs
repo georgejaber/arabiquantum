@@ -75,13 +75,13 @@ namespace arabiquantum.Controllers
             if (user != null)
             {
                 TempData["Error"] = "this email address is already in use";
-                return View(View(registerViewModel));
+                return View(registerViewModel);
             }
             var UsernameValidation = await _userManager.FindByNameAsync(registerViewModel.Username);
             if (UsernameValidation != null)
             {
                 TempData["Error"] = "this username is already taken";
-                return View(View(registerViewModel));
+               
             }
 
             var NewUser = new User()
@@ -95,9 +95,10 @@ namespace arabiquantum.Controllers
             if (NewUserResponse.Succeeded)
             {
                 await _userManager.AddToRoleAsync(NewUser, UserRoles.User);
+                return RedirectToAction("index", "Home");
             }
-            return RedirectToAction("index", "Home");
-        }
+             return View(registerViewModel);
+        } 
 
         public async Task<IActionResult> Logout()
         {
