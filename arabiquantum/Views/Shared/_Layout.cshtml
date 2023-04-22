@@ -10,47 +10,47 @@
     <link rel="stylesheet" href="~/css/homeStyle.css" asp-append-version="true" />
 </head>
 <body class="new-font">
-    
-    
-    
-    <header>
-        <nav class="navbar shadow navbar-expand-sm navbar-toggleable-sm navbar-dark   box-shadow mb-0 fixed-top main-c " >
-            <div class="container-fluid  ">
-                <a class="navbar-brand border-start ps-3" style=" border-width:3.5px !important;" asp-area="" asp-controller="Home" asp-action="Index"><strong>عربي كوانتوم</strong></a>
-                
-                <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
+    <nav class="navbar shadow navbar-expand-sm navbar-toggleable-sm navbar-dark   box-shadow mb-0 sticky-top main-c ">
+        <div class="container-fluid  ">
+            <a class="navbar-brand border-start ps-3" style=" border-width:3.5px !important;" asp-area="" asp-controller="Home" asp-action="Index"><strong>عربي كوانتوم</strong></a>
 
-                   
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
 
-                    <ul class="navbar-nav flex-grow-1   ">
-                       
-                        <li class="nav-item mx-sm-3 mx-xs-2">
-                            <a class="nav-link text-light float-end " asp-area="" asp-controller="Home" asp-action="Index">الصفحة الرئيسية</a>
-                        </li>
-                        <li class="nav-item mx-sm-3 mx-xs-2">
-                            <a class="nav-link text-light float-end" href="https://arabiquantum.z13.web.core.windows.net/api/index.html">تعلم عن الحوسبة الكمية</a>
-                        </li>
-                        <li class="nav-item mx-sm-3 ">
-                            <a class="nav-link  text-light float-end" asp-area="" asp-controller="post" asp-action="index">المجتمع</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="box">
-                    <div style="margin:auto;max-width:55vh">
-                        @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { style = "height:3.59vh;", @class = "example" }))
-                        {
-                            @Html.TextBox("SearchText")
-                            <button type="submit" class="fa fa-search myb1" style="height:3.59vh;font-size:11px"></button>
-                        }
-                    </div>
 
-                </div>
+
+                <ul class="navbar-nav flex-grow-1   ">
+
+                    <li class="nav-item mx-sm-3 mx-xs-2">
+                        <a class="nav-link text-light float-end " asp-area="" asp-controller="Home" asp-action="Index">الصفحة الرئيسية</a>
+                    </li>
+                    <li class="nav-item mx-sm-3 mx-xs-2">
+                        <a class="nav-link text-light float-end" href="https://arabiquantum.z13.web.core.windows.net/api/index.html">تعلم عن الحوسبة الكمية</a>
+                    </li>
+                    <li class="nav-item mx-sm-3 ">
+                        <a class="nav-link  text-light float-end" asp-area="" asp-controller="post" asp-action="index">المجتمع</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+            <div class="box">
+                <div style="margin:auto;max-width:55vh">
+                    @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { style = "height:3.59vh;", @class = "example" }))
+                    {
+                        @Html.TextBox("SearchText")
+                        <button type="submit" class="fa fa-search myb1" style="height:3.59vh;font-size:11px"></button>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    
+    
+    <header >
+        
     </header>   
             @RenderBody()
             
