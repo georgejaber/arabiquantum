@@ -25,7 +25,7 @@ namespace arabiquantum.Controllers
             return View(response);
         }
 
-       [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
             if (!ModelState.IsValid) { return View(loginViewModel); }
@@ -33,7 +33,8 @@ namespace arabiquantum.Controllers
             //get user from database
             var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
 
-            if (user != null) {
+            if (user != null)
+            {
 
                 //check password
                 var checkpassword = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
@@ -60,7 +61,7 @@ namespace arabiquantum.Controllers
 
         public IActionResult Register()
         {
-        var response = new RegisterViewModel();
+            var response = new RegisterViewModel();
             return View(response);
         }
 
@@ -71,7 +72,7 @@ namespace arabiquantum.Controllers
 
             var user = await _userManager.FindByEmailAsync(registerViewModel.Email);
 
-            if(user != null) 
+            if (user != null)
             {
                 TempData["Error"] = "this email address is already in use";
                 return View(View(registerViewModel));
@@ -95,15 +96,15 @@ namespace arabiquantum.Controllers
             {
                 await _userManager.AddToRoleAsync(NewUser, UserRoles.User);
             }
-            return RedirectToAction("index","Home");
+            return RedirectToAction("index", "Home");
         }
 
-        public async Task<IActionResult> Logout() 
+        public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
     }
-       
-}  
+
+}

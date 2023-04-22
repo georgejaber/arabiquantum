@@ -5,7 +5,7 @@ namespace arabiquantum.ViewModels
     public class RegisterViewModel
     {
         [Display(Name = "Username")]
-        [Required(ErrorMessage ="Username Is Required")]
+        [Required(ErrorMessage = "Username Is Required")]
         public string Username { get; set; }
 
         [Display(Name = "Email")]
