@@ -48,12 +48,12 @@ namespace arabiquantum.Controllers
                     }
                 }
                 //password is incorrect
-                TempData["Error"] = "Wrong credentials. pleaase, try again";
+                TempData["Error"] = "Wrong credentials. please, try again";
                 return View(loginViewModel);
 
             }
             //user not found
-            TempData["Error"] = "Wrong credentials. pleaase, try again";
+            TempData["Error"] = "Wrong credentials. please, try again";
             return View(loginViewModel);
 
         }

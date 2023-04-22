@@ -1,34 +1,51 @@
-﻿@*
+﻿@model arabiquantum.ViewModels.LoginViewModel
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-</head>
+
 @{
+    <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
 
 <main role="main">
 
+
     <div class="container d-flex align-items-center justify-content-center text-center mb-5 ">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+  
+        <div @*class="modal fade"*@ id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
+                ><div class="modal-dialog" role="document">
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="col-md-12 alert alert-danger">
+                            <span><b>Sorry!</b> - @TempData["Error"]</span>
+                        </div>
+                    }
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">تسجيل الدخول :</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">تسجيل الدخول :</h5>
+
+                            
 
                     </div>
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">البريد الالكتروني</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@example.com">
+                        <form asp-action="Login">
+
+                        <div class="mb-3" >
+                            <label asp-for="Email" for="exampleInputEmail1" class="form-label">البريد الالكتروني</label>
+                            <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@example.com">
                             <div id="emailHelp" class="form-text">.لن نشارك الايميل الخاص بك مع اي جهة خارجية</div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
+
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">كلمة السر</label>
-
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="أدخل كلمة السر">
-
+                            <label asp-for="Password" for="exampleInputPassword1" class="form-label">كلمة السر</label>
+                            <input asp-for="Password" type="password" class="form-control" id="exampleInputPassword1" placeholder="أدخل كلمة السر">
+                            <span asp-validation-for="Password" class="text-danger"></span>
                             <input type="checkbox" onclick="myFunction()">Show Password
                             <script>
                                 function myFunction() {
@@ -40,8 +57,8 @@
                                     }
                                 }
                             </script>
-
                         </div>
+
 
                        <button type="submit" class="btn btn-primary">إدخال</button>
                         <!--<button type="SignUp" class="btn btn-primary">حساب جديد</button>-->
@@ -52,9 +69,7 @@
         </div>
     </div>
 
-</main>
-
-}
+</main>}
 
 <!--//////////////////////////////////////-->
    
