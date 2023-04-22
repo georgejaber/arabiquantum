@@ -22,27 +22,27 @@
 
 
 
-                <ul class="navbar-nav flex-grow-1   ">
-
-                    <li class="nav-item mx-sm-3 mx-xs-2">
-                        <a class="nav-link text-light float-end " asp-area="" asp-controller="Home" asp-action="Index">الصفحة الرئيسية</a>
-                    </li>
-                    <li class="nav-item mx-sm-3 mx-xs-2">
-                        <a class="nav-link text-light float-end" href="https://arabiquantum.z13.web.core.windows.net/api/index.html">تعلم عن الحوسبة الكمية</a>
-                    </li>
-                    <li class="nav-item mx-sm-3 ">
-                        <a class="nav-link  text-light float-end" asp-area="" asp-controller="post" asp-action="index">المجتمع</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="box">
-                <div style="margin:auto;max-width:55vh">
-                    @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { style = "height:3.59vh;", @class = "example" }))
-                    {
-                        @Html.TextBox("SearchText")
-                        <button type="submit" class="fa fa-search myb1" style="height:3.59vh;font-size:11px"></button>
-                    }
+                    <ul class="navbar-nav flex-grow-1   ">
+                       
+                        <li class="nav-item mx-sm-3 mx-xs-2">
+                            <a class="nav-link text-light float-end " asp-area="" asp-controller="Home" asp-action="Index">الصفحة الرئيسية</a>
+                        </li>
+                        <li class="nav-item mx-sm-3 mx-xs-2">
+                            <a class="nav-link text-light float-end" href="https://arabiquantum.z13.web.core.windows.net/api/index.html">تعلم عن الحوسبة الكمية</a>
+                        </li>
+                        <li class="nav-item mx-sm-3 ">
+                            <a class="nav-link  text-light float-end" asp-area="" asp-controller="post" asp-action="index">المجتمع</a>
+                        </li>
+                    </ul>
                 </div>
+                <div class="box">
+                    <div style="margin:auto;max-width:55vh">
+                        @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { style = "height:3.59vh;", @class = "example" }))
+                        {
+                            @Html.TextBox("SearchText")
+                            <button  type="submit" class="fa fa-search myb1" style="height:2.6599rem;font-size:11px ;margin-top:0.1%"></button>
+                        }
+                    </div>
 
             </div>
         </div>
