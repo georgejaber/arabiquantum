@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="~/css/homeStyle.css" asp-append-version="true" />
 </head>
 <body class="new-font">
-    <nav class="navbar shadow navbar-expand-sm navbar-toggleable-sm navbar-dark   box-shadow mb-0 sticky-top main-c ">
+    <nav class="navbar shadow navbar-expand-sm navbar-toggleable-sm navbar-dark   box-shadow mb-0 sticky-top main-c " style="font-size: 15px;">
         <div class="container-fluid  ">
-            <a class="navbar-brand border-start ps-3" style=" border-width:3.5px !important;" asp-area="" asp-controller="Home" asp-action="Index"><strong>عربي كوانتوم</strong></a>
+            <a class="navbar-brand border-start ps-3" style=" border-width:0.2rem !important;" asp-area="" asp-controller="Home" asp-action="Index"><strong>عربي كوانتوم</strong></a>
 
             <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
 
 
 
-                    <ul class="navbar-nav flex-grow-1   ">
+                    <ul class="navbar-nav flex-grow-1  mt-0 ">
                        
                         <li class="nav-item mx-sm-3 mx-xs-2">
                             <a class="nav-link text-light float-end " asp-area="" asp-controller="Home" asp-action="Index">الصفحة الرئيسية</a>
@@ -40,7 +40,7 @@
                         @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { style = "height:3.59vh;", @class = "example" }))
                         {
                             @Html.TextBox("SearchText")
-                            <button type="submit" class="fa fa-search myb1" style="height:161.8%;font-size:11px ;margin-top:0.1% ;;"></button>
+                            <button type="submit" class="fa fa-search myb1" style="height:4vh;font-size:11px ;margin-top:0.1% ;"></button>
                         }
                     </div>
 
