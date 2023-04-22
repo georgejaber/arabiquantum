@@ -6,9 +6,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 </head>
-<main role="main" style=" margin-top:3.87%;">
+<main role="main" >
 
     <div id="intro" class="bg-image justify-content-center align-bottom">
+
         <div class="container d-flex align-items-center justify-content-center text-center mb-5 ">
             
             <div class="row-1  ">
@@ -25,12 +26,12 @@
                     <div style="margin:auto; max-width:100vw;">
 
                         @using (Html.BeginForm("Index", "Post", FormMethod.Get, new
-                        { @*placeholder = "لديك سؤال؟" ,*@ style = "margin:auto; max-width:100vw;",
+                        { @*placeholder = "لديك سؤال؟" ,*@ style = "margin:auto; max-width:100vw ; height:40px",
                             @class = "example mt-4"
                         }))
                         {
                             @Html.TextBox("SearchText")
-                            <button type="submit" class="myb1   fa fa-search "> <i></i> </button>
+                            <button style="height:105%; float: right; " type="submit" class="myb1   fa fa-search "> <i></i> </button>
                         }
                     </div>
 
