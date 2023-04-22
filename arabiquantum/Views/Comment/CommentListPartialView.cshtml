@@ -19,29 +19,29 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-11">
-                                    @* <p class="card-text">@comment.Text</p>*@
+                            <div class="col-11">
+                                   @* <p class="card-text">@comment.Text</p>*@
                                     <input type="text" id="ed" name="Name " class="no-outline" disabled value="@comment.Text" style="background-color:white ; width:100%;border-top-style: hidden;
-          border-right-style: hidden;
-          border-left-style: hidden;
-          border-bottom-style:hidden; " />
-                                </div>
+      border-right-style: hidden;
+      border-left-style: hidden;
+      border-bottom-style:hidden; " />
+                            </div> 
                             </div>
                             <script>
                                 function disableEnable() {
-                                    if (document.getElementById("ed").disabled == "true") {
+                                    if (document.getElementById("ed").disabled == "true"){
                                         document.getElementById("ed").disabled = "";
-                                    } else {
+                                    }else{
 
-                                        document.getElementById("ed").disabled = true;
+                                    document.getElementById("ed").disabled = true;
                                     }
-
-
+                                    
+                                    
                                 }
-
+                               
                             </script>
                             <div class="row justify-content-start">
-                                <div style="margin-inline-start:92%;">
+                                <div style="margin-inline-start:92%; ">
                                     <button type="button" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa-pen-to-square" onclick="disableEnable()"></i></button>
                                     <button type="button" class="myb2 p-1 " style="width:4%;"><i class="fa-regular fa-trash-can"></i></button>
                                 </div>
