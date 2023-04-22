@@ -3,10 +3,12 @@
 /*home image style*/
 
 #intro {
-    background-image: url("/img/homePage.jpg"); height: 100vh;
+    background-image: url("/img/homePage.jpg");
+    height: 100vh;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    
 }
 .ctr {
     
