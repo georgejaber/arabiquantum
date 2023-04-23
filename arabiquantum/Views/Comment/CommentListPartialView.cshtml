@@ -1,65 +1,77 @@
-﻿@model IEnumerable<Comment>
+﻿@model arabiquantum.ViewModels.EditCommentViewModel
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    
+
 </head>
 <main role="main" class="mb-5">
     <div class="container">
 
         @{
-            foreach (var comment in Model)
-            {
+            foreach (var comments in Model.comments)
 
-                <div class="container ">
-                    <div style="border-radius: 0px ; border-color: #235074" class="card w3-panel w3-border w3-hover-border-blue">
-                        <div class="card-body">
-                            <div class="row justify-content-between">
-                                <h4 class="card-title " style=" width:25vw;">التعليق</h4>
-                                <p class="text-muted small mb-0 " style=" width:26vw;">@comment.DateTime</p>
+            {    
+               
 
-                            </div>
-                            <div class="row">
-                                <div class="col-11">
-                                    @* <p class="card-text">@comment.Text</p>*@
+                        <div class="container ">
+                            <div style="border-radius: 0px ; border-color: #235074" class="card w3-panel w3-border w3-hover-border-blue">
+                                <div class="card-body">
+                                    <div class="row justify-content-between">
+                                        <h4 class="card-title " style=" width:25vw;">التعليق</h4>
+                                        <p class="text-muted small mb-0 " style=" width:26vw;">@comments.DateTime</p>
 
-                                    
+                                    </div>
 
-                                    <input type="text" id="ed" name="Name " class="no-outline" disabled value="@comment.Text" style="background-color:white ; width:100%;border-style:hidden; " />
+                            @using (Html.BeginForm("Edit", "comment", new { EditCommentViewModel = Model }, FormMethod.Post))
+                            {
+                              
 
-                                </div>
-                            </div>
+                                    <div class="row">
+                                        <div class="col-11">
+                                            @* <p class="card-text">@comment.Text</p>*@
+                                        <input asp-for="comment.Text" type="text" id="ed" name="Name " class="no-outline" disabled value="@comments.Text" style="background-color:white ; width:100%;border-style:hidden;"/>
+                                            @*@Html.TextBoxFor(c=> c.comment.Text,null, new {id="ed", name="Name ",@class="no-outline",value="@comments.Text", style="background-color:white ; width:100%;border-style:hidden;"})*@
+                                            @Html.Hidden("postid", (object)ViewBag.postid)
+                                        </div>
+                                    </div>
 
-                            <div class="row justify-content-start flex-row-reverse">
+                                    <div class="row justify-content-start flex-row-reverse">
+                                        <div class="">
+                                            <button type="button" class="myb2  p-1" style="width:4%;" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
+                                            <button type="button" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa-trash-can"></i></button>
+                                            <button type="submit" class="myb2  p-1" style="width:4%;" onclick="disable()">
+                                                <i class="fa-regular fa fa-floppy-o"></i>
+
+                                            </button>
+                                        </div>
+                                    </div>
+                                       
+                                    }
 
 
-                                <div class=" ">
-                                    <button type="button" class="myb2  p-1" style="width:4%;" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
-
-                                    <button type="button" class="myb2 p-1 " style="width:4%;"><i class="fa-regular fa-trash-can"></i></button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            }
-            <script>
-                function disableEnable() {
+            }}
+                    <script>
+                        function disableEnable() {
+
+                            if (document.getElementById("ed").disabled == true) {
+
+                                document.getElementById("ed").disabled = "";
+                            } else {
+                                document.getElementById("ed").disabled = true;
+                            }
+                        }
 
 
+                    </script>
+                    <script>
 
-                    if (document.getElementById("ed").disabled == true) {
-
-                        document.getElementById("ed").disabled = "";
-                    } else {
-
-                        document.getElementById("ed").disabled = true;
-                    }
-
-
-                }
-
-            </script>
-        }
+                        function disable() {
+                            document.getElementById("ed").disabled = "true";
+                        }
+                    </script>
+        
 
     </div>
 </main>

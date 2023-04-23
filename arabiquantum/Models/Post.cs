@@ -12,6 +12,10 @@ namespace arabiquantum.Models
         public long Id { get; set; }
         public string text { get; set; }
         public DateTime DateTime { get; set; }
+        public int commentcount { get; set; }
+
+        public int vote { get; set; }
+
         // Navigation property
 
         [ForeignKey("Id")]

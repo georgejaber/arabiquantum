@@ -11,8 +11,7 @@ namespace arabiquantum.Models
         public long CommentId { get; set; }
         public string Text { get; set; }
         public DateTime DateTime { get; set; }
-        public int Like { get; set; }
-        public int Dislike { get; set; }
+        public int? Votes { get; set; }
 
         [ForeignKey("Id")]
         public long? PostId { get; set; }

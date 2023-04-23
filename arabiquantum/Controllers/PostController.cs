@@ -18,7 +18,6 @@ namespace arabiquantum.Controllers
         public async Task<IActionResult> Index(string SearchText)
         {
             PostViewModel viewModel = new PostViewModel();
-
             Post post = await _post.GetByText(SearchText);
             viewModel.Post = post;
 
@@ -31,6 +30,15 @@ namespace arabiquantum.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> delete(int postid)
+        {
+            Post post = await _post.GetById(postid);
+
+             _post.Delete(post);
+
+            return View(); 
+         
+        }
 
         public IActionResult create() 
         {
@@ -44,6 +52,8 @@ namespace arabiquantum.Controllers
 
             post1.text = post.text;
             post1.DateTime = DateTime.Now;
+            post1.commentcount = 0;
+            post1.vote = 0;
            
             if (!ModelState.IsValid)
             {
@@ -68,6 +78,8 @@ namespace arabiquantum.Controllers
             _post.Update(post1);
             return RedirectToAction("index");
         }
+
+
 
 
     }

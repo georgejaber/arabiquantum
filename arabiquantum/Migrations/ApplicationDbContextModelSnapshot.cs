@@ -156,12 +156,6 @@ namespace arabiquantum.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Dislike")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Like")
-                        .HasColumnType("int");
-
                     b.Property<long?>("PostId")
                         .HasColumnType("bigint");
 
@@ -171,6 +165,9 @@ namespace arabiquantum.Migrations
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("Votes")
+                        .HasColumnType("int");
 
                     b.HasKey("CommentId");
 
@@ -193,9 +190,15 @@ namespace arabiquantum.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
 
+                    b.Property<int>("commentcount")
+                        .HasColumnType("int");
+
                     b.Property<string>("text")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("vote")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
