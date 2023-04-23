@@ -4,14 +4,15 @@
 *@
 @{
     <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+       
+        <link rel="stylesheet" href="~/css/loginStyle.css" asp-append-version="true" />
     </head>
 
      <main role="main">
-    <div class="container  ">
+        <div class="d-flex justify-content-center  mb-5 ">
+        <div class=" login-page ">
 
-            <div class=" row main-c" style="   background-color:rgba(18,58,147,0.40); width:100%; height:auto;" id="signModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="form" >
         
 
         @if (TempData["Error"] != null)
@@ -20,56 +21,56 @@
                 <span><b>Sorry!</b> - @TempData["Error"]</span>
             </div>
         }
-        <form asp-action="Register"  class="mx-1 col-5 ">
-                    <p class="text-right h1 fw-bold mb-4 mx-1 mx-md-1 mt-1" style="width:auto; height:7vh;">حساب جديد :</p>
-            <div class="d-flex flex-row align-items-center mb-4">
+                <form asp-action="Register" class="login-form">
+                   
+            <div class="d-flex flex-row align-items-center mb-3">
 
                 <div class="form-outline flex-fill mb-0">
-                    <label asp-for="Username" class="form-label" for="user">اسم المستخدم:</label>
-                    <input asp-for="Username" type="text" id="user" class="form-control" />
+                   
+                            <input asp-for="Username" type="text" id="user" class="form-control" placeholder="اسم المستخدم" />
                     <span asp-validation-for="Username" class="text"></span>
 
                 </div>
             </div>
 
-            <div class="d-flex flex-row align-items-center mb-4">
+            <div class="d-flex flex-row align-items-center mb-3">
 
                 <div class="form-outline flex-fill mb-0">
-                    <label asp-for="Email" class="form-label" for="email">البريد الإلكتروني:</label>
-                    <input asp-for="Email" type="email" id="email" class="form-control" />
+                   
+                            <input asp-for="Email" type="email" id="email" class="form-control" placeholder="البريد الإلكتروني" />
                     <span asp-validation-for="Email" class="text"></span>
 
                 </div>
             </div>
 
-            <div class="d-flex flex-row align-items-center mb-4">
+            <div class="d-flex flex-row align-items-center mb-3">
 
                 <div class="form-outline flex-fill mb-0">
-                    <label asp-for ="Password" class="form-label" for="password">كلمة السر:</label>
-                    <input asp-for="Password" type="password" id="password" class="form-control" />
+                   
+                            <input asp-for="Password" type="password" id="password" class="form-control" placeholder="كلمة السر" />
                     <span asp-for="Email" asp-validation-for="Password" class="text"></span>
 
                 </div>
             </div>
 
-            <div class="d-flex flex-row align-items-center mb-4">
+            <div class="d-flex flex-row align-items-center mb-3">
 
                 <div class="form-outline flex-fill mb-0">
-                    <label asp-for="ConfirmPassword" class="form-label" for="repassword">تأكيد كلمة السر:</label>
-                    <input asp-for="ConfirmPassword" type="password" id="repassword" class="form-control" />
+                  
+                            <input asp-for="ConfirmPassword" type="password" id="repassword" class="form-control" placeholder="تأكيد كلمة السر" />
                     <span asp-validation-for="ConfirmPassword" class="text"></span>
 
                 </div>
             </div>
 
-            <div class="form-check d-flex justify-content-center mb-5">
-                <input class="form-check-input ms-2" type="checkbox" value="" id="terms" />
+            <div class="form-check d-flex justify-content-center mb-1">
+                <input class="form-check-input ms-2" style="width:auto;" type="checkbox" value="" id="terms" />
                 <label class="form-check-label" for="terms">
                     أوافق على جميع البيانات في<a href="#!">شروط الخدمة </a>
                 </label>
             </div>
 
-            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+            <div class="d-flex justify-content-center mx-4 mb-2 mb-lg-3">
                 <button type="submit" class="myb1 ">تسجيل الحساب</button>
             </div>
 
@@ -77,6 +78,7 @@
 
 
     </div>
-    </div>
+            </div>
+        </div>
     </main>
 }
