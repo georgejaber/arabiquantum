@@ -17,22 +17,22 @@
         <div class="container d-flex align-items-center justify-content-center text-center mb-5 ">
             @*<button type="button" class="myb1" data-toggle="modal" data-target="#logModal">Login</button>*@
 
-            <div  >
-
-
+            <div>
 
                 <div  role="document">
-                    @if (TempData["Error"] != null)
-                    {
-                        <div class="col-md-12 alert alert-danger">
-                            <span><b>Sorry!</b> - @TempData["Error"]</span>
-                        </div>
-                    }
-                    <div class="login-page">
-                        <div class="form">
-                           
 
-                            <form class="login-form">
+                    <div class="login-page">
+                        @if (TempData["Error"] != null)
+                        {
+                            <div class="col-md-12 alert alert-danger">
+                                <span><b>Sorry!</b> - @TempData["Error"]</span>
+                            </div>
+                        }
+
+                        <div class="form">
+         
+
+                            <form class="login-form" method="post">
 
                                 <div class="mb-3">
                                    @*<label asp-for="Email" for="exampleInputEmail1" class="form-label">البريد الالكتروني</label>*@
@@ -59,7 +59,7 @@
                                 </div>
 
 
-                                <button type="submit" >تسجيل الدخول</button>
+                                <button type="submit" asp-area="" asp-controller="Account" asp-action="Login">تسجيل الدخول</button>
                                 @* <button type="button" class="myb1" data-toggle="modal" data-dismiss="modal" data-target="#signModal">signin</button>*@
                                 <button class="myb1" asp-area="" asp-controller="Account" asp-action="Register">حساب جديد</button>
                             </form>

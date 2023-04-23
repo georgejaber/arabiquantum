@@ -52,7 +52,24 @@
                         </div>
                         </li>
 
-                    <li class="nav-item mx-sm-3">
+                  
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item mx-sm-3">
+
+                            <a class="nav-link text-light float-end " asp-area="" asp-controller="Account" asp-action="Register">الحساب</a>
+
+                        </li>
+
+                        <li class="nav-item mx-sm-3">
+
+                       
+                            <a type="button" class="nav-link myb1 text-light float-end " asp-area="" asp-controller="Account" asp-action="Logout">تسجيل الخروج</a>
+                    </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item mx-sm-3">
 
                         <a class="nav-link text-light float-end " asp-area="" asp-controller="Account" asp-action="Login">تسجيل الدخول</a>
 
@@ -63,6 +80,10 @@
                     <a class="nav-link text-light float-end " asp-area="" asp-controller="Account" asp-action="Register">أنشاء حساب</a>
 
                     </li>
+
+                    }
+
+                   
 
 
 

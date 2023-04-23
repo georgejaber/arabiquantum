@@ -41,7 +41,7 @@ namespace arabiquantum.Controllers
                 if (checkpassword)
                 {
                     //sign in
-                    var signInResult = await _signInManager.CheckPasswordSignInAsync(user, loginViewModel.Password, true);
+                    var signInResult = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, true,true);
 
                     if (signInResult.Succeeded)
                     {

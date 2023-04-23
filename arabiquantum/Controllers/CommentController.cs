@@ -61,24 +61,41 @@ namespace arabiquantum.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Edit(EditCommentViewModel editCommentViewModel)
+        public async Task<IActionResult> Edit(string CommentText,int CommentId,long postid)
         {
+         
 
-            Comment comment = editCommentViewModel.comment;
-            Comment comment1 = new Comment();
+            Comment OldComment = await _comment.GetByIdNoTracking(CommentId);
+            Post post = await _comment.GetpostByPostIdNoTracking(postid);
 
-            comment1.Text = comment.Text;
-            comment1.DateTime = DateTime.Now;
-            comment1.PostId = comment.PostId;
-            comment1.Post = await _comment.GetpostByPostId(comment1.PostId);
-            comment1.Votes = comment.Votes;
-           
+            if (OldComment == null||post == null) {
+                return View("Error");
+            }
+
+        
+           Comment Comment =  new Comment {
+                CommentId = CommentId,
+                Text = CommentText,
+                DateTime = DateTime.Now,
+                PostId = postid,
+                Post = post,
+                Votes = OldComment.Votes,
+                user = OldComment.user,
+                UserId = OldComment.UserId };
+            
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("index", "Comment", new { comment1.Post.Id });
+                ModelState.AddModelError("", "Failed to edit Comment");
+                return RedirectToAction("index", "Comment", new { Comment.Post.Id});
+            }   
+            if(CommentText == OldComment.Text) 
+            {
+                return RedirectToAction("index", "Comment", new { Comment.Post.Id});
             }
-            _comment.Update(comment1);
-            return RedirectToAction("index", "Comment", new { comment1.Post.Id });
+
+
+            await _comment.Update(Comment);
+            return RedirectToAction("index",new {Comment.Post.Id} );
         }
     }
 }

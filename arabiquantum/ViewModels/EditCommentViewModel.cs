@@ -1,4 +1,5 @@
 ﻿using arabiquantum.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace arabiquantum.ViewModels
 {
@@ -6,7 +7,12 @@ namespace arabiquantum.ViewModels
     {
 
         public IEnumerable<Comment> comments { get; set; }
+        [BindProperty]
+        public string CommentText { get; set; }
 
-        public Comment comment { get; set; }
+        public int CommentId { get; set; }
+        public int PostId { get; set; }
+
+
     }
 }

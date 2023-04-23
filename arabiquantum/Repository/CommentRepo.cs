@@ -27,9 +27,13 @@ namespace arabiquantum.Repository
             return Save();
         }
 
-        public async Task<Comment> GetById(int id)
+        public async Task<Comment> GetById(long id)
         {
             return await _Context.Comments.FirstOrDefaultAsync(i => i.CommentId == id);
+        }
+        public async Task<Comment> GetByIdNoTracking(long id)
+        {
+            return await _Context.Comments.AsNoTracking().FirstOrDefaultAsync(i => i.CommentId == id);
         }
 
         public async Task<IEnumerable<Comment>> GetCommentByPostId(long PostId)
@@ -40,6 +44,11 @@ namespace arabiquantum.Repository
         public async Task<Post> GetpostByPostId(long? PostId)
         {
             return await _Context.Posts.FirstOrDefaultAsync(i => i.Id == PostId);
+        }
+
+        public async Task<Post> GetpostByPostIdNoTracking(long? PostId)
+        {
+            return await _Context.Posts.AsNoTracking().FirstOrDefaultAsync(i => i.Id == PostId);
         }
 
         public async Task<IEnumerable<Comment>> GetCommentByUserId(int userId)
@@ -54,7 +63,7 @@ namespace arabiquantum.Repository
             return Save > 0 ? true : false;
         }
 
-        public bool Update(Comment entity)
+        public async Task<bool> Update(Comment entity)
         {
             _Context.Entry(entity).State = EntityState.Modified ;
             return Save();
