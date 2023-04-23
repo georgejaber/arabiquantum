@@ -31,6 +31,16 @@ namespace arabiquantum.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> delete(int postid)
+        {
+            Post post = await _post.GetById(postid);
+
+             _post.Delete(post);
+
+            return View(); 
+         
+        }
+
 
         public IActionResult create() 
         {
@@ -68,6 +78,8 @@ namespace arabiquantum.Controllers
             _post.Update(post1);
             return RedirectToAction("index");
         }
+
+
 
 
     }
