@@ -8,10 +8,11 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
 
-    <button type="button" class="myb1" data-toggle="modal" data-target="#signModal">Register</button>
+     <main role="main">
+    <div class="container  ">
 
-    <div class="modal fade row main-c" style="   background-color:rgba(18,58,147,0.40);" id="signModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <p class="text-right h1 fw-bold mb-4 mx-1 mx-md-1 mt-1">حساب جديد :</p>
+            <div class=" row main-c" style="   background-color:rgba(18,58,147,0.40); width:100%; height:auto;" id="signModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        
 
         @if (TempData["Error"] != null)
         {
@@ -20,7 +21,7 @@
             </div>
         }
         <form asp-action="Register"  class="mx-1 col-5 ">
-
+                    <p class="text-right h1 fw-bold mb-4 mx-1 mx-md-1 mt-1" style="width:auto; height:7vh;">حساب جديد :</p>
             <div class="d-flex flex-row align-items-center mb-4">
 
                 <div class="form-outline flex-fill mb-0">
@@ -76,4 +77,6 @@
 
 
     </div>
+    </div>
+    </main>
 }
