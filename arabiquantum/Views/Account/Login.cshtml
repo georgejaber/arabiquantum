@@ -8,43 +8,44 @@
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="~/css/loginStyle.css" asp-append-version="true" />
     </head>
 
     <main role="main">
 
 
         <div class="container d-flex align-items-center justify-content-center text-center mb-5 ">
-            <button type="button" class="myb1" data-toggle="modal" data-target="#logModal">Login</button>
+            @*<button type="button" class="myb1" data-toggle="modal" data-target="#logModal">Login</button>*@
 
-            <div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div  >
 
 
 
-                <div class="modal-dialog" role="document">
+                <div  role="document">
                     @if (TempData["Error"] != null)
                     {
                         <div class="col-md-12 alert alert-danger">
                             <span><b>Sorry!</b> - @TempData["Error"]</span>
                         </div>
                     }
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">تسجيل الدخول :</h5>
+                    <div class="login-page">
+                        <div class="form">
+                           
 
-                            <form asp-action="Login">
+                            <form class="login-form">
 
                                 <div class="mb-3">
-                                    <label asp-for="Email" for="exampleInputEmail1" class="form-label">البريد الالكتروني</label>
-                                    <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@example.com">
-                                    <div id="emailHelp" class="form-text">.لن نشارك الايميل الخاص بك مع اي جهة خارجية</div>
+                                   @*<label asp-for="Email" for="exampleInputEmail1" class="form-label">البريد الالكتروني</label>*@
+                                    <input class="form-control" asp-for="Email" type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="البريد الإلكتروني">
+                                    @*<div id="emailHelp" class="form-text">.لن نشارك الايميل الخاص بك مع اي جهة خارجية</div>*@
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label asp-for="Password" for="exampleInputPassword1" class="form-label">كلمة السر</label>
-                                    <input asp-for="Password" type="password" class="form-control" id="exampleInputPassword1" placeholder="أدخل كلمة السر">
+                                   @* <label asp-for="Password" for="exampleInputPassword1" class="form-label">كلمة السر</label>*@
+                                    <input asp-for="Password" type="password" class="form-control" id="exampleInputPassword1" placeholder="كلمة المرور">
                                     <span asp-validation-for="Password" class="text-danger"></span>
-                                    <input type="checkbox" onclick="myFunction()">Show Password
+                                    <input style="position: absolute; top:53.8% ; right:20%" type="checkbox" onclick="myFunction()"><p style="font-size:14px">إظهار كلمة المرور</p>
                                     <script>
                                         function myFunction() {
                                             var x = document.getElementById("exampleInputPassword1");
@@ -58,7 +59,7 @@
                                 </div>
 
 
-                                <button type="submit" class="myb1">إدخال</button>
+                                <button type="submit" >تسجيل الدخول</button>
                                 @* <button type="button" class="myb1" data-toggle="modal" data-dismiss="modal" data-target="#signModal">signin</button>*@
                                 <button class="myb1" asp-area="" asp-controller="Account" asp-action="Register">حساب جديد</button>
                             </form>
