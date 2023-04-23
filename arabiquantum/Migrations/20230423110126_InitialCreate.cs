@@ -175,6 +175,8 @@ namespace arabiquantum.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     text = table.Column<string>(type: "longtext", nullable: false),
                     DateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    commentcount = table.Column<int>(type: "int", nullable: false),
+                    vote = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
                 constraints: table =>
@@ -196,8 +198,7 @@ namespace arabiquantum.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Text = table.Column<string>(type: "longtext", nullable: false),
                     DateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Like = table.Column<int>(type: "int", nullable: false),
-                    Dislike = table.Column<int>(type: "int", nullable: false),
+                    Votes = table.Column<int>(type: "int", nullable: true),
                     PostId = table.Column<long>(type: "bigint", nullable: true),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: true)
                 },

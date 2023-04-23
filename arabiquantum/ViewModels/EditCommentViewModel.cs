@@ -2,10 +2,10 @@
 
 namespace arabiquantum.ViewModels
 {
-    public class CommentViewModel
+    public class EditCommentViewModel
     {
 
-        public EditCommentViewModel EditCommentViewModel { get; set; }
+        public IEnumerable<Comment> comments { get; set; }
 
         public Comment comment { get; set; }
     }

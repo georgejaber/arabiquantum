@@ -18,7 +18,6 @@ namespace arabiquantum.Controllers
         public async Task<IActionResult> Index(string SearchText)
         {
             PostViewModel viewModel = new PostViewModel();
-
             Post post = await _post.GetByText(SearchText);
             viewModel.Post = post;
 
@@ -41,7 +40,6 @@ namespace arabiquantum.Controllers
          
         }
 
-
         public IActionResult create() 
         {
             return View();
@@ -54,6 +52,8 @@ namespace arabiquantum.Controllers
 
             post1.text = post.text;
             post1.DateTime = DateTime.Now;
+            post1.commentcount = 0;
+            post1.vote = 0;
            
             if (!ModelState.IsValid)
             {

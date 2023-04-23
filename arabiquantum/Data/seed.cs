@@ -44,28 +44,37 @@ namespace arabiquantum.Data
                             {
                                 Id=1,
                                 text = "هل يمكن للحاسوب الكمي ان يفك تشفير كلمة سر ؟",
-                                DateTime = DateTime.UtcNow
+                                DateTime = DateTime.UtcNow,
+                                commentcount = 2,
+                                vote = 10
+
 
                             },
                             new Post()
                             {
                                 Id=2,
                                 text = "  هل يمكن للحاسوب الكمي الطيران ",
-                                DateTime = DateTime.UtcNow
+                                DateTime = DateTime.UtcNow,
+                                commentcount = 5,
+                                 vote = 1
                             },
                             new Post()
                             {
                                 Id=3,
                                 text = "هل يمكن للحاسوب الكمي السياحة ",
-                                DateTime = DateTime.UtcNow
+                                DateTime = DateTime.UtcNow,
+                                commentcount = 4,
+                                 vote = 5
                             },
                             new Post()
                             {
                                 Id=4,
                                 text = "هل يمكن للحاسوب الكمي القفز ",
-                                DateTime = DateTime.UtcNow
+                                DateTime = DateTime.UtcNow,
+                                commentcount = 1,
+                                 vote = -5
                             }
-                        });
+                        }); ;
                         context.SaveChanges();
                     }
 
@@ -78,8 +87,7 @@ namespace arabiquantum.Data
                               CommentId=1,
                               Text ="نعم, الحاسوب الكمي يستطيع ايجاد واختراق اي كلمة سر",
                               DateTime= DateTime.UtcNow,
-                              Like = 5,
-                              Dislike = 1,
+                              Votes=5,
                               PostId = 1,
 
 
@@ -89,8 +97,7 @@ namespace arabiquantum.Data
                                CommentId =2,
                                Text ="لا لايمكنه",
                               DateTime= DateTime.UtcNow,
-                              Like = 1,
-                              Dislike = 5,
+                             Votes = 3,
                               PostId = 2,
                          }
                     });

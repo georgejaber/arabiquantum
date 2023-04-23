@@ -19,16 +19,18 @@ namespace arabiquantum.Controllers
         public async Task<IActionResult> Index(long Id)
         {
 
-           CommentViewModel commentView = new CommentViewModel();   
+            EditCommentViewModel editComment = new EditCommentViewModel();
+           CommentViewModel commentView = new CommentViewModel(); 
 
-
-            commentView.comments = await _comment.GetCommentByPostId(Id);
+           editComment.comments = await _comment.GetCommentByPostId(Id);
 
             Post post1 =  await _comment.GetpostByPostId(PostId:Id);
 
             ViewData["posttext"] = post1.text;
             ViewData["postdate"] = post1.DateTime;
             ViewBag.postid = post1.Id ;
+
+            commentView.EditCommentViewModel = editComment;
 
             return View(commentView);           
         }
@@ -47,6 +49,7 @@ namespace arabiquantum.Controllers
             comment1.DateTime = DateTime.Now;
             comment1.PostId = comment.PostId;
             comment1.Post = await _comment.GetpostByPostId(comment1.PostId);
+            comment1.Votes = 0;
 
             if (!ModelState.IsValid)
             {
@@ -55,18 +58,21 @@ namespace arabiquantum.Controllers
             _comment.Add(comment1);
             return RedirectToAction("index", "Comment",new { comment1.Post.Id });
         }
+
+
         [HttpPost]
-        public async Task<IActionResult> edit(Comment comment)
+        public async Task<IActionResult> Edit(EditCommentViewModel editCommentViewModel)
         {
+
+            Comment comment = editCommentViewModel.comment;
             Comment comment1 = new Comment();
 
             comment1.Text = comment.Text;
             comment1.DateTime = DateTime.Now;
             comment1.PostId = comment.PostId;
             comment1.Post = await _comment.GetpostByPostId(comment1.PostId);
-            comment1.Like = comment.Like;
-            comment1.Dislike = comment.Dislike;
-
+            comment1.Votes = comment.Votes;
+           
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("index", "Comment", new { comment1.Post.Id });
