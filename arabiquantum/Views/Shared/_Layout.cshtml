@@ -25,26 +25,26 @@
 
                 <ul class="navbar-nav flex-grow-1  mt-0 ">
 
-                    <li class="nav-item mx-sm-3 mx-xs-2">
+                    <li class="nav-item mx-2 mx-sm-3 ">
                         <a class="nav-link text-light float-end " asp-area="" asp-controller="Home" asp-action="Index">الصفحة الرئيسية</a>
                     </li>
-                    <li class="nav-item mx-sm-3 mx-xs-2">
+                    <li class="nav-item  mx-2 mx-sm-3">
                         <a class="nav-link text-light float-end" href="https://arabiquantum.z13.web.core.windows.net/api/index.html">تعلم عن الحوسبة الكمية</a>
                     </li>
-                    <li class="nav-item mx-sm-3 ">
+                    <li class="nav-item  mx-2 mx-sm-3 ">
                         <a class="nav-link  text-light float-end" asp-area="" asp-controller="post" asp-action="index">المجتمع</a>
                     </li>
 
-                    <li class="nav-item mx-sm-3">
-                        <div dir="ltr" class="mb-0">
-                            <div style="margin:0%;max-width:35vh">
+                    <li class="nav-item  mx-2 mx-sm-3 d-none d-lg-block float-start">
+                        <div class="mb-0">
+                            <div class="search" style="margin:0%;max-width:35vh">
                                 @using (Html.BeginForm("Index", "Post", FormMethod.Get))
                                 {
                                     <div class="input-group mb-0">
                                         <div class="input-group-sm">
                                             <button class=" myb1 fa fa-search " type="submit"></button>
                                         </div>
-                                        @Html.TextBox("SearchText",null,new {style= "border-radius: 0px",dir="rtl", @class="form-control my-sm-0", type="text" ,placeholder="أبحث"})
+                                        @Html.TextBox("SearchText",null,new {style= "border-radius: 0px", @class="form-control my-sm-0", type="text" ,placeholder="أبحث"})
                                     </div>
 
                                 }
@@ -55,13 +55,13 @@
                   
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="nav-item mx-sm-3">
+                        <li class="nav-item  mx-2 mx-sm-3">
 
                             <a class="nav-link text-light float-end " asp-area="" asp-controller="Account" asp-action="AccountDetails">الحساب</a>
 
                         </li>
 
-                        <li class="nav-item mx-sm-3">
+                        <li class="nav-item mx-2 mx-sm-3">
 
                        
                             <a type="button" class="nav-link myb1 text-light float-end " asp-area="" asp-controller="Account" asp-action="Logout">تسجيل الخروج</a>
@@ -69,13 +69,13 @@
                     }
                     else
                     {
-                        <li class="nav-item mx-sm-3">
+                        <li class="nav-item  mx-2 mx-sm-3">
 
                         <a class="nav-link text-light float-end " asp-area="" asp-controller="Account" asp-action="Login">تسجيل الدخول</a>
 
                     </li>
 
-                    <li class="nav-item mx-sm-3">
+                        <li class="nav-item  mx-2 mx-sm-3">
 
                     <a class="nav-link text-light float-end " asp-area="" asp-controller="Account" asp-action="Register">أنشاء حساب</a>
 
