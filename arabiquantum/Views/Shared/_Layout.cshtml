@@ -36,10 +36,11 @@
                     </li>
 
                     <li class="nav-item  mx-2 mx-sm-3 d-none d-lg-block float-start">
+                        <form method="get" , asp-controller="Post" ,asp-action="Index" enctype="multipart/form-data">
                         <div class="mb-0">
                             <div class="search" style="margin:0%;max-width:35vh">
-                                @using (Html.BeginForm("Index", "Post", FormMethod.Get))
-                                {
+
+                                  
                                     <div class="input-group mb-0">
                                         <div class="input-group-sm">
                                             <button class=" myb1 fa fa-search " type="submit"></button>
@@ -47,9 +48,10 @@
                                         @Html.TextBox("SearchText",null,new {style= "border-radius: 0px", @class="form-control my-sm-0", type="text" ,placeholder="أبحث"})
                                     </div>
 
-                                }
+                                        
+                                    
                             </div>
-                        </div>
+                        </div></form>
                         </li>
 
                   
@@ -82,13 +84,6 @@
                     </li>
 
                     }
-
-                   
-
-
-
-
-
                 </ul>
             </div>
 

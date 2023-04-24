@@ -12,5 +12,7 @@ namespace arabiquantum.ViewModels
 
         public long PostId { get; set; }
 
+        public string UserName { get; set; }
+
     }
 }

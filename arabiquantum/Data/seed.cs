@@ -47,8 +47,6 @@ namespace arabiquantum.Data
                                 DateTime = DateTime.UtcNow,
                                 commentcount = 2,
                                 vote = 10
-
-
                             },
                             new Post()
                             {

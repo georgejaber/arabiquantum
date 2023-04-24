@@ -7,5 +7,6 @@ namespace arabiquantum.ViewModels
         public EditPostViewModel EditPostViewModel { get; set; }
 
         public Post Post { get; set; }
+
     }
 }

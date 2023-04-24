@@ -4,6 +4,7 @@ using arabiquantum.Models;
 using arabiquantum.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Xml.Linq;
 
 namespace arabiquantum.Controllers
@@ -23,19 +24,21 @@ namespace arabiquantum.Controllers
         {
             PostViewModel viewModel = new PostViewModel();
             EditPostViewModel editPostViewModel = new EditPostViewModel();
+      
 
             Post post = await _post.GetByText(SearchText);
             viewModel.Post = post;
             viewModel.EditPostViewModel = editPostViewModel;
 
+
             if (string.IsNullOrEmpty(SearchText))
             {
               viewModel.EditPostViewModel.posts =   await _post.GetAll();
+
               return View(viewModel);
             }
-              viewModel.EditPostViewModel.posts = await _post.search(SearchText);
 
-            
+            viewModel.EditPostViewModel.posts = await _post.search(SearchText);
 
             return View(viewModel);
         }
@@ -59,6 +62,7 @@ namespace arabiquantum.Controllers
         public async Task<IActionResult> create(Post post) 
         {
             var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
+           
 
             Post post1 = new Post();
 
@@ -77,10 +81,12 @@ namespace arabiquantum.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> edit(string PostText, long PostId)
+        public async Task<IActionResult> edit(string PostText, long PostId, string PostRequestRoutedFrom)
         {
             
             Post OldPost = await _post.GetpostByPostIdNoTracking(PostId);
+
+            var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
 
             if (OldPost == null)
             {
@@ -93,7 +99,9 @@ namespace arabiquantum.Controllers
                 text = PostText,
                 DateTime = DateTime.Now,
                 commentcount = OldPost.commentcount,
-                vote = OldPost.vote
+                vote = OldPost.vote,
+                UserId = UserId
+                
             };
 
             if (!ModelState.IsValid)
@@ -107,6 +115,10 @@ namespace arabiquantum.Controllers
                 return RedirectToAction("index");
             }
             await _post.Update(NewPost);
+            if (PostRequestRoutedFrom.Equals("Account")) 
+            {
+                return RedirectToAction("AccountDetails","Account");
+            }
             return RedirectToAction("index");
 
         }
