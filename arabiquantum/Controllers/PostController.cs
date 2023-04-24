@@ -3,6 +3,8 @@ using arabiquantum.InterfacesRepository;
 using arabiquantum.Models;
 using arabiquantum.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.Design;
+using System.Xml.Linq;
 
 namespace arabiquantum.Controllers
 {
@@ -18,15 +20,21 @@ namespace arabiquantum.Controllers
         public async Task<IActionResult> Index(string SearchText)
         {
             PostViewModel viewModel = new PostViewModel();
+            EditPostViewModel editPostViewModel = new EditPostViewModel();
+
             Post post = await _post.GetByText(SearchText);
             viewModel.Post = post;
+            viewModel.EditPostViewModel = editPostViewModel;
 
             if (string.IsNullOrEmpty(SearchText))
             {
-              viewModel.posts =   await _post.GetAll();
+              viewModel.EditPostViewModel.posts =   await _post.GetAll();
               return View(viewModel);
             }
-              viewModel.posts = await _post.search(SearchText);
+              viewModel.EditPostViewModel.posts = await _post.search(SearchText);
+
+            
+
             return View(viewModel);
         }
 
@@ -64,23 +72,39 @@ namespace arabiquantum.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> edit(Post post)
+        public async Task<IActionResult> edit(string PostText, long PostId)
         {
-            Post post1 = new Post();
+            
+            Post OldPost = await _post.GetpostByPostIdNoTracking(PostId);
 
-            post1.text = post.text;
-            post1.DateTime = DateTime.Now;
+            if (OldPost == null)
+            {
+                return View("Error");
+            }
+
+            Post NewPost = new Post
+            {
+                Id = PostId,
+                text = PostText,
+                DateTime = DateTime.Now,
+                commentcount = OldPost.commentcount,
+                vote = OldPost.vote
+            };
 
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("", "Failed to edit Post");
                 return RedirectToAction("index");
             }
-            _post.Update(post1);
+
+            if (PostText == OldPost.text)
+            {
+                return RedirectToAction("index");
+            }
+            await _post.Update(NewPost);
             return RedirectToAction("index");
+
         }
-
-
-
 
     }
 }

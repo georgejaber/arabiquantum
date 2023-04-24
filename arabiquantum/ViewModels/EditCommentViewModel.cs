@@ -7,7 +7,7 @@ namespace arabiquantum.ViewModels
     {
 
         public IEnumerable<Comment> comments { get; set; }
-        [BindProperty]
+
         public string CommentText { get; set; }
 
         public int CommentId { get; set; }
