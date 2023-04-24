@@ -13,6 +13,7 @@ namespace arabiquantum.ViewModels
         public int CommentId { get; set; }
         public int PostId { get; set; }
 
+        public string UserName { get; set; }
 
     }
 }

@@ -10,7 +10,7 @@
                 <div class="container border border-primary p-4">
                     <div class="row p-1">
                         <div class="col-3"><label>إسم المستخدم :</label></div>
-                        <div class="col-6"><input type="text" id="ed" name="CommentText" class="no-outline" value="i8ra2018" style="background-color:white ; width:100%;border-style:hidden;" /></div>
+                        <div class="col-6"><input type="text" id="ed" name="CommentText" class="no-outline" value="@Model.UserName" style="background-color:white ; width:100%;border-style:hidden;" /></div>
                         @if(User.Identity.IsAuthenticated){
                         <div class="col-1">
                             <button type="button" class="myb2  p-1" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
@@ -26,7 +26,7 @@
 
                     <div class="row p-1">
                         <div class="col-3"><label>البريد الإلكتروني :</label></div>
-                        <div class="col-6"><input type="text" id="ed" name="CommentText" class="no-outline" value="i8ra69@gmail.com" style="background-color:white ; width:100%;border-style:hidden;" /></div>
+                        <div class="col-6"><input type="text" id="ed" name="CommentText" class="no-outline" value="@Model.UserEmail" style="background-color:white ; width:100%;border-style:hidden;" /></div>
                         @if (User.Identity.IsAuthenticated)
                 {
                             <div class="col-1">
@@ -70,20 +70,21 @@
                         <div style="border-radius: 0px" class="card-body">
                             <div style="border-radius: 0px" class="row justify-content-between">
 
-                                <div class=" col-sm-2"> <h4 class="card-title ">السؤال</h4> </div>
+                                <div class=" col-sm-2"> <h4 class="card-title ">@Model.UserName</h4> </div>
                                 <div class=" col-sm-2"> <p class="text-muted small mb-0"></p> </div>
                                 <div class="row">
                                     <div class="col-11">
                                     
-                                        <form method="post" asp-action="Edit", asp-controller="Account"enctype="multipart/form-data" >
+                                        <form method="post" asp-action="Edit", asp-controller="Post" enctype="multipart/form-data" >
                                         
                                             <input type="hidden" id="User" name="User" asp-for="UserId"/>
 
                                             <div class="row"> 
                                                 <div class="col-11">
                                                     <input type="text" id="ed" name="PostText" value="@Post.text" class="no-outline" style="background-color:white ; width:100%;border-style:hidden;" />
-                                                    @*  <input asp-for="PostText" type="text" id="ed" name="PostText" class="no-outline" value="@post.text" style="background-color:white ; width:100%;border-style:hidden;" />
-                                             @Html.Hidden("PostId",post.Id)*@
+                                                    @* <input asp-for="PostText" type="text" id="ed" name="PostText" class="no-outline" value="@post.text" style="background-color:white ; width:100%;border-style:hidden;" />*@
+                                             @Html.Hidden("PostId",Post.Id)
+                                            @Html.Hidden("PostRequestRoutedFrom","Account")
                                                 </div>
                                             </div>
 

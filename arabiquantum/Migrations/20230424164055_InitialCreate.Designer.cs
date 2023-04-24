@@ -11,7 +11,7 @@ using arabiquantum.Data;
 namespace arabiquantum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230423110126_InitialCreate")]
+    [Migration("20230424164055_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

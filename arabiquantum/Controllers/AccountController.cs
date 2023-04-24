@@ -114,10 +114,14 @@ namespace arabiquantum.Controllers
         {
 
             var UserPosts = await _accountRepository.GetAllUserPosts();
+            var UserName =  _httpContextAccessor.HttpContext.User.GetUserName();
+            var UserEmail = _httpContextAccessor.HttpContext.User.GetUserEmail();
+
             AccountDetailsViewModel accountDetailsViewModel = new AccountDetailsViewModel()
             {
-
-                Posts = UserPosts
+                UserName = UserName,
+                Posts = UserPosts,
+                UserEmail = UserEmail
             };
 
             return View(accountDetailsViewModel);

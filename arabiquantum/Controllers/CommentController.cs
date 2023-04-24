@@ -3,6 +3,7 @@ using arabiquantum.InterfacesRepository;
 using arabiquantum.Models;
 using arabiquantum.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 
 namespace arabiquantum.Controllers
 {
@@ -22,9 +23,9 @@ namespace arabiquantum.Controllers
         {
 
             EditCommentViewModel editComment = new EditCommentViewModel();
-           CommentViewModel commentView = new CommentViewModel(); 
+           CommentViewModel commentView = new CommentViewModel();
 
-           editComment.comments = await _comment.GetCommentByPostId(Id);
+            editComment.comments = await _comment.GetCommentByPostId(Id);
 
             Post post1 =  await _comment.GetpostByPostId(PostId:Id);
 
@@ -73,6 +74,8 @@ namespace arabiquantum.Controllers
             Comment OldComment = await _comment.GetByIdNoTracking(CommentId);
             Post post = await _comment.GetpostByPostIdNoTracking(postid);
 
+            var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
+
             if (OldComment == null||post == null) {
                 return View("Error");
             }
@@ -84,8 +87,8 @@ namespace arabiquantum.Controllers
                 PostId = postid,
                 Post = post,
                 Votes = OldComment.Votes,
-                user = OldComment.user,
-                UserId = OldComment.UserId };
+                UserId = UserId
+           };
             
             if (!ModelState.IsValid)
             {

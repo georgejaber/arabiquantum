@@ -10,33 +10,73 @@
     </head>
     <main role="main">
 
-        <div style="border-radius: 0px" class="container d-flex align-items-center justify-content-center text-center mb-5 ">
-            <div style="border-radius: 0px" v class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div style="border-radius: 0px" class="modal-dialog" role="document">
-                    <div style="border-radius: 0px" class="modal-content">
-                        <div style="border-radius: 0px" class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">إنشاء سؤال :</h5>
-
-            </div>
-            <form method="post" asp-controller="Post" asp-action="create">
-                <div style="border-radius: 0px" class="modal-body">
+            <div style="border-radius: 0px" class="container d-flex align-items-center justify-content-center text-center mb-5 ">
 
 
-                    <div style="border-radius: 0px" class="form-group">
-                        <textarea asp-for="text" style="border-radius: 0px" value="" class="form-control" id="message-text"></textarea>
+                <div style="border-radius: 0px" v class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div style="border-radius: 0px" class="modal-dialog" role="document">
+                        <div style="border-radius: 0px" class="modal-content">
+                            <div style="border-radius: 0px" class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">إنشاء سؤال :</h5>
+
+                  </div>
+                            <form method="post" asp-controller="Post" asp-action="create" enctype="multipart/form-data">
+                    <div style="border-radius: 0px" class="modal-body">
+
+
+                        <div style="border-radius: 0px" class="form-group">
+                            <textarea asp-for="text" style="border-radius: 0px" value="" class="form-control" id="message-text"></textarea>
+                        </div>
+
                     </div>
 
-                </div>
+                    <div class="modal-footer">
+                        <button style="border-radius: 0px" type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                        <button type="submit" class="btn btn-primary" style="margin-right:0; border-radius: 0px">أنشر</button>
+                    </div>
+                </form>
 
-                <div class="modal-footer">
-                    <button style="border-radius: 0px" type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
-                    <button type="submit" class="btn btn-primary" style="margin-right:0; border-radius: 0px">أنشر</button>
                 </div>
-            </form>
-
+            </div>
         </div>
         </div>
-    </div>
-    </div>
+
+            <div style="border-radius: 0px" class="container  ">
+
+                <div class="container ">
+                    <div style="border-radius: 0px ; border-color: #235074; " class="card w3-panel w3-border w3-hover-border-blue ">
+                        <div class="card-body">
+                            <div class="row justify-content-between">
+
+
+
+                                <div style="border-radius: 0px" class="modal-content">
+                                    <div style="border-radius: 0px" class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">إنشاء سؤال :</h5>
+
+                                    </div>
+                                    <div style="border-radius: 0px" class="modal-body">
+                                        <form>
+
+                                            <div class="form-group">
+                                            @if(User.Identity.IsAuthenticated){
+                                                <textarea style="border-radius: 0px" class="form-control " data-toggle="modal" data-target="#exampleModal"></textarea>
+                                        }                                            
+                                      else{
+                                            <textarea data-target="@Url.Action("Login","Account")" style="border-radius: 0px" class="form-control " data-toggle="modal"></textarea>
+                                            
+                                        }
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
     </main>
 }
