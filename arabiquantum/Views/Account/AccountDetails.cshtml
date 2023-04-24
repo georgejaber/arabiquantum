@@ -1,13 +1,16 @@
 ﻿@model arabiquantum.ViewModels.AccountDetailsViewModel
 
-@{
+
     <head>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     </head>
-    <h2 class="mt-4 mb-5 pe-5">تفاصيل الحساب</h2>
+
     <main role="main" class="mb-5 mx-1 ">
-        <div class="container border border-primary p-4 bg-white">
+        <div class="container">
+        <div class="row"> <h2 class="mt-4 mb-5 pe-5" style="font-family: 'Changa', sans-serif !important;">تفاصيل الحساب</h2></div>
+        <div class="container row border border-primary p-4  bg-white">
+           
                     <div class="row p-1">
                         <div class="col-3"><label>إسم المستخدم :</label></div>
                         <div class="col-6"><input type="text" id="ed" name="CommentText" class="no-outline" value="@Model.UserName" style="background-color:white ; width:100%;border-style:hidden;" /></div>
@@ -57,31 +60,34 @@
 
 
         </div>
-    </main>
 
 
 
-    <h2 class="mt-4 mb-5 pe-5 .new-font">منشوراتي</h2>
 
+
+
+        <div class=" row mb-5">
+            <h2 class="mt-4 mb-5 pe-5" style="font-family: 'Changa', sans-serif !important;">منشوراتي</h2>
+    @{
     foreach (var Post in Model.Posts)
     {
-        <div style="border-radius: 0px " class="container .new-font ">
-            <div style="border-radius: 0px ; border-color: #235074;width:60%  " class=" .new-font card w3-panel w3-border w3-hover-border-blue ">
+                    <div style="border-radius: 0px " class="container  row" >
+            <div style="border-radius: 0px ; border-color: #235074;  " class=" new-font card w3-panel w3-border w3-hover-border-blue ">
                 <div style="border-radius: 0px" class=" .new-font card-body">
-                    <div style="border-radius: 0px" class=".new-font row justify-content-between">
+                    <div style="border-radius: 0px" class="new-font row justify-content-between">
 
-                                <div class=" col-sm-2"> <h4 class="card-title ">@Model.UserName</h4> </div>
+                                    <div class=" col-sm-2"> <h4 class="card-title " style="font-family: 'Changa', sans-serif !important;">@Model.UserName</h4> </div>
                                 <div class=" col-sm-2"> <p class="text-muted small mb-0"></p> </div>
                                 <div class="row">
-                                    <div class="col-11">
+                                    
                                     
                                         <form method="post" asp-action="Edit", asp-controller="Post" enctype="multipart/form-data" >
                                         
                                             <input type="hidden" id="User" name="User" asp-for="UserId"/>
 
                                             <div class="row"> 
-                                                <div class="col-11">
-                                                    <input type="text" id="ed" name="PostText" value="@Post.text" class="no-outline" style="background-color:white ; width:100%;border-style:hidden;" />
+                                                <div class="col-12">
+                                                        <input type="text" id="ed" name="PostText" value="@Post.text" class="no-outline" style="background-color:white ; width:100%;border-style:hidden; font-family: 'Changa' , sans-serif !important;" />
                                                     @* <input asp-for="PostText" type="text" id="ed" name="PostText" class="no-outline" value="@post.text" style="background-color:white ; width:100%;border-style:hidden;" />*@
                                              @Html.Hidden("PostId",Post.Id)
                                             @Html.Hidden("PostRequestRoutedFrom","Account")
@@ -90,22 +96,26 @@
 
                                     @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
                                     {
-                                        <div dir="ltr" class="row justify-content-start flex-row-reverse">
 
-                                            <div class="">
 
-                                                <button type="button" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa-trash-can"></i></button>
-                                                <button type="button" class="myb2  p-1" style="width:4%;" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
-                                                <button type="submit" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa fa-floppy-disk"></i></button>
-                                            </div>
 
-                                        </div>
+                                                    <div class="row justify-content-between ">
+                                                    @Html.ActionLink("التفاصيل","index","comment",new{Post.Id},new { type = "button", @class = "myb1 col-4 col-lg-1 pull-start  newfont"})
+                                                    <div class="col-8 col-lg-3">
+                                                <button type="button" class="myb2  p-1 col-4  col-lg-3"><i class="fa-regular fa-trash-can"></i></button>
+                                                        <button type="button" class="myb2  p-1 col-4 col-lg-3" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
+                                                        <button type="submit" class="myb2  p-1 col-4 col-lg-3"><i class="fa-regular fa fa-floppy-disk"></i></button>
+                                                        </div>
+                                                       
+                                                    </div>
+
+                                      
                                     }
 
                                 </form>
 
 
-                                @Html.ActionLink("التفاصيل","index","comment",new{Post.Id},new { type = "button", @class = "myb1 row justify-content-start flex-row-reverse"})
+                               
                             </div>
                         </div>
 
@@ -113,10 +123,11 @@
                 </div>
             </div>
 
-        </div>
+       
     }
 
-    }
-
+    } </div>
+    </div>
+</main>
 
 
