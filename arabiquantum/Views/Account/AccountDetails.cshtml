@@ -6,8 +6,8 @@
 
     </head>
     <h2 class="mt-4 mb-5 pe-5">تفاصيل الحساب</h2>
-    <main role="main" class="mb-5 mx-1">
-                <div class="container border border-primary p-4">
+    <main role="main" class="mb-5 mx-1 ">
+        <div class="container border border-primary p-4 bg-white">
                     <div class="row p-1">
                         <div class="col-3"><label>إسم المستخدم :</label></div>
                         <div class="col-6"><input type="text" id="ed" name="CommentText" class="no-outline" value="@Model.UserName" style="background-color:white ; width:100%;border-style:hidden;" /></div>
@@ -61,14 +61,14 @@
 
 
 
-    <h2 class="mt-4 mb-5 pe-5">منشوراتي</h2>
+    <h2 class="mt-4 mb-5 pe-5 .new-font">منشوراتي</h2>
 
     foreach (var Post in Model.Posts)
     {
-    <div style="border-radius: 0px " class="container ">
-                    <div style="border-radius: 0px ; border-color: #235074;width:60%  " class="card w3-panel w3-border w3-hover-border-blue ">
-                        <div style="border-radius: 0px" class="card-body">
-                            <div style="border-radius: 0px" class="row justify-content-between">
+        <div style="border-radius: 0px " class="container .new-font ">
+            <div style="border-radius: 0px ; border-color: #235074;width:60%  " class=" .new-font card w3-panel w3-border w3-hover-border-blue ">
+                        <div style="border-radius: 0px" class=" .new-font card-body">
+                            <div style="border-radius: 0px" class=".new-font row justify-content-between">
 
                                 <div class=" col-sm-2"> <h4 class="card-title ">@Model.UserName</h4> </div>
                                 <div class=" col-sm-2"> <p class="text-muted small mb-0"></p> </div>
