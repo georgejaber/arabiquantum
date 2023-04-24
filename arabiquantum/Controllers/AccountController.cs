@@ -64,6 +64,10 @@ namespace arabiquantum.Controllers
             var response = new RegisterViewModel();
             return View(response);
         }
+        public IActionResult AccountDetails()
+        {           
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
@@ -106,6 +110,7 @@ namespace arabiquantum.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        
     }
 
 }
