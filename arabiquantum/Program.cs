@@ -14,6 +14,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IPostRepository, PostRepo>();
 builder.Services.AddScoped<ICommentRepository, CommentRepo>();
+builder.Services.AddScoped<IAccountRepository, AccountRepo>();
 
 //add authentication through cookie session
 builder.Services.AddIdentity<User, IdentityRole>()
