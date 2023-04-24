@@ -15,11 +15,11 @@ namespace arabiquantum.Repository
             this._httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<IEnumerable<Post>> GetAllUserPosts()
+        public async Task<IList<Post>> GetAllUserPosts()
         {
-            var CurrentUser = _httpContextAccessor.HttpContext?.User;
-            var posts = _context.Posts.Where(p=>p.user.Id == CurrentUser.ToString());
-            return posts;
+            var CurrentUser = _httpContextAccessor.HttpContext?.User.GetUserId();
+            var posts = _context.Posts.Where(p=>p.user.Id == CurrentUser);
+            return posts.ToList();
         }
 
         public Task<User> GetUserDetails()

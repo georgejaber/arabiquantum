@@ -1,109 +1,121 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model arabiquantum.ViewModels.AccountDetailsViewModel
+
 @{
     <head>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-       
+                <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     </head>
     <h2 class="mt-4 mb-5 pe-5">تفاصيل الحساب</h2>
-<main role="main" class="mb-5 mx-1">
-    <div class="container border border-primary p-4">
-    <div class="row p-1">
-        <div class="col-3"><label>إسم المستخدم :</label></div>
-        <div class="col-6"><input  type="text" id="ed" name="CommentText" class="no-outline" value="i8ra2018" style="background-color:white ; width:100%;border-style:hidden;" /></div>
-        <div class="col-1">
-                <button type="button" class="myb2  p-1" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
+    <main role="main" class="mb-5 mx-1">
+                <div class="container border border-primary p-4">
+                    <div class="row p-1">
+                        <div class="col-3"><label>إسم المستخدم :</label></div>
+                        <div class="col-6"><input type="text" id="ed" name="CommentText" class="no-outline" value="i8ra2018" style="background-color:white ; width:100%;border-style:hidden;" /></div>
+                        @if(User.Identity.IsAuthenticated){
+                        <div class="col-1">
+                            <button type="button" class="myb2  p-1" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
 
-            </div> 
-            <div class="col-1">
+                        </div>
 
-                <button type="button" class="myb2  p-1" ><i class="fa-regular fa-trash-can"></i></button>
-               
-            </div>
-            <div class="col-1">
-                <button type="submit" class="myb2  p-1" ><i class="fa-regular fa fa-floppy-disk"></i></button>
-            </div>
-    </div>
+                        <div class="col-1">
+                            <button type="submit" class="myb2  p-1"><i class="fa-regular fa fa-floppy-disk"></i></button>
+                        </div> 
+                }
+                    </div>
+                       
 
-        <div class="row p-1">
-            <div class="col-3"><label>البريد الإلكتروني :</label></div>
-            <div class="col-6"><input type="text" id="ed" name="CommentText" class="no-outline" value="i8ra69@gmail.com" style="background-color:white ; width:100%;border-style:hidden;" /></div>
-            <div class="col-1">
-                <button type="button" class="myb2  p-1" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <div class="row p-1">
+                        <div class="col-3"><label>البريد الإلكتروني :</label></div>
+                        <div class="col-6"><input type="text" id="ed" name="CommentText" class="no-outline" value="i8ra69@gmail.com" style="background-color:white ; width:100%;border-style:hidden;" /></div>
+                        @if (User.Identity.IsAuthenticated)
+                {
+                            <div class="col-1">
+                                <button type="button" class="myb2  p-1" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
 
-            </div>
-            <div class="col-1">
+                            </div>
+                            <div class="col-1">
+                                <button type="submit" class="myb2  p-1"><i class="fa-regular fa fa-floppy-disk"></i></button>
+                            </div>
+                }
+                    </div>
 
-                <button type="button" class="myb2  p-1"><i class="fa-regular fa-trash-can"></i></button>
 
-            </div>
-            <div class="col-1">
-                <button type="submit" class="myb2  p-1"><i class="fa-regular fa fa-floppy-disk"></i></button>
-            </div>
-        </div>
+                    <div class="row p-1">
+                        <div class="col-3"><label>كلمة السر :</label></div>
+                        <div class="col-6"><input type="password" id="ed" name="CommentText" class="no-outline" value="**************************" style="background-color:white ; width:100%;border-style:hidden;" /></div>
+                        @if (User.Identity.IsAuthenticated)
+                {
+                            <div class="col-1">
+                                <button type="button" class="myb2  p-1" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
 
-    
-        <div class="row p-1">
-            <div class="col-3"><label>كلمة السر :</label></div>
-            <div class="col-6"><input type="password" id="ed" name="CommentText" class="no-outline" value="**************************" style="background-color:white ; width:100%;border-style:hidden;" /></div>
-            <div class="col-1">
-                <button type="button" class="myb2  p-1" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
+                            </div>
+                            <div class="col-1">
+                                <button type="submit" class="myb2  p-1"><i class="fa-regular fa fa-floppy-disk"></i></button>
+                        </div>
+                }
+                    </div>
 
-            </div>
-            <div class="col-1">
 
-                <button type="button" class="myb2  p-1"><i class="fa-regular fa-trash-can"></i></button>
-
-            </div>
-            <div class="col-1">
-                <button type="submit" class="myb2  p-1"><i class="fa-regular fa fa-floppy-disk"></i></button>
-            </div>
-        </div>
-
-    
-        </div>
-</main>
+                </div>
+    </main>
 
 
 
     <h2 class="mt-4 mb-5 pe-5">منشوراتي</h2>
-    <div style="border-radius: 0px  " class="container ">
-                        <div style="border-radius: 0px ; border-color: #235074;width:60%  " class="card w3-panel w3-border w3-hover-border-blue ">
-                            <div style="border-radius: 0px" class="card-body">
-                                <div style="border-radius: 0px" class="row justify-content-between">
+
+    foreach (var Post in Model.Posts)
+    {
+    <div style="border-radius: 0px " class="container ">
+                    <div style="border-radius: 0px ; border-color: #235074;width:60%  " class="card w3-panel w3-border w3-hover-border-blue ">
+                        <div style="border-radius: 0px" class="card-body">
+                            <div style="border-radius: 0px" class="row justify-content-between">
+
+                                <div class=" col-sm-2"> <h4 class="card-title ">السؤال</h4> </div>
+                                <div class=" col-sm-2"> <p class="text-muted small mb-0"></p> </div>
+                                <div class="row">
+                                    <div class="col-11">
+                                    
+                                        <form method="post" asp-action="Edit", asp-controller="Account"enctype="multipart/form-data" >
+                                        
+                                            <input type="hidden" id="User" name="User" asp-for="UserId"/>
+
+                                            <div class="row"> 
+                                                <div class="col-11">
+                                                    <input type="text" id="ed" name="PostText" value="@Post.text" class="no-outline" style="background-color:white ; width:100%;border-style:hidden;" />
+                                                    @*  <input asp-for="PostText" type="text" id="ed" name="PostText" class="no-outline" value="@post.text" style="background-color:white ; width:100%;border-style:hidden;" />
+                                             @Html.Hidden("PostId",post.Id)*@
+                                                </div>
+                                            </div>
+
+                                        @if(User.Identity.IsAuthenticated && User.IsInRole("admin")){
+                                            <div dir="ltr" class="row justify-content-start flex-row-reverse">
+                                               
+                                                    <div class="">
+
+                                                        <button type="button" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa-trash-can"></i></button>
+                                                        <button type="button" class="myb2  p-1" style="width:4%;" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
+                                                        <button type="submit" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa fa-floppy-disk"></i>
+                                                </div> 
+                                                                        
+                                             </div>
+                                           }
+                                                
+                                            </form>
 
 
-                                    <div class=" col-sm-2"> <h4 class="card-title ">السؤال</h4> </div>
-                                    <div class=" col-sm-2"> <p class="text-muted small mb-0"></p> </div>
-                    <div class="row">
-                        <div class="col-11">
-                            @*  asp-for="PostText"
-                        value="@post.text"
-                        *@
-                            <input type="text" id="ed" name="PostText" class="no-outline" style="background-color:white ; width:100%;border-style:hidden;" />
-                            <p>adfpkhmapro['fnhkjhklsprkaeo;l</p>
-                            @*  @Html.Hidden("PostId",post.Id)*@
+                                        @Html.ActionLink("التفاصيل","index","comment",new{Post.Id},new { type = "button", @class = "myb1 row justify-content-start flex-row-reverse"})
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                    <div dir="ltr" class="row justify-content-start flex-row-reverse">
-                        <div class="">
 
-                            <button type="button" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa-trash-can"></i></button>
-                            <button type="button" class="myb2  p-1" style="width:4%;" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button type="submit" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa fa-floppy-o"></i>
-                        </div>
-                    </div>
-                </div>
-
-                @Html.ActionLink("التفاصيل",
-            "index",
-            "comment",
-            @*new{ post.Id},*@
-            null,
-            new { type = "button", @class = "myb1 row justify-content-start flex-row-reverse"})
-            </div>
-            </div>
-           
     </div>
+    }
+
+
+
+
+
 }

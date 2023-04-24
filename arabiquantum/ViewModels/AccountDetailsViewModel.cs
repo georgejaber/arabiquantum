@@ -5,7 +5,9 @@ namespace arabiquantum.ViewModels
     public class AccountDetailsViewModel
     {
 
-        public Task<IEnumerable<Post>> Posts { get; set; }
+        public IList<Post> Posts { get; set; }
+
+        public string  UserId { get; set; }
 
     }
 }

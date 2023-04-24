@@ -11,15 +11,15 @@ namespace arabiquantum.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly ApplicationDbContext _context;
         private readonly IAccountRepository _accountRepository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ApplicationDbContext context,IAccountRepository accountRepository)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IAccountRepository accountRepository, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
-            _context = context;
+            _signInManager = signInManager;         
             _accountRepository = accountRepository;
+            this._httpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult Login()
@@ -44,7 +44,7 @@ namespace arabiquantum.Controllers
                 if (checkpassword)
                 {
                     //sign in
-                    var signInResult = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, true,true);
+                    var signInResult = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, true, true);
 
                     if (signInResult.Succeeded)
                     {
@@ -85,7 +85,7 @@ namespace arabiquantum.Controllers
             if (UsernameValidation != null)
             {
                 TempData["Error"] = "this username is already taken";
-               
+
             }
 
             var NewUser = new User()
@@ -101,27 +101,29 @@ namespace arabiquantum.Controllers
                 await _userManager.AddToRoleAsync(NewUser, UserRoles.User);
                 return RedirectToAction("index", "Home");
             }
-             return View(registerViewModel);
-        } 
+            return View(registerViewModel);
+        }
 
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-        
+
         public async Task<IActionResult> AccountDetails()
-        {    
-            AccountDetailsViewModel accountDetailsViewModel = new AccountDetailsViewModel();
+        {
 
             var UserPosts = await _accountRepository.GetAllUserPosts();
+            AccountDetailsViewModel accountDetailsViewModel = new AccountDetailsViewModel()
+            {
 
-            accountDetailsViewModel.Posts = (Task<IEnumerable<Post>>)UserPosts;
+                Posts = UserPosts
+            };
 
-            return View();
+            return View(accountDetailsViewModel);
         }
 
-        
+
     }
 
 }

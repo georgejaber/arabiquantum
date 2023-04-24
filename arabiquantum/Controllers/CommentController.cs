@@ -9,10 +9,12 @@ namespace arabiquantum.Controllers
     public class CommentController : Controller
     {
         private readonly ICommentRepository _comment;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CommentController(ICommentRepository comment)
+        public CommentController(ICommentRepository comment,IHttpContextAccessor httpContextAccessor)
         {
             this._comment = comment;
+            this._httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -36,13 +38,16 @@ namespace arabiquantum.Controllers
         }
 
         public IActionResult create()
-        {
-            return View();
+        {        
+
+           return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> create(Comment comment)
         {
+            var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
+
             Comment comment1 = new Comment();
 
             comment1.Text = comment.Text;
@@ -50,6 +55,7 @@ namespace arabiquantum.Controllers
             comment1.PostId = comment.PostId;
             comment1.Post = await _comment.GetpostByPostId(comment1.PostId);
             comment1.Votes = 0;
+            comment1.UserId = UserId;
 
             if (!ModelState.IsValid)
             {

@@ -11,10 +11,12 @@ namespace arabiquantum.Controllers
     public class PostController : Controller
     {
         private readonly IPostRepository _post;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public PostController(IPostRepository post)
+        public PostController(IPostRepository post,IHttpContextAccessor httpContextAccessor)
         {
             this._post = post;
+            this._httpContextAccessor = httpContextAccessor;
         }
  
         public async Task<IActionResult> Index(string SearchText)
@@ -56,12 +58,15 @@ namespace arabiquantum.Controllers
         [HttpPost]
         public async Task<IActionResult> create(Post post) 
         {
+            var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
+
             Post post1 = new Post();
 
             post1.text = post.text;
             post1.DateTime = DateTime.Now;
             post1.commentcount = 0;
             post1.vote = 0;
+            post1.UserId = UserId;
            
             if (!ModelState.IsValid)
             {

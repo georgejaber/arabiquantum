@@ -4,7 +4,7 @@ namespace arabiquantum.InterfacesRepository
 {
     public interface IAccountRepository
     {
-        Task<IEnumerable<Post>> GetAllUserPosts();
+        Task<IList<Post>> GetAllUserPosts();
         Task<User> GetUserDetails();
 
 
