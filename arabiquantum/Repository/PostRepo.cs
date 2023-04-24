@@ -50,6 +50,16 @@ namespace arabiquantum.Repository
             throw new NotImplementedException();
         }
 
+        public async Task<Post> GetpostByPostId(long? PostId)
+        {
+            return await _Context.Posts.FirstOrDefaultAsync(i => i.Id == PostId);
+        }
+
+        public async Task<Post> GetpostByPostIdNoTracking(long? PostId)
+        {
+            return await _Context.Posts.AsNoTracking().FirstOrDefaultAsync(i => i.Id == PostId);
+        }
+
         public bool Save()
         {
             var saved = _Context.SaveChanges();
@@ -57,7 +67,7 @@ namespace arabiquantum.Repository
 
         }
 
-        public bool Update(Post entity)
+        public async Task<bool> Update(Post entity)
         {
           _Context.Entry(entity).State = EntityState.Modified;
           return Save();

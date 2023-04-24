@@ -1,12 +1,10 @@
-﻿@model IEnumerable<Post>
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model  arabiquantum.ViewModels.EditPostViewModel
+
 @{
     <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  
     </head>
 
     <main role="main" >
@@ -39,15 +37,12 @@
 
                         </div>
 
-
-
-
                     </div>
                 </div>
             </div>
 
             @{var count=0;
-                foreach (var post in Model)
+                foreach (var post in Model.posts)
                 {
                   count++;
                     <div style="border-radius: 0px" class="container ">
@@ -56,12 +51,31 @@
                                 <div style="border-radius: 0px" class="row justify-content-between">
 
 
-
                                     <div class=" col-sm-2"> <h4 class="card-title ">السؤال#@count</h4> </div>
                                     <div class=" col-sm-2"> <p class="text-muted small mb-0">@post.DateTime</p> </div>
                                 </div>
 
-                                <p class="card-text">@post.text</p>
+                                @using (Html.BeginForm("Edit", "Post", FormMethod.Post))
+                                {
+
+                                    <div class="row">
+                                        <div class="col-11">
+
+                                            <input asp-for="PostText" type="text" id="ed" name="PostText" class="no-outline" value="@post.text" style="background-color:white ; width:100%;border-style:hidden;" />
+
+                                           @Html.Hidden("PostId",post.Id)
+                                        </div>
+                                    </div>
+
+                                    <div dir="ltr" class="row justify-content-start flex-row-reverse">
+                                        <div class="">
+
+                                            <button type="button" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa-trash-can"></i></button> 
+                                            <button type="button" class="myb2  p-1" style="width:4%;" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
+                                            <button type="submit" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa fa-floppy-o"></i>
+                                        </div>
+                                    </div>
+                                }
 
                                 @Html.ActionLink("التفاصيل",
                                     "index",

@@ -8,12 +8,15 @@ namespace arabiquantum.InterfacesRepository
         Task<IEnumerable<Post>> GetAll();
         Task<IEnumerable<Post>> GetPostsByUserId(int userId);
         Task<IEnumerable<Post>> search(string search);
-
         Task<Post> GetByText(string posttext);
+        Task<Post> GetpostByPostId(long? PostId);
+        Task<Post> GetpostByPostIdNoTracking(long? PostId);
 
+
+        Task<bool> Update(Post entity);
         bool Add(Post entity);
         bool Delete(Post entity);
-        bool Update(Post entity);
+
         bool Save();
     }
 }

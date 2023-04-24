@@ -7,8 +7,9 @@
 }
 <main role="main">
     <div style="border-radius: 0px" class="container  ">
-@Html.Partial("PostListPartialView",Model.posts)
-@Html.Partial("PostPartialView",Model.Post)
 
-</div>
+        @Html.Partial("PostListPartialView",Model.EditPostViewModel)
+        @Html.Partial("PostPartialView",Model.Post)
+
+    </div>
 </main>

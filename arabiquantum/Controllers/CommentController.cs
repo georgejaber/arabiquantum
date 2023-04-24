@@ -63,16 +63,14 @@ namespace arabiquantum.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(string CommentText,int CommentId,long postid)
         {
-         
-
+ 
             Comment OldComment = await _comment.GetByIdNoTracking(CommentId);
             Post post = await _comment.GetpostByPostIdNoTracking(postid);
 
             if (OldComment == null||post == null) {
                 return View("Error");
             }
-
-        
+  
            Comment Comment =  new Comment {
                 CommentId = CommentId,
                 Text = CommentText,
@@ -92,7 +90,6 @@ namespace arabiquantum.Controllers
             {
                 return RedirectToAction("index", "Comment", new { Comment.Post.Id});
             }
-
 
             await _comment.Update(Comment);
             return RedirectToAction("index",new {Comment.Post.Id} );

@@ -4,7 +4,7 @@ namespace arabiquantum.ViewModels
 {
     public class PostViewModel
     {
-        public IEnumerable<Post> posts { get; set; }
+        public EditPostViewModel EditPostViewModel { get; set; }
 
         public Post Post { get; set; }
     }
