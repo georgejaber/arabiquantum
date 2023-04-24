@@ -1,4 +1,5 @@
 ﻿using arabiquantum.Data;
+using arabiquantum.InterfacesRepository;
 using arabiquantum.Models;
 using arabiquantum.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -11,12 +12,14 @@ namespace arabiquantum.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ApplicationDbContext _context;
+        private readonly IAccountRepository _accountRepository;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ApplicationDbContext context)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ApplicationDbContext context,IAccountRepository accountRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _accountRepository = accountRepository;
         }
 
         public IActionResult Login()
@@ -64,10 +67,7 @@ namespace arabiquantum.Controllers
             var response = new RegisterViewModel();
             return View(response);
         }
-        public IActionResult AccountDetails()
-        {           
-            return View();
-        }
+
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
@@ -108,6 +108,17 @@ namespace arabiquantum.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+        
+        public async Task<IActionResult> AccountDetails()
+        {    
+            AccountDetailsViewModel accountDetailsViewModel = new AccountDetailsViewModel();
+
+            var UserPosts = await _accountRepository.GetAllUserPosts();
+
+            accountDetailsViewModel.Posts = (Task<IEnumerable<Post>>)UserPosts;
+
+            return View();
         }
 
         
