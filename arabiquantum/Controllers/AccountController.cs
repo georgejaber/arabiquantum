@@ -62,11 +62,6 @@ namespace arabiquantum.Controllers
 
         }
 
-        public IActionResult Dashboard()
-        {     
-            return View();
-        }
-
         public IActionResult Register()
         {
             var response = new RegisterViewModel();

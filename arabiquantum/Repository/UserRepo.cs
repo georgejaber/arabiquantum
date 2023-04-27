@@ -41,12 +41,14 @@ namespace arabiquantum.Repository
 
         public bool save()
         {
-            throw new NotImplementedException();
+           var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
 
         public bool update(User user)
         {
-            throw new NotImplementedException();
+            _context.Update(user);
+            return save();
         }
     }
 }

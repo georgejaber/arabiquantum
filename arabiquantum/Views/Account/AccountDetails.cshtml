@@ -14,7 +14,7 @@
 
             @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
             {
-                @Html.ActionLink("لوحة التحكم","Dashboard","Account",null,new { type = "button", @class = "myb1 my-3  p-1 col-2 col-lg-1"})
+                @Html.ActionLink("لوحة التحكم","Index","User",null,new { type = "button", @class = "myb1 my-3  p-1 col-2 col-lg-1"})
             }
 
         </div>
