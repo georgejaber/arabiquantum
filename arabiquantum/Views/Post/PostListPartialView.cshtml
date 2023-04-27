@@ -83,18 +83,44 @@
                     let upvoteEl = event.target.parentNode.querySelector(".upvote");
                     let downvoteEl = event.target.parentNode.querySelector(".downvote");
 
+                    // Check if the opposite button was previously clicked
+                    let oppositeButton = event.target.matches(".upvote") ? downvoteEl : upvoteEl;
+                    if (oppositeButton.classList.contains("clicked")) {
+                        // Reset the count and opposite button state
+                        countEl.textContent -= 2;
+                        oppositeButton.classList.remove("clicked");
+                    }
+                    let isClicked = event.target.classList.contains("clicked");
                     // Increment or decrement the count based on which button was clicked
                     if (event.target.matches(".upvote")) {
-                        countEl.textContent++;
-                        upvoteEl.classList.add("clicked");
-                        downvoteEl.classList.remove("clicked");
+                        if (!isClicked) {
+                            countEl.textContent++;
+                            upvoteEl.classList.add("clicked");
+                            downvoteEl.classList.remove("clicked");
+                        }
+                        else {
+                            countEl.textContent--;
+                            upvoteEl.classList.remove("clicked");
+                        }
                     } else {
-                        countEl.textContent--;
-                        downvoteEl.classList.add("clicked");
-                        upvoteEl.classList.remove("clicked");
+                        if (!isClicked) {
+                            countEl.textContent--;
+                            downvoteEl.classList.add("clicked");
+                            upvoteEl.classList.remove("clicked");
+                        }
+                        else {
+                            countEl.textContent++;
+                            downvoteEl.classList.remove("clicked");
+                        }
                     }
                 }
             });
+
+
+
+
+
+
 
 </script>
        
