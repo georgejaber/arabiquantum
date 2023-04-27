@@ -1,4 +1,4 @@
-﻿@model arabiquantum.ViewModels.EditCommentViewModel
+﻿@model List<arabiquantum.ViewModels.ListCommentsViewModel>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
@@ -7,7 +7,7 @@
     <div class="container">
 
         @{
-            foreach (var comments in Model.comments)
+            foreach (var listComments in Model)
 
             { 
 
@@ -17,9 +17,9 @@
                         <div style="margin-right:2%;" class="card-body">
                             <div class="row justify-content-between">
                                 <h4 class="card-title " style=" width:25vw;">
-                                Username        
+                                @listComments.CommentUsername        
                                 </h4>
-                                <p class="text-muted small mb-0 " style=" width:26vw;">@comments.DateTime</p>
+                                <p class="text-muted small mb-0 " style=" width:26vw;">@listComments.CommentDateTime</p>
 
                             </div>
 
@@ -29,9 +29,9 @@
                                
                                 <div class="row">
                                     <div class="col-11">
-                                        <input asp-for="CommentText" type="text" id="@comments.CommentId" name="CommentText" disabled class="no-outline" value="@comments.Text" style="background-color:white ; width:100%;border-style:hidden;" />
+                                        <input type="text" id="ed" name="CommentText" class="no-outline" value="@listComments.CommentText" style="background-color:white ; width:100%;border-style:hidden;" />
                                         @Html.Hidden("postid", (object)ViewBag.postid)
-                                        @Html.Hidden("CommentId",comments.CommentId)
+                                        @Html.Hidden("CommentId",listComments.CommentId)
                                     </div>
                                 </div>
                                 <div class="col-1">

@@ -11,29 +11,47 @@ namespace arabiquantum.Controllers
     {
         private readonly ICommentRepository _comment;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IUserRepository _user;
 
-        public CommentController(ICommentRepository comment, IHttpContextAccessor httpContextAccessor)
+        public CommentController(ICommentRepository comment, IHttpContextAccessor httpContextAccessor,IUserRepository user)
         {
             this._comment = comment;
             this._httpContextAccessor = httpContextAccessor;
+            this._user = user;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(long Id)
+        public async Task<IActionResult> Index(long PostId)
         {
+            List<ListCommentsViewModel> result = new();
 
-            EditCommentViewModel editComment = new EditCommentViewModel();
             CommentViewModel commentView = new CommentViewModel();
+        
+            var comments = await _comment.GetCommentByPostId(PostId);
+            foreach(Comment comment in comments) 
+            {
+                ListCommentsViewModel listComments = new ListCommentsViewModel() 
+                {
+                    CommentDateTime = comment.DateTime,
+                    CommentId = comment.CommentId,
+                    CommentText = comment.Text,
+                    CommentUsername = _user.GetUserNameById(comment.UserId),
+                };
+                result.Add(listComments);
+            }
 
-            editComment.comments = await _comment.GetCommentByPostId(Id);
+            Post post1 = await _comment.GetpostByPostId(PostId: PostId);
 
-            Post post1 = await _comment.GetpostByPostId(PostId: Id);
+            CreateCommentViewModel createCommentViewForPostDetails  = new CreateCommentViewModel()
+            { PostText = post1.text,
+              PostId   = PostId,
+              PostDateTime = post1.DateTime,
+              PostUsername = _user.GetUserNameById(post1.UserId)
+            };
 
-            ViewData["posttext"] = post1.text;
-            ViewData["postdate"] = post1.DateTime;
-            ViewBag.postid = post1.Id;
 
-            commentView.EditCommentViewModel = editComment;
+            commentView.listCommentsViewModels = result;
+            commentView.CreateCommentViewModel = createCommentViewForPostDetails;
 
             return View(commentView);
         }
@@ -62,14 +80,14 @@ namespace arabiquantum.Controllers
 
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("index", "Comment", new { comment1.Post.Id });
+                return RedirectToAction("index", "Comment", new { createcomment.PostId });
             }
 
             post.commentcount++;
             _comment.Add(comment1);
 
 
-            return RedirectToAction("index", "Comment", new { comment1.Post.Id });
+            return RedirectToAction("index", "Comment", new { createcomment.PostId });
         }
 
 
@@ -95,21 +113,21 @@ namespace arabiquantum.Controllers
                 PostId = postid,
                 Post = post,
                 Votes = OldComment.Votes,
-                UserId = UserId
+                UserId = OldComment.UserId
             };
 
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Failed to edit Comment");
-                return RedirectToAction("index", "Comment", new { Comment.Post.Id });
+                return RedirectToAction("index", "Comment", new { postid });
             }
             if (CommentText == OldComment.Text)
             {
-                return RedirectToAction("index", "Comment", new { Comment.Post.Id });
+                return RedirectToAction("index", "Comment", new { postid });
             }
 
             await _comment.Update(Comment);
-            return RedirectToAction("index", new { Comment.Post.Id });
+            return RedirectToAction("index", new {postid});
         }
     }
 }
