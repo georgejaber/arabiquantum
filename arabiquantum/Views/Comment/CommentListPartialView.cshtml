@@ -29,7 +29,7 @@
                                
                                 <div class="row">
                                     <div class="col-11">
-                                        <input type="text" id="ed" name="CommentText" class="no-outline" value="@listComments.CommentText" style="background-color:white ; width:100%;border-style:hidden;" />
+                                        <input type="text" id="@listComments.CommentId" name="CommentText" class="no-outline" disabled value="@listComments.CommentText" style="background-color:white ; width:100%;border-style:hidden;" />
                                         @Html.Hidden("postid", (object)ViewBag.postid)
                                         @Html.Hidden("CommentId",listComments.CommentId)
                                     </div>
@@ -50,9 +50,9 @@
                                 {
                                     <div class="row justify-content-start flex-row-reverse">
                                         <div class="">
-                                            <button type="button" id="@comments.CommentId e" class="myb2  p-1" style="width:4%;" onclick="disableEnable(this.id)"><i class="fa-regular fa-pen-to-square"></i></button>
+                                            <button type="button" id="@listComments.CommentId e" class="myb2  p-1" style="width:4%;" onclick="disableEnable(this.id)"><i class="fa-regular fa-pen-to-square"></i></button>
                                             <button type="button" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa-trash-can"></i></button>
-                                            <button type="submit" id="@comments.CommentId s" class="myb2  p-1" style="width:4%;visibility: hidden;"><i class="fa-regular fa fa-floppy-disk"></i></button>
+                                            <button type="submit" id="@listComments.CommentId s" class="myb2  p-1" style="width:4%;visibility: hidden;"><i class="fa-regular fa fa-floppy-disk"></i></button>
                                         </div>
                                     </div>
                                 }
