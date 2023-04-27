@@ -4,9 +4,9 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 @{
-    <section>
-
-        <div style="border-radius: 0px" class="card container ">
+    
+          <div class="row">
+        <div style="border-radius: 0px" class="card container col-12 ">
             <div style="margin-bottom:6% ; border-radius: 0px " class="card-body">
 
                 <div style="border-radius: 0px" class=" align-items-center">
@@ -15,7 +15,7 @@
                    
 
             
-                    <form method="post", asp-controller="comment", asp-action="create" enctype="multipart/form-data" >
+                    <form method="post", asp-controller="comment" asp-action="create" enctype="multipart/form-data" >
                                 
 
                             <div class="card-footer py-3 border-0" style="background-color: #FFFF; border-radius: 0px">
@@ -76,7 +76,7 @@
         </div>
 
 
+</div>
 
-
-    </section>
+   
 }

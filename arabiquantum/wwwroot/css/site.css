@@ -86,8 +86,8 @@ body {
     color:  #123a93;
 }
 /*font*/
-.new-font{
-font-family: 'Changa', sans-serif;
+.new-font {
+    font-family: 'Changa', sans-serif !important;
 }
 .myb2 {
     background-color: white;
