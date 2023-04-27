@@ -16,8 +16,8 @@
                 var count = 0;
                 foreach (var listPosts in Model)
                 {
-                    count++;
-                    <div style="border-radius: 0px" class="container ">
+                  count++;
+                    <div style="border-radius: 0px" class="container p-0">
                         <div style="border-radius: 0px ; border-color: #235074; " class="card w3-panel w3-border w3-hover-border-blue ">
                             <div style="border-radius: 0px;  margin-right:2%;" class="card-body">
                                 <div class="row justify-content-between">
@@ -32,7 +32,7 @@
                                     <div class="row">
                                         <div class="col-11">
 
-                                            <input type="text" id="ed" name="PostText" class="no-outline" value="@listPosts.PostText" style="background-color:white ; width:100%;border-style:hidden;" />
+                                            <input  type="text" disabled id="@listPosts.PostId" name="PostText" class="no-outline" value="@listPosts.PostText" style="background-color:white ; width:100%;border-style:hidden;" />
 
                                             @Html.Hidden("PostId",listPosts.PostId)
                                             @Html.Hidden("PostRequestRoutedFrom","Posts")
@@ -58,9 +58,9 @@
                                     {
                                         <div dir="ltr" class="row justify-content-start flex-row-reverse">
                                             <div>
+                                                <button type="submit" id="@listPosts.PostId s" class="myb2 p-1" style="width:4%;visibility: hidden;"><i class="fa-regular fa fa-floppy-disk"></i></button>
                                                 <button type="button" class="myb2 p-1" style="width:4%;"><i class="fa-regular fa-trash-can"></i></button>
-                                                <button type="button" class="myb2 p-1" style="width:4%;" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
-                                                <button type="submit" class="myb2 p-1" style="width:4%;"><i class="fa-regular fa fa-floppy-disk"></i></button>
+                                                <button type="button" id="@listPosts.PostId e" class="myb2 p-1" style="width:4%;" onclick="disableEnable(this.id)"><i class="fa-regular fa-pen-to-square"></i></button>
                                             </div>
                                         </div>
                                     }
