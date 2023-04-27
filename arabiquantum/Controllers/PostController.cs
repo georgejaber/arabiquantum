@@ -1,11 +1,7 @@
-﻿using arabiquantum.Data;
-using arabiquantum.InterfacesRepository;
+﻿using arabiquantum.InterfacesRepository;
 using arabiquantum.Models;
 using arabiquantum.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Xml.Linq;
 
 namespace arabiquantum.Controllers
 {
