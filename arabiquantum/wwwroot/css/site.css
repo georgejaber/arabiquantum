@@ -108,3 +108,36 @@ body {
         position: relative;
         top: 1px;
     }
+
+.votes {
+    display: inline-block;
+    padding: 5px 10px;
+    border:0px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    min-width: 80px;
+   
+}
+
+.upvote.clicked, .downvote.clicked {
+    color: #1b58df;
+    pointer-events: none;
+}
+
+.upvote, .downvote {
+    cursor: pointer;
+    color: #123a93;
+    font-size: 24px;
+}
+
+    .upvote:hover, .downvote:hover {
+        color: #43b3c6;
+    }
+
+        .upvote:hover:not(.clicked), .downvote:hover:not(.clicked) {
+            color: #1b58df;
+        }
+
+
