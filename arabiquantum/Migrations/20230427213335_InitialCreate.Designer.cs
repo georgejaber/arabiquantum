@@ -11,7 +11,7 @@ using arabiquantum.Data;
 namespace arabiquantum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230424164055_InitialCreate")]
+    [Migration("20230427213335_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -274,6 +274,36 @@ namespace arabiquantum.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("arabiquantum.Models.Vote", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CommentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("PostId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("vote")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Votes");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -347,6 +377,29 @@ namespace arabiquantum.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("user");
+                });
+
+            modelBuilder.Entity("arabiquantum.Models.Vote", b =>
+                {
+                    b.HasOne("arabiquantum.Models.Comment", "Comment")
+                        .WithMany()
+                        .HasForeignKey("CommentId");
+
+                    b.HasOne("arabiquantum.Models.Post", "Post")
+                        .WithMany()
+                        .HasForeignKey("PostId");
+
+                    b.HasOne("arabiquantum.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("Post");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -21,13 +21,15 @@ namespace arabiquantum.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(long PostId)
+        public async Task<IActionResult> Index(long? PostId,long? Id)
         {
+            long postId = ((long)(PostId == null ? Id : PostId));
+
             List<ListCommentsViewModel> result = new();
 
             CommentViewModel commentView = new CommentViewModel();
         
-            var comments = await _comment.GetCommentByPostId(PostId);
+            var comments = await _comment.GetCommentByPostId(postId);
             foreach(Comment comment in comments) 
             {
                 ListCommentsViewModel listComments = new ListCommentsViewModel() 
@@ -40,11 +42,11 @@ namespace arabiquantum.Controllers
                 result.Add(listComments);
             }
 
-            Post post1 = await _comment.GetpostByPostId(PostId: PostId);
+            Post post1 = await _comment.GetpostByPostId(PostId: postId);
 
             CreateCommentViewModel createCommentViewForPostDetails  = new CreateCommentViewModel()
             { PostText = post1.text,
-              PostId   = PostId,
+              PostId   = postId,
               PostDateTime = post1.DateTime,
               PostUsername = _user.GetUserNameById(post1.UserId)
             };

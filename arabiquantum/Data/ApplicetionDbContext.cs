@@ -15,5 +15,7 @@ namespace arabiquantum.Data
 
         public DbSet<Post> Posts { get; set; }
 
+        public DbSet<Vote> Votes { get; set; }
+
     }
 }

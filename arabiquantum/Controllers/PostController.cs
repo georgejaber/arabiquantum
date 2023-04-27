@@ -10,12 +10,14 @@ namespace arabiquantum.Controllers
         private readonly IPostRepository _post;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUserRepository _user;
+        private readonly IVoteRepository _vote;
 
-        public PostController(IPostRepository post, IHttpContextAccessor httpContextAccessor,IUserRepository user)
+        public PostController(IPostRepository post, IHttpContextAccessor httpContextAccessor,IUserRepository user,IVoteRepository voteRepository)
         {
             this._post = post;
             this._httpContextAccessor = httpContextAccessor;
             this._user = user;
+            this._vote = voteRepository;
         }
 
         public async Task<IActionResult> Index(string SearchText)
@@ -37,7 +39,9 @@ namespace arabiquantum.Controllers
                         PostDateTime = post.DateTime,
                         PostId = post.Id,
                         PostText = post.text,
-                        PostUsername= _user.GetUserNameById(post.UserId)
+                        PostUsername = _user.GetUserNameById(post.UserId),
+                        Votes = await _vote.GetVoteCountByPost(post.Id)
+
                     };
                     result.Add(postsViewModel);
                 }
@@ -95,6 +99,11 @@ namespace arabiquantum.Controllers
             return RedirectToAction("index");
         }
 
+        public IActionResult edit()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> edit(string PostText, long PostId, string PostRequestRoutedFrom)
         {
@@ -136,6 +145,48 @@ namespace arabiquantum.Controllers
             return RedirectToAction("index");
 
         }
+
+        public IActionResult VoteUp(long PostId)
+        {
+            var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
+
+            var Vote = new Vote()
+            {
+                vote = 1,
+                PostId = PostId,
+                UserId = UserId,
+            };
+
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("index");
+            }
+
+            _vote.AddVote(Vote);
+
+            return RedirectToAction("index");
+        }
+        public IActionResult VoteDown(long PostId)
+        {
+            var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
+
+            var Vote = new Vote()
+            {
+                vote = -1,
+                PostId = PostId,
+                UserId = UserId,
+            };
+
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("index");
+            }
+
+            _vote.AddVote(Vote);
+
+            return RedirectToAction("index");
+        }
+
 
     }
 }

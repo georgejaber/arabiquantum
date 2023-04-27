@@ -1,21 +1,22 @@
-﻿@model  List<arabiquantum.ViewModels.ListPostsViewModel>
+﻿@model List<arabiquantum.ViewModels.ListPostsViewModel>
 
 @{
     <head>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-  
+
     </head>
 
-    <main role="main" >
-       
-      <div class="container">
+    <main role="main">
+
+        <div class="container">
 
 
-            @{var count=0;
+            @{
+                var count = 0;
                 foreach (var listPosts in Model)
                 {
-                  count++;
+                    count++;
                     <div style="border-radius: 0px" class="container ">
                         <div style="border-radius: 0px ; border-color: #235074; " class="card w3-panel w3-border w3-hover-border-blue ">
                             <div style="border-radius: 0px;  margin-right:2%;" class="card-body">
@@ -31,19 +32,23 @@
                                     <div class="row">
                                         <div class="col-11">
 
-                                            <input  type="text" id="ed" name="PostText" class="no-outline" value="@listPosts.PostText" style="background-color:white ; width:100%;border-style:hidden;" />
+                                            <input type="text" id="ed" name="PostText" class="no-outline" value="@listPosts.PostText" style="background-color:white ; width:100%;border-style:hidden;" />
 
-                                           @Html.Hidden("PostId",listPosts.PostId)
+                                            @Html.Hidden("PostId",listPosts.PostId)
                                             @Html.Hidden("PostRequestRoutedFrom","Posts")
+
                                         </div>
                                         <div class="col-1">
                                             <div style="position: absolute; top: 10%; right:-1%;">
                                                 <div class="votes">
-                                                    <span class="upvote">&#9650;</span>
+                                                    @*<span class="upvote">&#9650;</span>*@
+
+                                                    @Html.ActionLink("⬆","VoteUp","Post",new{listPosts.PostId},new { type = "button", @class = "upvote"})
                                                     <br>
-                                                    <span class="count">0</span>
+                                                    <span class="count">@listPosts.Votes</span>
                                                     <br>
-                                                    <span class="downvote">&#9660;</span>
+                                                    @Html.ActionLink("⬇","VoteDown","Post",new{listPosts.PostId},new { type = "button", @class = "downvote"})
+                                                  @* <span class="downvote">&#9660;</span>*@
                                                 </div>
                                             </div>
                                         </div>
@@ -62,10 +67,10 @@
                                 }
 
                                 @Html.ActionLink("التفاصيل",
-                                    "index",
-                                    "comment",
-                                   new{listPosts.PostId},
-                                    new { type = "button", @class = "myb1"})
+                    "index",
+                    "comment",
+                    new{listPosts.PostId},
+                    new { type = "button", @class = "myb1"})
 
                             </div>
                         </div>
@@ -74,6 +79,7 @@
                 }
             }
         </div>
+
         <script>
             document.addEventListener("click", function (event) {
                 // Check if the clicked element is an upvote or downvote button
@@ -87,34 +93,31 @@
                     let oppositeButton = event.target.matches(".upvote") ? downvoteEl : upvoteEl;
                     if (oppositeButton.classList.contains("clicked")) {
                         // Reset the count and opposite button state
-                        countEl.textContent -= 2;
+
                         oppositeButton.classList.remove("clicked");
                     }
                     let isClicked = event.target.classList.contains("clicked");
                     // Increment or decrement the count based on which button was clicked
                     if (event.target.matches(".upvote")) {
                         if (!isClicked) {
-                            countEl.textContent++;
+
                             upvoteEl.classList.add("clicked");
                             downvoteEl.classList.remove("clicked");
                         }
                         else {
-                            countEl.textContent--;
+
                             upvoteEl.classList.remove("clicked");
                         }
                     } else {
-                        if (!isClicked) {
-                            countEl.textContent--;
-                            downvoteEl.classList.add("clicked");
-                            upvoteEl.classList.remove("clicked");
-                        }
-                        else {
-                            countEl.textContent++;
-                            downvoteEl.classList.remove("clicked");
-                        }
+                        downvoteEl.classList.add("clicked");
+                        upvoteEl.classList.remove("clicked");
+                    }
+                                                            else {
+                        downvoteEl.classList.remove("clicked");
                     }
                 }
-            });
+            }
+                                                });
 
 
 
@@ -122,9 +125,9 @@
 
 
 
-</script>
-       
-       
+        </script>
+
+
     </main>
-    
+
 }
