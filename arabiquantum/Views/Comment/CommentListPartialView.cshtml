@@ -1,4 +1,4 @@
-﻿@model arabiquantum.ViewModels.EditCommentViewModel
+﻿@model List<arabiquantum.ViewModels.ListCommentsViewModel>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
@@ -7,9 +7,9 @@
     <div class="container">
 
         @{
-            foreach (var comments in Model.comments)
+            foreach (var listComments in Model)
 
-            {
+            { 
 
 
                 <div class="container ">
@@ -17,20 +17,21 @@
                         <div style="margin-right:2%;" class="card-body">
                             <div class="row justify-content-between">
                                 <h4 class="card-title " style=" width:25vw;">
-                                Username        
+                                @listComments.CommentUsername        
                                 </h4>
-                                <p class="text-muted small mb-0 " style=" width:26vw;">@comments.DateTime</p>
+                                <p class="text-muted small mb-0 " style=" width:26vw;">@listComments.CommentDateTime</p>
 
                             </div>
 
                             @using (Html.BeginForm("Edit", "comment", FormMethod.Post))
                             {
-
+                                
+                               
                                 <div class="row">
                                     <div class="col-11">
-                                        <input asp-for="CommentText" type="text" id="ed" name="CommentText" class="no-outline" value="@comments.Text" style="background-color:white ; width:100%;border-style:hidden;" />
+                                        <input type="text" id="@listComments.CommentId" name="CommentText" class="no-outline" disabled value="@listComments.CommentText" style="background-color:white ; width:100%;border-style:hidden;" />
                                         @Html.Hidden("postid", (object)ViewBag.postid)
-                                        @Html.Hidden("CommentId",comments.CommentId)
+                                        @Html.Hidden("CommentId",listComments.CommentId)
                                     </div>
                                 </div>
                                 <div class="col-1">
@@ -49,9 +50,9 @@
                                 {
                                     <div class="row justify-content-start flex-row-reverse">
                                         <div class="">
-                                            <button type="button" class="myb2  p-1" style="width:4%;" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
+                                            <button type="button" id="@listComments.CommentId e" class="myb2  p-1" style="width:4%;" onclick="disableEnable(this.id)"><i class="fa-regular fa-pen-to-square"></i></button>
                                             <button type="button" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa-trash-can"></i></button>
-                                            <button type="submit" class="myb2  p-1" style="width:4%;"><i class="fa-regular fa fa-floppy-disk"></i></button>
+                                            <button type="submit" id="@listComments.CommentId s" class="myb2  p-1" style="width:4%;visibility: hidden;"><i class="fa-regular fa fa-floppy-disk"></i></button>
                                         </div>
                                     </div>
                                 }
@@ -61,8 +62,11 @@
                     </div>
 
                 </div>
+                
             }
-        }
+       
+                                          
+                                            }
     </div>
     <script>
         document.addEventListener("click", function (event) {
@@ -88,20 +92,23 @@
 
     </script>
 </main>
-@*
+
 <script>
-    function disableEnable() {
+    function disableEnable(id1) {
+        let tBox = document.getElementById(id1.slice(0, -2));
+        let eBtn = document.getElementById(id1);
+        let sBtn = document.getElementById(id1.slice(0, -1)+"s");
+        //console.log(typeof (id1) + "" + id1.slice(0, -1)+"s");
+        if (tBox.disabled == true) {
 
-        if (document.getElementById("ed").disabled == true) {
-
-            document.getElementById("ed").disabled = "";
-        } else {
-            document.getElementById("ed").disabled = true;
-        }
+            tBox.disabled = "";
+            tBox.style.borderStyle ="solid" ;
+            eBtn.style.visibility = "hidden";
+            sBtn.style.visibility = 'visible';;
+           
+        } 
     }
 
-    function disable() {
-        document.getElementById("ed").disabled = "true";
-    }
-</script>*@
+    
+</script>
 

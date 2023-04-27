@@ -5,7 +5,7 @@ namespace arabiquantum.ViewModels
     public class CommentViewModel
     {
 
-        public EditCommentViewModel EditCommentViewModel { get; set; }
+        public List<ListCommentsViewModel> listCommentsViewModels { get; set; }
 
         public CreateCommentViewModel CreateCommentViewModel { get; set; }
 
