@@ -44,39 +44,38 @@
             <div style="border-radius: 0px" class="container  ">
 
                 <div class="container ">
-                    <div style="border-radius: 0px ; border-color: #235074; " class="card w3-panel w3-border w3-hover-border-blue ">
-                        <div class="card-body">
+                   
+                        <div class="">
                             <div class="row justify-content-between">
 
 
 
                                 <div style="border-radius: 0px" class="modal-content">
                                     <div style="border-radius: 0px" class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">إنشاء سؤال :</h5>
+                                        
 
                                     </div>
                                     <div style="border-radius: 0px" class="modal-body">
                                         <form>
 
-                                            <div class="form-group">
+                                            
                                             @if(User.Identity.IsAuthenticated){
-                                                <textarea style="border-radius: 0px" class="form-control " data-toggle="modal" data-target="#exampleModal"></textarea>
+                                                <div style="border-radius: 0px; height:7vh;" class="form-control fText" data-toggle="modal" data-target="#exampleModal">لديك سؤال ؟</div>
                                         }                                            
                                       else{
-                                            <textarea data-target="@Url.Action("Login","Account")" style="border-radius: 0px" class="form-control " data-toggle="modal"></textarea>
+                                                <div data-target="@Url.Action("Login","Account")" style="border-radius: 0px;height:7vh;" class="form-control " data-toggle="modal"></div>
                                             
                                         }
-                                            </div>
+                                           
                                         </form>
                                     </div>
-                                    <div class="modal-footer">
-                                    </div>
+                                    
                                 </div>
 
                             </div>
 
                         </div>
-                    </div>
+                    
                 </div>
     </main>
 }

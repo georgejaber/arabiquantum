@@ -141,3 +141,13 @@ body {
         }
 
 
+.fText:hover {
+    background-color: rgba(0,120,255,0.09);
+    cursor: pointer;
+    border-block-color:dodgerblue;
+}
+
+.fText {
+border-style: solid;
+border-width: 2px;
+}
