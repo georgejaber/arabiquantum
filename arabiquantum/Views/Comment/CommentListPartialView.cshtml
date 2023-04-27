@@ -14,7 +14,7 @@
 
                 <div class="container ">
                     <div style="border-radius: 0px ; border-color: #235074" class="card w3-panel w3-border w3-hover-border-blue">
-                        <div class="card-body">
+                        <div style="margin-right:2%;" class="card-body">
                             <div class="row justify-content-between">
                                 <h4 class="card-title " style=" width:25vw;">
                                 Username        
@@ -31,6 +31,17 @@
                                         <input asp-for="CommentText" type="text" id="ed" name="CommentText" class="no-outline" value="@comments.Text" style="background-color:white ; width:100%;border-style:hidden;" />
                                         @Html.Hidden("postid", (object)ViewBag.postid)
                                         @Html.Hidden("CommentId",comments.CommentId)
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <div style="position: absolute; top: 5%; right:-1%;">
+                                        <div class="votes">
+                                            <span class="upvote">&#9650;</span>
+                                            <br>
+                                            <span class="count">0</span>
+                                            <br>
+                                            <span class="downvote">&#9660;</span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -53,6 +64,29 @@
             }
         }
     </div>
+    <script>
+        document.addEventListener("click", function (event) {
+            // Check if the clicked element is an upvote or downvote button
+            if (event.target.matches(".upvote") || event.target.matches(".downvote")) {
+                // Get the count and button elements for the clicked post
+                let countEl = event.target.parentNode.querySelector(".count");
+                let upvoteEl = event.target.parentNode.querySelector(".upvote");
+                let downvoteEl = event.target.parentNode.querySelector(".downvote");
+
+                // Increment or decrement the count based on which button was clicked
+                if (event.target.matches(".upvote")) {
+                    countEl.textContent++;
+                    upvoteEl.classList.add("clicked");
+                    downvoteEl.classList.remove("clicked");
+                } else {
+                    countEl.textContent--;
+                    downvoteEl.classList.add("clicked");
+                    upvoteEl.classList.remove("clicked");
+                }
+            }
+        });
+
+    </script>
 </main>
 @*
 <script>
