@@ -1,4 +1,4 @@
-﻿@model Comment
+﻿@model arabiquantum.ViewModels.CreateCommentViewModel
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -32,9 +32,9 @@
                                     <div class="form-outline w-100">
 
 
-                                        @Html.TextAreaFor(c=> c.Text,new {style = "background: #fff; width:80% ;  position: absolute; top:55% ; left:17.8%;  border-radius: 0px", rows="1", @class ="form-control", id = "textAreaExample"})
+                                        @Html.TextAreaFor(c=> c.Comment.Text,new {style = "background: #fff; width:80% ;  position: absolute; top:55% ; left:17.8%;  border-radius: 0px", rows="1", @class ="form-control", id = "textAreaExample"})
 
-                                        @Html.Hidden("postid", (object)ViewBag.postid)
+                                        @Html.Hidden("PostId", (object)ViewBag.postid)
 
 
                                     </div>

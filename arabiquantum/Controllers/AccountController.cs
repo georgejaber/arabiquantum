@@ -99,6 +99,12 @@ namespace arabiquantum.Controllers
             if (NewUserResponse.Succeeded)
             {
                 await _userManager.AddToRoleAsync(NewUser, UserRoles.User);
+
+                await Login(new LoginViewModel(){
+                    Email = registerViewModel.Email,
+                    Password = registerViewModel.Password
+                });
+
                 return RedirectToAction("index", "Home");
             }
             return View(registerViewModel);
@@ -114,7 +120,7 @@ namespace arabiquantum.Controllers
         {
 
             var UserPosts = await _accountRepository.GetAllUserPosts();
-            var UserName =  _httpContextAccessor.HttpContext.User.GetUserName();
+            var UserName =  _httpContextAccessor.HttpContext.User.GetUserName();//fix here
             var UserEmail = _httpContextAccessor.HttpContext.User.GetUserEmail();
 
             AccountDetailsViewModel accountDetailsViewModel = new AccountDetailsViewModel()

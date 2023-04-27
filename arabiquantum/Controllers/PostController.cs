@@ -100,8 +100,7 @@ namespace arabiquantum.Controllers
                 DateTime = DateTime.Now,
                 commentcount = OldPost.commentcount,
                 vote = OldPost.vote,
-                UserId = UserId
-                
+                UserId = UserId              
             };
 
             if (!ModelState.IsValid)
