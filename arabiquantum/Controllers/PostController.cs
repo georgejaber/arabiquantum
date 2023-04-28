@@ -12,7 +12,7 @@ namespace arabiquantum.Controllers
         private readonly IUserRepository _user;
         private readonly IVoteRepository _vote;
 
-        public PostController(IPostRepository post, IHttpContextAccessor httpContextAccessor,IUserRepository user,IVoteRepository voteRepository)
+        public PostController(IPostRepository post, IHttpContextAccessor httpContextAccessor, IUserRepository user, IVoteRepository voteRepository)
         {
             this._post = post;
             this._httpContextAccessor = httpContextAccessor;
@@ -32,7 +32,7 @@ namespace arabiquantum.Controllers
             {
                 var allposts = await _post.GetAll();
 
-                foreach (var post in allposts) 
+                foreach (var post in allposts)
                 {
                     ListPostsViewModel postsViewModel = new ListPostsViewModel()
                     {
@@ -47,7 +47,7 @@ namespace arabiquantum.Controllers
                 }
                 return View(viewModel);
             }
-             var someposts = await _post.search(SearchText);
+            var someposts = await _post.search(SearchText);
 
             foreach (var post in someposts)
             {
@@ -146,45 +146,47 @@ namespace arabiquantum.Controllers
 
         }
 
-        public IActionResult VoteUp(long PostId)
+        [Route("Post/Vote/{PostId}/{type}")]
+        public async Task<IActionResult> Vote(long PostId, string type)
         {
             var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
 
-            var Vote = new Vote()
-            {
-                vote = 1,
+            int VoteValue = 0;
+
+            if (type.Equals("Up")) {
+                VoteValue = 1; }
+
+            else {
+                VoteValue = -1; }
+
+            var Vote = new Vote(){
+                vote = VoteValue,
                 PostId = PostId,
                 UserId = UserId,
             };
 
-            if (!ModelState.IsValid)
-            {
+            if (!ModelState.IsValid){
+                return RedirectToAction("index");}
+
+            var Existingvote = await _vote.DoesPostVoteExist(Vote);
+
+            if (Existingvote == null){
+                _vote.AddVote(Vote);
                 return RedirectToAction("index");
             }
 
-            _vote.AddVote(Vote);
+            bool IsEqual = Existingvote.vote.Equals(Vote.vote);
 
-            return RedirectToAction("index");
-        }
-        public IActionResult VoteDown(long PostId)
-        {
-            var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
+            if (IsEqual){
+                return RedirectToAction("index");
+            }
+            else{
+                _vote.DeleteVote(Existingvote);
+                _vote.AddVote(Vote);
 
-            var Vote = new Vote()
-            {
-                vote = -1,
-                PostId = PostId,
-                UserId = UserId,
-            };
-
-            if (!ModelState.IsValid)
-            {
                 return RedirectToAction("index");
             }
 
-            _vote.AddVote(Vote);
-
-            return RedirectToAction("index");
         }
 
 

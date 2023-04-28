@@ -21,9 +21,8 @@ namespace arabiquantum.Repository
             return save();
         }
 
-        public async Task<bool> DeleteVote(long id)
+        public async Task<bool> DeleteVote(Vote vote)
         {
-            var vote = GetVoteByID(id);
             if(vote != null)
             {
                 _context.Remove(vote);
@@ -37,6 +36,20 @@ namespace arabiquantum.Repository
             var vote = await _context.Votes.FindAsync(id);
 
             return vote;          
+        }
+
+        public async Task<Vote> DoesPostVoteExist(Vote vote) 
+        {
+            Vote Vote = await _context.Votes.Where(c => c.UserId == vote.UserId).Where(c=>c.PostId == vote.PostId).FirstOrDefaultAsync();
+
+            return Vote;
+        }
+
+        public async Task<Vote> DoesCommentVoteExist(Vote vote)
+        {
+            Vote Vote = await _context.Votes.Where(c => c.UserId == vote.UserId).Where(c => c.CommentId == vote.CommentId).FirstOrDefaultAsync();
+
+            return Vote;
         }
 
         public async Task<long> GetVoteCountByComment(long CommentId)
