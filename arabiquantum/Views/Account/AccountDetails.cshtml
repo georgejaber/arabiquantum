@@ -98,7 +98,7 @@
 
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <input type="text" id="ed" name="PostText" value="@Post.text" class="no-outline" style="background-color:white ; width:100%;border-style:hidden; font-family: 'Changa' , sans-serif !important;" />
+                                                    <input type="text" disabled id="@Post.Id" name="PostText" value="@Post.text" class="no-outline" style="background-color:white ; width:100%;border-style:hidden; font-family: 'Changa' , sans-serif !important;" />
                                                     @* <input asp-for="PostText" type="text" id="ed" name="PostText" class="no-outline" value="@post.text" style="background-color:white ; width:100%;border-style:hidden;" />*@
                                                     @Html.Hidden("PostId",Post.Id)
                                                     @Html.Hidden("PostRequestRoutedFrom","Account")
@@ -113,9 +113,10 @@
                                                 <div class="row justify-content-between ">
                                                     @Html.ActionLink("التفاصيل","index","comment",new{Post.Id},new { type = "button", @class = "myb1 col-4 col-lg-1 pull-start  newfont"})
                                                     <div class="col-8 col-lg-3">
+
+                                                        <button type="button" id="@Post.Id e" class="myb2  p-1 col-4 col-lg-3" onclick="disableEnable(this.id)"><i class="fa-regular fa-pen-to-square"></i></button>
                                                         <button type="button" class="myb2  p-1 col-4  col-lg-3"><i class="fa-regular fa-trash-can"></i></button>
-                                                        <button type="button" class="myb2  p-1 col-4 col-lg-3" onclick="disableEnable()"><i class="fa-regular fa-pen-to-square"></i></button>
-                                                        <button type="submit" class="myb2  p-1 col-4 col-lg-3"><i class="fa-regular fa fa-floppy-disk"></i></button>
+                                                        <button type="submit" id="@Post.Id s" class="myb2  p-1 col-4 col-lg-3" style="visibility: hidden;"><i class="fa-regular fa fa-floppy-disk"></i></button>
                                                     </div>
 
                                                 </div>
