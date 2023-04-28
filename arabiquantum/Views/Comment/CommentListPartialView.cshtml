@@ -37,11 +37,11 @@
                                 <div class="col-1">
                                     <div style="position: absolute; top: 5%; right:-1%;">
                                         <div class="votes">
-                                            <span class="upvote">&#9650;</span>
+                                            @Html.ActionLink("⬆","Vote","Comment",new{PostId=listComments.PostId,CommentId = listComments.CommentId, type = "Up"},new { type = "button", @class = "upvote"})
                                             <br>
-                                            <span class="count">0</span>
+                                            <span class="count">@listComments.Votes</span>
                                             <br>
-                                            <span class="downvote">&#9660;</span>
+                                            @Html.ActionLink("⬇","Vote","Comment",new{PostId=listComments.PostId,CommentId = listComments.CommentId, type = "Down"},new { type = "button", @class = "downvote"})
                                         </div>
                                     </div>
                                 </div>

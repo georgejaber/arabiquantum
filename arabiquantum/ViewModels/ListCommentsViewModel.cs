@@ -14,5 +14,9 @@ namespace arabiquantum.ViewModels
 
         public string CommentUsername { get; set; }
 
+        public long Votes { get; set; }
+
+        public long? PostId { get; set; }
+
     }
 }

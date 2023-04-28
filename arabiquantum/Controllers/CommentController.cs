@@ -12,18 +12,25 @@ namespace arabiquantum.Controllers
         private readonly ICommentRepository _comment;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUserRepository _user;
+        private readonly IVoteRepository _vote;
 
-        public CommentController(ICommentRepository comment, IHttpContextAccessor httpContextAccessor,IUserRepository user)
+        public CommentController(ICommentRepository comment, IHttpContextAccessor httpContextAccessor,IUserRepository user, IVoteRepository vote)
         {
             this._comment = comment;
             this._httpContextAccessor = httpContextAccessor;
             this._user = user;
+            this._vote = vote;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(long? PostId,long? Id)
+        public async Task<IActionResult> Index(long PostId,long Id)
         {
-            long postId = ((long)(PostId == null ? Id : PostId));
+            long postId = PostId;
+
+            if(PostId == null) 
+            {
+                postId = Id;
+            }
 
             List<ListCommentsViewModel> result = new();
 
@@ -38,6 +45,9 @@ namespace arabiquantum.Controllers
                     CommentId = comment.CommentId,
                     CommentText = comment.Text,
                     CommentUsername = _user.GetUserNameById(comment.UserId),
+                    Votes = await _vote.GetVoteCountByComment(CommentId: comment.CommentId),//query every load 
+                    PostId = PostId
+
                 };
                 result.Add(listComments);
             }
@@ -130,6 +140,58 @@ namespace arabiquantum.Controllers
 
             await _comment.Update(Comment);
             return RedirectToAction("index", new {postid});
+        }
+
+        [Route("Comment/Vote/{PostId}/{CommentId}/{type}")]
+        public async Task<IActionResult> Vote(long PostId,long CommentId, string type)
+        {
+            var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
+
+            int VoteValue = 0;
+
+            if (type.Equals("Up"))
+            {   
+                VoteValue = 1;
+            }
+            else
+            {
+                VoteValue = -1;
+            }
+
+            var Vote = new Vote()
+            {
+                vote = VoteValue,
+                CommentId= CommentId,
+                UserId = UserId,
+            };
+
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("index", new { PostId });
+            }
+
+            var Existingvote = await _vote.DoesCommentVoteExist(Vote);
+
+            if (Existingvote == null)
+            {
+                _vote.AddVote(Vote);
+                return RedirectToAction("index", new { PostId });
+            }
+
+            bool IsEqual = Existingvote.vote.Equals(Vote.vote);
+
+            if (IsEqual)
+            {
+                return RedirectToAction("index", new { PostId });
+            }
+            else
+            {
+                _vote.DeleteVote(Existingvote);
+                _vote.AddVote(Vote);
+
+                return RedirectToAction("index", new { PostId });
+            }
+
         }
     }
 }

@@ -40,7 +40,7 @@ namespace arabiquantum.Controllers
                         PostId = post.Id,
                         PostText = post.text,
                         PostUsername = _user.GetUserNameById(post.UserId),
-                        Votes = await _vote.GetVoteCountByPost(post.Id)
+                        Votes = await _vote.GetVoteCountByPost(post.Id)//query every load 
 
                     };
                     result.Add(postsViewModel);
@@ -60,6 +60,7 @@ namespace arabiquantum.Controllers
                 };
                 result.Add(postsViewModel);
             }
+
             return View(viewModel);
         }
 
