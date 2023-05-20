@@ -42,13 +42,23 @@
                                             <div style="position: absolute; top: 10%; right:-1%;">
                                                 <div class="votes">
                                                     @*<span class="upvote">&#9650;</span>*@
-
-                                                    @Html.ActionLink("⬆","Vote","Post",new{PostId = listPosts.PostId, type = "Up"},new { type = "button", @class = "upvote"})
-                                                    <br>
-                                                    <span class="count">@listPosts.Votes</span>
-                                                    <br>
-                                                    @Html.ActionLink("⬇","Vote","Post",new{PostId = listPosts.PostId, type = "Down"},new { type = "button", @class = "downvote"})
-                                                  @* <span class="downvote">&#9660;</span>*@
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                        @Html.ActionLink("⬆","Vote","Post",new{PostId = listPosts.PostId, type = "Up"},new { type = "button", @class = "upvote"})
+                                                        <br>
+                                                        <span class="count">@listPosts.Votes</span>
+                                                        <br>
+                                                        @Html.ActionLink("⬇","Vote","Post",new{PostId = listPosts.PostId, type = "Down"},new { type = "button", @class = "downvote"})
+                                                        @* <span class="downvote">&#9660;</span>*@
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.ActionLink("⬆","Login","Account",null,new { type = "button", @class = "upvote"})
+                                                        <br>
+                                                        <span class="count">@listPosts.Votes</span>
+                                                        <br>
+                                                        @Html.ActionLink("⬇","Login","Account",null,new { type = "button", @class = "downvote"})
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

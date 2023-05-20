@@ -37,11 +37,22 @@
                                 <div class="col-1">
                                     <div style="position: absolute; top: 5%; right:-1%;">
                                         <div class="votes">
-                                            @Html.ActionLink("⬆","Vote","Comment",new{PostId=listComments.PostId,CommentId = listComments.CommentId, type = "Up"},new { type = "button", @class = "upvote"})
-                                            <br>
-                                            <span class="count">@listComments.Votes</span>
-                                            <br>
-                                            @Html.ActionLink("⬇","Vote","Comment",new{PostId=listComments.PostId,CommentId = listComments.CommentId, type = "Down"},new { type = "button", @class = "downvote"})
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                @Html.ActionLink("⬆","Vote","Comment",new{PostId=listComments.PostId,CommentId = listComments.CommentId, type = "Up"},new { type = "button", @class = "upvote"})
+                                                <br>
+                                                <span class="count">@listComments.Votes</span>
+                                                <br>
+                                                @Html.ActionLink("⬇","Vote","Comment",new{PostId=listComments.PostId,CommentId = listComments.CommentId, type = "Down"},new { type = "button", @class = "downvote"})
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("⬆","Login","Account",null,new { type = "button", @class = "upvote"})
+                                                <br>
+                                                <span class="count">@listComments.Votes</span>
+                                                <br>
+                                                @Html.ActionLink("⬇","Login","Account",null,new { type = "button", @class = "downvote"})
+                                            }
                                         </div>
                                     </div>
                                 </div>
