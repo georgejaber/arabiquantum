@@ -14,7 +14,6 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IPostRepository, PostRepo>();
 builder.Services.AddScoped<ICommentRepository, CommentRepo>();
-builder.Services.AddScoped<IAccountRepository, AccountRepo>();
 builder.Services.AddScoped<IUserRepository, UserRepo>();
 builder.Services.AddScoped<IVoteRepository, VoteRepo>();
 

@@ -14,21 +14,6 @@ namespace arabiquantum.Repository
             this._context = context;
         }
 
-        public bool add(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool delete(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<User>> GetAllUsers()
-        {
-            return await _context.Users.ToListAsync();
-        }
-
         public async Task<User> GetUserById(string id)
         {
             return await _context.Users.FindAsync(id);
@@ -43,12 +28,6 @@ namespace arabiquantum.Repository
         {
            var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
-        }
-
-        public bool update(User user)
-        {
-            _context.Update(user);
-            return save();
         }
     }
 }

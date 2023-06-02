@@ -14,18 +14,6 @@ namespace arabiquantum.Repository
             _Context = context;
         }
 
-        public bool Add(Post entity)
-        {
-            _Context.Add(entity);
-            return Save();
-        }
-
-        public bool Delete(Post entity)
-        {
-           _Context.Remove(entity);
-            return Save();
-        }
-
         public async Task<IEnumerable<Post>> GetAll()
         {
             return await _Context.Posts.ToListAsync();
@@ -39,15 +27,6 @@ namespace arabiquantum.Repository
         public async Task<Post> GetByText(string search)
         {
             return await _Context.Posts.FirstOrDefaultAsync(i => i.text.Equals(search));
-        }
-
-
-
-        public async Task<IEnumerable<Post>> GetPostsByUserId(int userId)
-        {
-            //return await _Context.Posts.Where(i => i.user.UserId == userId).ToListAsync();
-
-            throw new NotImplementedException();
         }
 
         public async Task<Post> GetpostByPostId(long? PostId)
@@ -65,12 +44,6 @@ namespace arabiquantum.Repository
             var saved = _Context.SaveChanges();
             return saved > 0 ? true : false;
 
-        }
-
-        public async Task<bool> Update(Post entity)
-        {
-          _Context.Entry(entity).State = EntityState.Modified;
-          return Save();
         }
 
         public async Task<IEnumerable<Post>> search(string searchtext)

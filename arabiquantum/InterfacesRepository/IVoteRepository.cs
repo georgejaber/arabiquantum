@@ -10,16 +10,6 @@ namespace arabiquantum.InterfacesRepository
 
         Task<long> GetVoteCountByPost(long PostId);
 
-        Task<Vote> DoesPostVoteExist(Vote vote);
-
-        Task<Vote> DoesCommentVoteExist(Vote vote);
-
-        Task<bool> AddVote(Vote vote);
-
-        Task<bool> UpdateVote(Vote vote);
-
-        Task<bool> DeleteVote(Vote vote);
-
         bool save();
 
     }

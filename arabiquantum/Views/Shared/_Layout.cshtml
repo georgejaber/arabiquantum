@@ -55,35 +55,7 @@
                         </li>
 
                   
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li class="nav-item  mx-2 mx-sm-3">
-
-                            <a class="nav-link text-light float-end " asp-area="" asp-controller="Account" asp-action="AccountDetails">الحساب</a>
-
-                        </li>
-
-                        <li class="nav-item mx-2 mx-sm-3">
-
-                       
-                            <a type="button" class="nav-link myb1 text-light float-end " asp-area="" asp-controller="Account" asp-action="Logout">تسجيل الخروج</a>
-                    </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item  mx-2 mx-sm-3">
-
-                        <a class="nav-link text-light float-end " asp-area="" asp-controller="Account" asp-action="Login">تسجيل الدخول</a>
-
-                    </li>
-
-                        <li class="nav-item  mx-2 mx-sm-3">
-
-                    <a class="nav-link text-light float-end " asp-area="" asp-controller="Account" asp-action="Register">إنشاء حساب</a>
-
-                    </li>
-
-                    }
+                  
                 </ul>
             </div>
 

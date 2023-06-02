@@ -15,17 +15,8 @@ namespace arabiquantum.Repository
             _Context = context;
         }
 
-        public bool Add(Comment entity)
-        {
-            _Context.Add(entity);
-            return Save();
-        }
 
-        public bool Delete(Comment entity)
-        {
-            _Context.Remove(entity);
-            return Save();
-        }
+
 
         public async Task<Comment> GetById(long id)
         {
@@ -51,22 +42,10 @@ namespace arabiquantum.Repository
             return await _Context.Posts.AsNoTracking().FirstOrDefaultAsync(i => i.Id == PostId);
         }
 
-        public async Task<IEnumerable<Comment>> GetCommentByUserId(int userId)
-        {
-            // return await _Context.Comments.Where(i => i.user.UserId == userId).ToListAsync();
-            throw new NotImplementedException();
-        }
-
         public bool Save()
         {
             var Save = _Context.SaveChanges();
             return Save > 0 ? true : false;
-        }
-
-        public async Task<bool> Update(Comment entity)
-        {
-            _Context.Entry(entity).State = EntityState.Modified ;
-            return Save();
         }
 
     }
